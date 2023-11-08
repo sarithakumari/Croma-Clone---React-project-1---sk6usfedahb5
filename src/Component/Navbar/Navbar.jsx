@@ -15,7 +15,7 @@ import AccountCircle from "@mui/icons-material/AccountCircle";
 import MailIcon from "@mui/icons-material/Mail";
 import NotificationsIcon from "@mui/icons-material/Notifications";
 import MoreIcon from "@mui/icons-material/MoreVert";
-import AdbIcon from "@mui/icons-material/Adb";
+
 
 const Search = styled("div")(({ theme }) => ({
   position: "relative",
@@ -26,11 +26,12 @@ const Search = styled("div")(({ theme }) => ({
   },
   marginRight: theme.spacing(2),
   marginLeft: 0,
+  padding: theme.spacing(0, 4),
   width: "100%",
-  [theme.breakpoints.up("sm")]: {
-    marginLeft: theme.spacing(3),
-    width: "auto",
-  },
+  // [theme.breakpoints.up("sm")]: {
+  //   marginLeft: theme.spacing(3),
+  //   width: "auto",
+  // },
 }));
 
 const SearchIconWrapper = styled("div")(({ theme }) => ({
@@ -46,15 +47,16 @@ const SearchIconWrapper = styled("div")(({ theme }) => ({
 const StyledInputBase = styled(InputBase)(({ theme }) => ({
   color: "inherit",
   "& .MuiInputBase-input": {
-    padding: theme.spacing(1, 1, 1, 0),
+    padding: theme.spacing(1, 1, 1, 1),
     // vertical padding + font size from searchIcon
     paddingRight: `calc(1em + ${theme.spacing(4)})`,
     transition: theme.transitions.create("width"),
     width: "100%",
     [theme.breakpoints.up("md")]: {
-      width: "20ch",
+      // width: "20ch",
     },
   },
+  // width: "100%",
 }));
 
 export default function PrimarySearchAppBar() {
@@ -185,22 +187,23 @@ export default function PrimarySearchAppBar() {
               sx={{ mr: 2 }}
             >
               <MenuIcon />
+              <Typography>menu</Typography>
             </IconButton>
 
-            <Typography
+            {/* <Typography
               variant="h6"
               noWrap
               component="p"
               sx={{ display: { xs: "none", sm: "block" } }}
             >
               menu
-            </Typography>
+            </Typography> */}
           </Toolbar>
 
           {/* search box and icon */}
-          <Search>
+          <Search >
             
-            <StyledInputBase sx={{display: "inline-block"}} 
+            <StyledInputBase  
               placeholder="What are you looking for ?"
               inputProps={{ "aria-label": "search" }}
             />
@@ -208,6 +211,7 @@ export default function PrimarySearchAppBar() {
             <SearchIconWrapper sx={{right: "0px", top: "0px"}}>
               <SearchIcon />
             </SearchIconWrapper>
+
           </Search>
           
 
