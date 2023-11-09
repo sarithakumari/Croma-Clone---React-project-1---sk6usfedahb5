@@ -1,4 +1,5 @@
 import React from "react";
+import './App.css'
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import Home from "./Component/Home/Home";
 import Product from "./Component/Product/Product";
@@ -10,7 +11,7 @@ import Container from "@mui/material/Container";
 function App() {
   return (
     <React.Fragment>
-      <CssBaseline />
+      {/* <CssBaseline /> */}
       <Container maxWidth="lg">
         <BrowserRouter>
           <Navbar />
