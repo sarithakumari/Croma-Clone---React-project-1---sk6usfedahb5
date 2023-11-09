@@ -4,10 +4,10 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 import Home from "./Component/Home/Home";
 import Product from "./Component/Product/Product";
 import Navbar from "./Component/Navbar/Navbar";
-import CssBaseline from "@mui/material/CssBaseline";
-import Box from "@mui/material/Box";
 import Container from "@mui/material/Container";
 import { createTheme } from "@mui/material";
+
+import { categories } from "../public/categories";
 
 const darkTheme = createTheme({
   palette: {
@@ -24,7 +24,13 @@ function App() {
           <Navbar />
           <Routes>
             <Route index element={<Home />} />
-            <Route path="product" element={<Product />} />
+
+            {
+              categories.map((category) => (
+                <Route path={category.path} element={ <Product />} />
+              ))
+            }
+            
           </Routes>
         </BrowserRouter>
       </Container>
@@ -34,13 +40,3 @@ function App() {
 
 export default App;
 
-// export default function SimpleContainer() {
-//   return (
-//     <React.Fragment>
-//       <CssBaseline />
-//       <Container maxWidth="sm">
-//         <Box sx={{ bgcolor: '#cfe8fc', height: '100vh' }} />
-//       </Container>
-//     </React.Fragment>
-//   );
-// }
