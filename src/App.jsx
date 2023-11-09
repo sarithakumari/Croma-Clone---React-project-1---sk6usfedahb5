@@ -7,11 +7,18 @@ import Navbar from "./Component/Navbar/Navbar";
 import CssBaseline from "@mui/material/CssBaseline";
 import Box from "@mui/material/Box";
 import Container from "@mui/material/Container";
+import { createTheme } from "@mui/material";
+
+const darkTheme = createTheme({
+  palette: {
+    mode: 'dark',
+  },
+});
 
 function App() {
   return (
     <React.Fragment>
-      {/* <CssBaseline /> */}
+      {/* <CssBaseline enableColorScheme /> */}
       <Container maxWidth="lg">
         <BrowserRouter>
           <Navbar />
