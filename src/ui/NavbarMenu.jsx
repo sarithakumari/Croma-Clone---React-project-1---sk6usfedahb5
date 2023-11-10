@@ -49,37 +49,33 @@ function NavbarMenu() {
 
       <Menu anchorEl={anchorEl} open={open} onClose={handleMenuClose}>
 
-        
+        <Typography style={{height: "60px", padding: "1rem"}}>Shop by Categories</Typography>
 
-          <Typography style={{height: "60px", padding: "1rem"}}>Shop by Categories</Typography>
+        {categories.map((category) => (
+          <Link
+            key={category.id}
+            component={RouterLink}
+            to={`/${category.path}`}
+            style={{ textDecoration: "none", color: "inherit" }}
+          >
+            <MenuItem onClick={handleMenuClose}
+              style={{
+              display: "flex",
+              width: "400px",
+              height: "40px",
+              alignItems: "center",
+              justifyContent: "space-between",
+              // backgroundColor: "black",
+              // color: "white"
+                }}>
+              <Typography >{category.name}</Typography>
+              <div>
+                <KeyboardArrowRightIcon  />
+              </div>
+            </MenuItem>
+          </Link>
+        ))}
 
-          {categories.map((category) => (
-            <Link
-              key={category.id}
-              component={RouterLink}
-              to={`/${category.path}`}
-              style={{ textDecoration: "none", color: "inherit" }}
-            >
-              <MenuItem onClick={handleMenuClose}
-               style={{
-                display: "flex",
-                width: "400px",
-                height: "40px",
-                alignItems: "center",
-                justifyContent: "space-between",
-                // backgroundColor: "black",
-                // color: "white"
-                 }}>
-                <Typography >{category.name}</Typography>
-                <div >
-                  <KeyboardArrowRightIcon  />
-                </div>
-              </MenuItem>
-            </Link>
-          ))}
-
-        
-        
       </Menu>
     </Toolbar>
   );
