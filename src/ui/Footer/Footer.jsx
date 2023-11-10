@@ -11,7 +11,7 @@ import FooterProducts from "./FooterProducts";
 
 function Footer() {
   return (
-    <BottomNavigation style={{ backgroundColor: "black",  }}>
+    <Box component='div' style={{ backgroundColor: "black", height: "50vh" }}>
       <Container maxWidth="lg">
         <Box>
           <Grid container columnSpacing={3}>
@@ -36,7 +36,7 @@ function Footer() {
           </Grid>
         </Box>
       </Container>
-    </BottomNavigation>
+    </Box>
   );
 }
 
