@@ -1,9 +1,11 @@
 import React, { useState } from "react";
 import Toolbar from "@mui/material/Toolbar";
+import Box from "@mui/material/Box";
 import IconButton from "@mui/material/IconButton";
 import Typography from "@mui/material/Typography";
 import MenuIcon from "@mui/icons-material/Menu";
 import CloseIcon from "@mui/icons-material/Close";
+import KeyboardArrowRightIcon from '@mui/icons-material/KeyboardArrowRight';
 import { Menu, MenuItem } from "@mui/material";
 import { categories } from "../../public/categories";
 import { Link } from "@mui/material";
@@ -45,20 +47,39 @@ function NavbarMenu() {
         <Typography>menu</Typography>
       </IconButton>
 
-      <Menu anchorEl={anchorEl} open={open} onClose={handleMenuClose} >
+      <Menu anchorEl={anchorEl} open={open} onClose={handleMenuClose}>
 
-        <Typography>Shop by Categories</Typography>
-        {categories.map((category) => (
-          <Link
-            key={category.id}
-            component={RouterLink}
-            to={`/${category.path}`}
-            style={{ textDecoration: "none", color: "inherit" }}
-          >
-            <MenuItem onClick={handleMenuClose}>{category.name}</MenuItem>
-          </Link>
-        ))}
+        
 
+          <Typography style={{height: "60px", padding: "1rem"}}>Shop by Categories</Typography>
+
+          {categories.map((category) => (
+            <Link
+              key={category.id}
+              component={RouterLink}
+              to={`/${category.path}`}
+              style={{ textDecoration: "none", color: "inherit" }}
+            >
+              <MenuItem onClick={handleMenuClose}
+               style={{
+                display: "flex",
+                width: "400px",
+                height: "40px",
+                alignItems: "center",
+                justifyContent: "space-between",
+                // backgroundColor: "black",
+                // color: "white"
+                 }}>
+                <Typography >{category.name}</Typography>
+                <div >
+                  <KeyboardArrowRightIcon  />
+                </div>
+              </MenuItem>
+            </Link>
+          ))}
+
+        
+        
       </Menu>
     </Toolbar>
   );
