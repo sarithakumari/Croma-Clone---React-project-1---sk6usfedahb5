@@ -7,7 +7,13 @@ import Navbar from "./Component/Navbar/Navbar";
 import Container from "@mui/material/Container";
 import { createTheme } from "@mui/material";
 
+import { styled } from '@mui/material/styles';
+import Box from '@mui/material/Box';
+import Paper from '@mui/material/Paper';
+import Grid from '@mui/material/Grid';
+
 import { categories } from "../public/categories";
+import Footer from "./ui/Footer/Footer";
 
 const darkTheme = createTheme({
   palette: {
@@ -18,22 +24,29 @@ const darkTheme = createTheme({
 function App() {
   return (
     <React.Fragment>
-      {/* <CssBaseline enableColorScheme /> */}
-      <Container maxWidth="lg">
         <BrowserRouter>
-          <Navbar />
-          <Routes>
-            <Route index element={<Home />} />
+          <Grid container direction="column" style={{height: "999px"}} >
 
-            {
-              categories.map((category) => (
-                <Route path={category.path} element={ <Product />} />
-              ))
-            }
-            
-          </Routes>
+            <Grid item>
+              <Navbar />
+            </Grid>
+            <Grid item >
+              <Routes>
+                <Route index element={<Home />} />
+
+                {
+                  categories.map((category) => (
+                    <Route path={category.path} element={ <Product />} />
+                  ))
+                }
+                
+              </Routes>
+            </Grid>
+            <Grid item style={{marginTop: "auto"}} >
+              <Footer />
+            </Grid>
+          </Grid>
         </BrowserRouter>
-      </Container>
     </React.Fragment>
   );
 }
