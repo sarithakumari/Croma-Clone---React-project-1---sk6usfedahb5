@@ -39,7 +39,7 @@ function NavbarMenu() {
         size="large"
         edge="start"
         color="inherit"
-        aria-label="open drawer"
+        aria-label="open-menu"
         onClick={handleMenuOpen}
       >
         {menuClick ? <CloseIcon /> : <MenuIcon />}
@@ -52,6 +52,7 @@ function NavbarMenu() {
         <Typography style={{height: "60px", padding: "1rem"}}>Shop by Categories</Typography>
 
         {categories.map((category) => (
+          // no need of link element here as navigation to other route can be handled in handleMenuClose function
           <Link
             key={category.id}
             component={RouterLink}
