@@ -7,7 +7,7 @@ import MenuIcon from "@mui/icons-material/Menu";
 import CloseIcon from "@mui/icons-material/Close";
 import KeyboardArrowRightIcon from '@mui/icons-material/KeyboardArrowRight';
 import { Menu, MenuItem } from "@mui/material";
-import { categories } from "../../public/categories";
+import { categories } from "../../../public/categories";
 import { Link } from "@mui/material";
 import { Link as RouterLink } from "react-router-dom";
 
@@ -83,3 +83,15 @@ function NavbarMenu() {
 }
 
 export default NavbarMenu;
+
+
+
+/*
+NOT necessary:
+
+exclusive at croma
+top brands
+croma store locator
+gift card
+
+*/ 

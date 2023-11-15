@@ -15,15 +15,16 @@ function NavbarLogo() {
       >
         <Link component={RouterLink} to={`/`} style={{textDecoration: "none", color: "inherit"}} >
           <Typography
-            variant="h4"
+            variant="h3"
             noWrap
             component="a"
-            href="#app-bar-with-responsive-menu"
+            // href="#app-bar-with-responsive-menu"
             sx={{
-              mr: 2,
-              display: { xs: "none", md: "flex" },
+              // mr: 2,
+              // display: { xs: "none", md: "flex" },
+              display: { md: "flex" },
               fontFamily: "Switzer",
-              fontWeight: 700,
+              fontWeight: 500,
               color: "inherit",
               textDecoration: "none",
             }}

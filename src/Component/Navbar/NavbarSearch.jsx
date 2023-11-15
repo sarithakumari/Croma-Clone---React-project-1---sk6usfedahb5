@@ -8,6 +8,7 @@ import LocationOnIcon from '@mui/icons-material/LocationOn';
 import EditIcon from '@mui/icons-material/Edit';
 import PersonIcon from '@mui/icons-material/Person';
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
+import { IconButton, Typography } from "@mui/material";
 
 
 const Search = styled("div")(({ theme }) => ({
@@ -90,19 +91,21 @@ function NavbarSearch() {
           </Search>
         </Toolbar>
 
+        {/* for location, login, cart */}
         <Toolbar
           style={{
             marginLeft: "auto",
             justifyContent: "space-between",
             minWidth: "200px",
-            padding: "auto 0",
           }}
         >
-          {/* for 3 icons */}
-          <Box>
-            <LocationOnIcon />
-            <EditIcon />
+          <Box sx={{display: "flex"}} onClick={()=>alert('pincode modal')} >
+            <LocationOnIcon style={{padding: "0"}} fontSize="xs" />
+            <Typography variant="body2" component='p' >Mumbai,</Typography>
+            <Typography variant="body2" component='p' >400049</Typography>
+            <EditIcon fontSize="xs" />
           </Box>
+          
           <Box>
             <PersonIcon />
           </Box>
@@ -110,9 +113,12 @@ function NavbarSearch() {
             <ShoppingCartIcon />
           </Box>
         </Toolbar>
+
       </Toolbar>
     </>
   );
 }
 
 export default NavbarSearch;
+// 9771469602 
+// 

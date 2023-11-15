@@ -2,9 +2,9 @@ import React from "react";
 import AppBar from "@mui/material/AppBar";
 import Box from "@mui/material/Box";
 import Toolbar from "@mui/material/Toolbar";
-import NavbarMenu from "../../ui/NavbarMenu";
-import NavbarSearch from "../../ui/NavbarSearch";
-import NavbarLogo from "../../ui/NavbarLogo";
+import NavbarMenu from "./NavbarMenu";
+import NavbarSearch from "./NavbarSearch";
+import NavbarLogo from "./NavbarLogo";
 import Container from "@mui/material/Container";
 
 export default function Navbar() {
