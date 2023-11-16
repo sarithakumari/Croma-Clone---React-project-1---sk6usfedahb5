@@ -92,27 +92,35 @@ function NavbarSearch() {
         </Toolbar>
 
         {/* for location, login, cart */}
-        <Toolbar
+        <Box
           style={{
-            marginLeft: "auto",
+            display: "flex",
             justifyContent: "space-between",
             minWidth: "200px",
+            alignItems: "center",
           }}
         >
-          <Box sx={{display: "flex"}} onClick={()=>alert('pincode modal')} >
+          <Box style={{
+              display: "flex",
+              justifyContent: "space-between",
+              alignItems: "center",
+              marginRight: "20px"
+            }} 
+            onClick={()=>alert('pincode modal')}
+          >
             <LocationOnIcon style={{padding: "0"}} fontSize="xs" />
             <Typography variant="body2" component='p' >Mumbai,</Typography>
             <Typography variant="body2" component='p' >400049</Typography>
             <EditIcon fontSize="xs" />
           </Box>
           
-          <Box>
+          <Box  >
             <PersonIcon />
           </Box>
           <Box>
             <ShoppingCartIcon />
           </Box>
-        </Toolbar>
+        </Box>
 
       </Toolbar>
     </>
