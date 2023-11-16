@@ -94,7 +94,7 @@ function NavbarMenu() {
               // color: "white"
                 }}>
               <Typography >{category.name}</Typography>
-              <div>
+              <div style={{display: "flex" }}>
                 <KeyboardArrowRightIcon  />
               </div>
             </MenuItem>
