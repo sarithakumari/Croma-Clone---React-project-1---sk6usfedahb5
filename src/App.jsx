@@ -3,6 +3,7 @@ import './App.css'
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import Home from "./Component/Home/Home";
 import Product from "./Component/Product/Product";
+import Cart from "./Component/Cart/Cart"
 import Navbar from "./Component/Navbar/Navbar";
 import Container from "@mui/material/Container";
 import { createTheme } from "@mui/material";
@@ -32,6 +33,7 @@ function App() {
             </Grid>
             <Grid item >
               <Routes>
+
                 <Route index element={<Home />} />
 
                 {
@@ -40,6 +42,8 @@ function App() {
                   ))
                 }
                 
+                <Route path='/cart' element={<Cart />} />
+
               </Routes>
             </Grid>
             <Grid item style={{marginTop: "auto"}} >

@@ -4,12 +4,15 @@ import Box from "@mui/material/Box";
 import { styled, alpha } from "@mui/material/styles";
 import InputBase from "@mui/material/InputBase";
 import SearchIcon from "@mui/icons-material/Search";
-import LocationOnIcon from '@mui/icons-material/LocationOn';
-import EditIcon from '@mui/icons-material/Edit';
-import PersonIcon from '@mui/icons-material/Person';
-import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
-import { IconButton, Typography } from "@mui/material";
+import LocationOnIcon from "@mui/icons-material/LocationOn";
+import EditIcon from "@mui/icons-material/Edit";
+import PersonIcon from "@mui/icons-material/Person";
+import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
+import { IconButton, Typography, Badge } from "@mui/material";
+import { teal } from '@mui/material/colors';
+import { useNavigate } from "react-router-dom";
 
+const color = teal['A400'];
 
 const Search = styled("div")(({ theme }) => ({
   position: "relative",
@@ -54,6 +57,9 @@ const SearchIconWrapper = styled("div")(({ theme }) => ({
 }));
 
 function NavbarSearch() {
+
+  const navigate = useNavigate();
+
   return (
     <>
       <Toolbar
@@ -100,33 +106,52 @@ function NavbarSearch() {
             alignItems: "center",
           }}
         >
-          <Box style={{
+          <Box
+            style={{
               display: "flex",
               justifyContent: "space-between",
               alignItems: "center",
-              marginRight: "20px"
-            }} 
-            onClick={()=>alert('pincode modal')}
+              marginRight: "20px",
+            }}
+            onClick={() => alert("pincode modal")}
           >
-            <LocationOnIcon style={{padding: "0"}} fontSize="xs" />
-            <Typography variant="body2" component='p' >Mumbai,</Typography>
-            <Typography variant="body2" component='p' >400049</Typography>
+            <LocationOnIcon style={{ padding: "0" }} fontSize="xs" />
+            <Typography variant="body2" component="p">
+              Mumbai,
+            </Typography>
+            <Typography variant="body2" component="p">
+              400049
+            </Typography>
             <EditIcon fontSize="xs" />
           </Box>
-          
-          <Box  >
-            <PersonIcon />
+
+          <Box
+            style={{
+              marginRight: "20px",
+              cursor: "pointer",
+            }}
+            onClick={()=>alert('sign-in/sign-up modal')}
+          >
+            <PersonIcon style={{ fontSize: "25px" }} />
           </Box>
-          <Box>
-            <ShoppingCartIcon />
+
+          <Box
+            style={{
+              marginRight: "20px",
+              cursor: "pointer",
+              position: "relative",
+            }}
+            onClick={()=>navigate('cart')}
+          >
+            <Badge badgeContent={0} showZero overlap="circular"  >
+              <ShoppingCartIcon />
+            </Badge>
           </Box>
         </Box>
-
       </Toolbar>
     </>
   );
 }
 
 export default NavbarSearch;
-// 9771469602 
-// 
+//<ShoppingCartIcon />
