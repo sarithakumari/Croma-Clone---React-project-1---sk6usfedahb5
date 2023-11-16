@@ -10,6 +10,30 @@ import { Menu, MenuItem } from "@mui/material";
 import { categories } from "../../../public/categories";
 import { Link } from "@mui/material";
 import { Link as RouterLink } from "react-router-dom";
+import styled from "@emotion/styled";
+
+const StyledMenu = styled(Menu)(({ theme }) => ({
+  '& .MuiList-root': {
+    backgroundColor: "#090909",
+    color: "white",
+    // '&:hover .MuiTypography-root': {
+    //   backgroundColor: "grey"
+    // }
+  },
+}))
+
+// const StyledMenuItem = styled(MenuItem)(({ theme })=> ({
+//   '&:hover .MuiTypography-root': {
+//     backgroundColor: "grey",
+//   }
+// }))
+
+const StyledLink = styled(Link)(({ theme }) => ({
+  '&:hover .MuiButtonBase-root': {
+    backgroundColor: "#12DAA8",
+    color: "black"
+  }
+}))
 
 function NavbarMenu() {
   const [menuClick, setMenuClick] = useState(false);
@@ -47,13 +71,13 @@ function NavbarMenu() {
         <Typography>menu</Typography>
       </IconButton>
 
-      <Menu anchorEl={anchorEl} open={open} onClose={handleMenuClose}>
+      <StyledMenu anchorEl={anchorEl} open={open} onClose={handleMenuClose}  >
 
         <Typography style={{height: "60px", padding: "1rem"}}>Shop by Categories</Typography>
 
         {categories.map((category) => (
           // no need of link element here as navigation to other route can be handled in handleMenuClose function
-          <Link
+          <StyledLink
             key={category.id}
             component={RouterLink}
             to={`/${category.path}`}
@@ -74,10 +98,10 @@ function NavbarMenu() {
                 <KeyboardArrowRightIcon  />
               </div>
             </MenuItem>
-          </Link>
+          </StyledLink>
         ))}
 
-      </Menu>
+      </StyledMenu>
     </Toolbar>
   );
 }
