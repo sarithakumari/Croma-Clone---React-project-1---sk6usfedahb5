@@ -14,7 +14,7 @@ import Paper from '@mui/material/Paper';
 import Grid from '@mui/material/Grid';
 
 import { categories } from "../public/categories";
-import Footer from "./ui/Footer/Footer";
+import Footer from "./Component/Footer/Footer";
 
 const darkTheme = createTheme({
   palette: {

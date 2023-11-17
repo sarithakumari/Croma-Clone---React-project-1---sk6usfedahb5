@@ -74,9 +74,9 @@ function NavbarMenu() {
         <Typography>menu</Typography>
       </IconButton> */}
 
-      <MainMenu anchorEl={anchorEl} open={open} onClose={handleMenuClose} />
+      {/* <MainMenu anchorEl={anchorEl} open={open} onClose={handleMenuClose} /> */}
 
-      {/* <StyledMenu anchorEl={anchorEl} open={open} onClose={handleMenuClose}  >
+      <StyledMenu anchorEl={anchorEl} open={open} onClose={handleMenuClose}  >
 
         <Typography style={{height: "60px", padding: "1rem"}}>Shop by Categories</Typography>
 
@@ -106,7 +106,7 @@ function NavbarMenu() {
           </StyledLink>
         ))}
 
-      </StyledMenu> */}
+      </StyledMenu>
 
     </Toolbar>
   );
