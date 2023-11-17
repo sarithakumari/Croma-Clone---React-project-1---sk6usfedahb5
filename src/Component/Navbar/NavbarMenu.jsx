@@ -11,6 +11,8 @@ import { categories } from "../../../public/categories";
 import { Link } from "@mui/material";
 import { Link as RouterLink } from "react-router-dom";
 import styled from "@emotion/styled";
+import NavbarMenuButton from "./NavbarMenuButton";
+import MainMenu from "./MainMenu";
 
 const StyledMenu = styled(Menu)(({ theme }) => ({
   '& .MuiList-root': {
@@ -36,22 +38,22 @@ const StyledLink = styled(Link)(({ theme }) => ({
 }))
 
 function NavbarMenu() {
-  const [menuClick, setMenuClick] = useState(false);
+  // const [menuClick, setMenuClick] = useState(false);
   const [anchorEl, setAnchorEl] = useState(null);
   const open = Boolean(anchorEl);
 
   function handleMenuOpen(e) {
-    setMenuClick(true);
+    // setMenuClick(true);
     setAnchorEl(e.currentTarget);
   }
 
   function handleMenuClose(e) {
     setAnchorEl(null);
-    setMenuClick(false);
+    // setMenuClick(false);
   }
 
-  console.log("menuclick", menuClick);
-  console.log(categories);
+  // console.log("menuclick", menuClick);
+  // console.log(categories);
 
   return (
     <Toolbar
@@ -59,7 +61,8 @@ function NavbarMenu() {
         padding: "auto 0px",
       }}
     >
-      <IconButton
+      <NavbarMenuButton key="navbarmenuBtn" open={open}  handleMenuOpen={handleMenuOpen} />
+      {/* <IconButton
         size="large"
         edge="start"
         color="inherit"
@@ -69,9 +72,11 @@ function NavbarMenu() {
         {menuClick ? <CloseIcon /> : <MenuIcon />}
 
         <Typography>menu</Typography>
-      </IconButton>
+      </IconButton> */}
 
-      <StyledMenu anchorEl={anchorEl} open={open} onClose={handleMenuClose}  >
+      <MainMenu anchorEl={anchorEl} open={open} onClose={handleMenuClose} />
+
+      {/* <StyledMenu anchorEl={anchorEl} open={open} onClose={handleMenuClose}  >
 
         <Typography style={{height: "60px", padding: "1rem"}}>Shop by Categories</Typography>
 
@@ -93,7 +98,7 @@ function NavbarMenu() {
               // backgroundColor: "black",
               // color: "white"
                 }}>
-              <Typography >{category.name}</Typography>
+              <Typography >{category.label}</Typography>
               <div style={{display: "flex" }}>
                 <KeyboardArrowRightIcon  />
               </div>
@@ -101,7 +106,8 @@ function NavbarMenu() {
           </StyledLink>
         ))}
 
-      </StyledMenu>
+      </StyledMenu> */}
+
     </Toolbar>
   );
 }
