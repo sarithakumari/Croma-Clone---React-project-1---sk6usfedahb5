@@ -1,15 +1,13 @@
 import React from 'react'
 import HomeCarousel from './HomeCarousel'
+import HomeBanner from './HomeBanner'
 
 function Home() {
   return (
     <div style={{marginTop: "60px"}}>
-      <h1>Croma</h1>
-      <h1>Croma</h1>
-      <h1>Croma</h1>
-      <h1>Croma</h1>
-      <h1>Croma</h1>
-      <h1>Croma</h1>
+      
+      <HomeBanner />
+
       <HomeCarousel />
     </div>
   )
