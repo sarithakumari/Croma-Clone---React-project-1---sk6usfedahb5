@@ -1,5 +1,7 @@
 import React from "react";
-import { Card, CardMedia } from "@mui/material";
+import { Card, CardMedia, Link } from "@mui/material";
+import { Link as RouterLink } from "react-router-dom";
+
 
 function HomeCarouselCard({ image, alt }) {
   return (
@@ -10,16 +12,19 @@ function HomeCarouselCard({ image, alt }) {
         // marginRight: "20px",
       }}
     >
-      <CardMedia
-        height="130"
-        component="img"
-        src={image}
-        alt={alt}
-        style={{
-          objectFit: "contain",
-          paddingTop: "1rem",
-        }}
-      />
+        <Link component={RouterLink} to='/cart' >
+            <CardMedia
+                height="130"
+                component="img"
+                src={image}
+                alt={alt}
+                style={{
+                    objectFit: "contain",
+                    paddingTop: "1rem",
+            }}
+        />
+        </Link>
+      
     </Card>
   );
 }

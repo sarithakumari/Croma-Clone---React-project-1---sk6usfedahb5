@@ -32,7 +32,7 @@ const responsive = {
 function HomeCarousel() {
   return (
     <Container maxWidth="lg">
-      <Carousel key='home' responsive={responsive} customTransition="transform 500ms ease-in-out"  >
+      <Carousel responsive={responsive} customTransition="transform 500ms ease-in-out"  >
         {carouselLists.map((list) => (
           
             <HomeCarouselCard image={list.imagePath} alt={list.title} />
