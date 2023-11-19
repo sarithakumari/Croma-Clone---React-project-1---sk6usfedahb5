@@ -3,7 +3,7 @@ import { Card, CardMedia, Link } from "@mui/material";
 import { Link as RouterLink } from "react-router-dom";
 
 
-function HomeCarouselCard({ image, alt }) {
+function HomeCarouselCard({ image, alt, pathTo }) {
   return (
     <Card
       style={{
@@ -12,7 +12,7 @@ function HomeCarouselCard({ image, alt }) {
         // marginRight: "20px",
       }}
     >
-        <Link component={RouterLink} to='/cart' >
+        <Link component={RouterLink} to={pathTo} >
             <CardMedia
                 height="130"
                 component="img"

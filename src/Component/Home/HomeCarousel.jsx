@@ -35,7 +35,7 @@ function HomeCarousel() {
       <Carousel responsive={responsive} customTransition="transform 500ms ease-in-out"  >
         {carouselLists.map((list) => (
           
-            <HomeCarouselCard image={list.imagePath} alt={list.title} />
+            <HomeCarouselCard image={list.imagePath} alt={list.title} pathTo={list.path} />
           
         ))}
       </Carousel>
