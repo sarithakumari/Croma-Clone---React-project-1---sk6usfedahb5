@@ -1,4 +1,5 @@
 import React from 'react'
+import HomeCarousel from './HomeCarousel'
 
 function Home() {
   return (
@@ -9,6 +10,7 @@ function Home() {
       <h1>Croma</h1>
       <h1>Croma</h1>
       <h1>Croma</h1>
+      <HomeCarousel />
     </div>
   )
 }
