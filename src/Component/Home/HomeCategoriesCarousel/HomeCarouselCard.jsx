@@ -8,20 +8,19 @@ function HomeCarouselCard({ image, alt, pathTo }) {
     <Card
       elevation={0}
       style={{
-        width: "100px",
-        backgroundColor: "black",
-        // marginRight: "20px",
+        width: "125px",
+        backgroundColor: "rgb(25,25,25)",
+        marginTop: "20px",
       }}
     >
         <Link component={RouterLink} to={pathTo} >
             <CardMedia
-                height="130"
+                height="160"
                 component="img"
                 src={image}
                 alt={alt}
                 style={{
                     objectFit: "contain",
-                    paddingTop: "1rem",
             }}
         />
         </Link>

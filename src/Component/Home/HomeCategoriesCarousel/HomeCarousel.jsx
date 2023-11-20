@@ -1,8 +1,8 @@
-import { Container, Link } from "@mui/material";
+import { Container } from "@mui/material";
 import React from "react";
 import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
-import { carouselLists } from "../../../public/carouselLists";
+import { carouselLists } from "../../../../public/carouselLists";
 import { Link as RouterLink } from "react-router-dom";
 import HomeCarouselCard from "./HomeCarouselCard";
 
@@ -21,18 +21,20 @@ const responsive = {
   },
   tablet: {
     breakpoint: { max: 800, min: 464 },
-    items: 2,
+    items: 5,
+    slidesToSlide: 3
   },
   mobile: {
     breakpoint: { max: 464, min: 0 },
-    items: 1,
+    items: 3,
+    slidesToSlide: 2
   },
 };
 
 function HomeCarousel() {
   return (
     <Container maxWidth="lg">
-      <Carousel responsive={responsive} customTransition="transform 500ms ease-in-out"  >
+      <Carousel responsive={responsive} renderArrowsWhenDisabled={true} renderButtonGroupOutside={true} customTransition="transform 500ms ease-in-out"  >
         {carouselLists.map((list, index) => (
           
             <HomeCarouselCard key={index} image={list.imagePath} alt={list.title} pathTo={list.path} />

@@ -47,7 +47,7 @@ function App() {
               </Routes>
             </Grid>
             <Grid item style={{marginTop: "auto"}} >
-              <Footer />
+              {/* <Footer /> */}
             </Grid>
           </Grid>
         </BrowserRouter>
