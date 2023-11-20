@@ -1,11 +1,12 @@
 import { Container } from "@mui/material";
-import React from "react";
+import React, { useEffect } from "react";
 import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
 import { carouselLists } from "../../../../public/carouselLists";
 import { Link as RouterLink } from "react-router-dom";
 import HomeCarouselCard from "./HomeCarouselCard";
 
+const URL = `https://academics.newtonschool.co/api/v1/ecommerce/electronics/products`;
 
 const responsive = {
   superLargeDesktop: {
@@ -32,6 +33,26 @@ const responsive = {
 };
 
 function HomeCarousel() {
+
+  useEffect(()=>{
+    fetchData();
+  }, [])
+
+  async function fetchData() {
+    try {
+      const res = await fetch(URL, {
+      method: "GET",
+      headers: {
+        "projectID": "sk6usfedahb5"
+      }
+      });
+      const data = await res.json();
+      console.log(data);
+    } catch(error) {
+      console.error('error in fetching data', error.message)
+    }
+  }
+
   return (
     <Container maxWidth="lg">
       <Carousel responsive={responsive} renderArrowsWhenDisabled={true} renderButtonGroupOutside={true} customTransition="transform 500ms ease-in-out"  >

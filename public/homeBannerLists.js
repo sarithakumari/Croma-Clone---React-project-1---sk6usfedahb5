@@ -35,4 +35,10 @@ export const homeBannerLists = [
         imagePath: 'phones-wearables',
         title: 'mobile-accessories'
     },
+    {
+        id: 7,
+        imageURL: 'https://media-ik.croma.com/prod/https://media.croma.com/image/upload/v1700461284/Croma%20Assets/CMS/LP%20Page%20Banners/2023/HP%20Top%20Rotating%20Deals/November/20th%20Nov/HP_WM_20Nov2023_vo8ewf.jpg?tr=w-2048',
+        imagePath: 'home-appliances',
+        title: 'washing-machines'
+    },
 ]
