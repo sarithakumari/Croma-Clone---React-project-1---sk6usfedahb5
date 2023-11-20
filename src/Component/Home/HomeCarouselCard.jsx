@@ -6,6 +6,7 @@ import { Link as RouterLink } from "react-router-dom";
 function HomeCarouselCard({ image, alt, pathTo }) {
   return (
     <Card
+      elevation={0}
       style={{
         width: "100px",
         backgroundColor: "black",

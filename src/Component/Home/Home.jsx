@@ -5,8 +5,6 @@ import HomeBanner from './HomeBanner'
 function Home() {
   return (
     <div style={{marginTop: "60px"}}>
-      
-      <HomeBanner />
 
       <HomeCarousel />
     </div>

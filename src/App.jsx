@@ -37,8 +37,8 @@ function App() {
                 <Route index element={<Home />} />
 
                 {
-                  categories.map((category) => (
-                    <Route path={category.path} element={ <Product />} />
+                  categories.map((category, index) => (
+                    <Route key={index} path={category.path} element={ <Product />} />
                   ))
                 }
                 
