@@ -1,12 +1,12 @@
-import { Container } from "@mui/material";
-import React, { useEffect } from "react";
+import { Container, CardMedia } from "@mui/material";
+import React, { useEffect, useState } from "react";
 import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
 import { carouselLists } from "../../../../public/carouselLists";
-import { Link as RouterLink } from "react-router-dom";
 import HomeCarouselCard from "./HomeCarouselCard";
+import { productDataApi } from "../../../helper/productDataApi";
 
-const URL = `https://academics.newtonschool.co/api/v1/ecommerce/electronics/products`;
+// const URL = `https://academics.newtonschool.co/api/v1/ecommerce/electronics/products`;
 
 const responsive = {
   superLargeDesktop: {
@@ -34,24 +34,13 @@ const responsive = {
 
 function HomeCarousel() {
 
+  const [state, setState] = useState([]);
+
   useEffect(()=>{
-    fetchData();
+    productDataApi(500).then(data => setState(data));
   }, [])
 
-  async function fetchData() {
-    try {
-      const res = await fetch(URL, {
-      method: "GET",
-      headers: {
-        "projectID": "sk6usfedahb5"
-      }
-      });
-      const data = await res.json();
-      console.log(data);
-    } catch(error) {
-      console.error('error in fetching data', error.message)
-    }
-  }
+  console.log('state', state);
 
   return (
     <Container maxWidth="lg">
@@ -62,6 +51,16 @@ function HomeCarousel() {
           
         ))}
       </Carousel>
+      {state?.map((product, index)=> (
+        <div key={index}>{product.subCategory == 'washingMachine' && product.brand == 'Samsung' ? (
+          <div>
+            <h1> {index}. {product.name} </h1>
+            <h3> {product.brand} </h3>
+            <CardMedia component='img' src={product.displayImage} height='360' style={{objectFit: "contain"}} />
+          </div>
+          
+        ):''}</div>
+      ))}
     </Container>
   );
 }
