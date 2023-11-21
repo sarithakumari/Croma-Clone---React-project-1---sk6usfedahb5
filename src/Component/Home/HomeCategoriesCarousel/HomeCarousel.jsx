@@ -34,13 +34,13 @@ const responsive = {
 
 function HomeCarousel() {
 
-  const [state, setState] = useState([]);
+  // const [state, setState] = useState([]);
 
-  useEffect(()=>{
-    productDataApi(500).then(data => setState(data));
-  }, [])
+  // useEffect(()=>{
+  //   productDataApi(500).then(data => setState(data));
+  // }, [])
 
-  console.log('state', state);
+  // console.log('state', state);
 
   return (
     <Container maxWidth="lg">
@@ -51,7 +51,7 @@ function HomeCarousel() {
           
         ))}
       </Carousel>
-      {state?.map((product, index)=> (
+      {/* {state?.map((product, index)=> (
         <div key={index}>{product.subCategory == 'washingMachine' && product.brand == 'Samsung' ? (
           <div>
             <h1> {index}. {product.name} </h1>
@@ -60,7 +60,7 @@ function HomeCarousel() {
           </div>
           
         ):''}</div>
-      ))}
+      ))} */}
     </Container>
   );
 }
