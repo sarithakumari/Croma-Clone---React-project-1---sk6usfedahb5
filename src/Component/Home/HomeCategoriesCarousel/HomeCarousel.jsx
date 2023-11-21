@@ -6,7 +6,6 @@ import { carouselLists } from "../../../../public/carouselLists";
 import HomeCarouselCard from "./HomeCarouselCard";
 import { productDataApi } from "../../../helper/productDataApi";
 
-// const URL = `https://academics.newtonschool.co/api/v1/ecommerce/electronics/products`;
 
 const responsive = {
   superLargeDesktop: {
@@ -33,14 +32,6 @@ const responsive = {
 };
 
 function HomeCarousel() {
-
-  // const [state, setState] = useState([]);
-
-  // useEffect(()=>{
-  //   productDataApi(500).then(data => setState(data));
-  // }, [])
-
-  // console.log('state', state);
 
   return (
     <Container maxWidth="lg">
