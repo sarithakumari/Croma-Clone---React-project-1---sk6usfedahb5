@@ -23,7 +23,7 @@ const StyledRating = styled(Rating)({
 
 function HomeSectionCard({ cardInfo }) {
   console.log("cardinfo: ", cardInfo);
-  const { displayImage, name, price, ratings } = cardInfo;
+  const { displayImage, name, price, ratings, subCategory } = cardInfo;
 
   return (
     <Toolbar
@@ -45,7 +45,7 @@ function HomeSectionCard({ cardInfo }) {
           <CardMedia
             component="img"
             src={displayImage}
-            alt="mobile"
+            alt={subCategory}
             height="200"
             width="200"
             sx={{
@@ -88,7 +88,7 @@ function HomeSectionCard({ cardInfo }) {
               textOverflow: "ellipsis",
               display: "-webkit-box",
               WebkitBoxOrient: "vertical",
-            //   WebkitLineClamp: "2"
+              WebkitLineClamp: "2"
             }}
           >
             {name}

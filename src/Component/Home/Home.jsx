@@ -11,7 +11,7 @@ function Home() {
   const [dealsDayArr, setDealsDayArr] = useState([]);
 
   useEffect(()=>{
-    productDataApi(1).then(data => setDealsDayArr(data));
+    productDataApi(6).then(data => setDealsDayArr(data));
   }, [])
   
   return (

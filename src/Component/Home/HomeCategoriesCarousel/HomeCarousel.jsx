@@ -16,16 +16,16 @@ const responsive = {
   },
   desktop: {
     breakpoint: { max: 1024, min: 800 },
-    items: 8,
-    slidesToSlide: 7
+    items: 6,
+    slidesToSlide: 5
   },
   tablet: {
-    breakpoint: { max: 800, min: 464 },
+    breakpoint: { max: 800, min: 600 },
     items: 5,
-    slidesToSlide: 3
+    slidesToSlide: 4
   },
   mobile: {
-    breakpoint: { max: 464, min: 0 },
+    breakpoint: { max: 600, min: 0 },
     items: 3,
     slidesToSlide: 2
   },
