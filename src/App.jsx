@@ -31,6 +31,7 @@ function App() {
             <Grid item>
               <Navbar />
             </Grid>
+
             <Grid item >
               <Routes>
 
@@ -46,6 +47,7 @@ function App() {
 
               </Routes>
             </Grid>
+            
             <Grid item style={{marginTop: "auto"}} >
               {/* <Footer /> */}
             </Grid>

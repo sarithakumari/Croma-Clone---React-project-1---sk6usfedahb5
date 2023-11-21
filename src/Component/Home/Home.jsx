@@ -2,13 +2,17 @@ import React, { useEffect, useState } from 'react'
 import HomeCarousel from './HomeCategoriesCarousel/HomeCarousel'
 import HomeBanner from './HomeBanner/HomeBanner'
 import { Box, Stack } from "@mui/material";
-import Product from '../Product/Product';
 import { productDataApi } from '../../helper/productDataApi';
-import DealsOfTheDay from './DealsOfTheDay/DealsOfTheDay';
 import HomeSection from './HomeSection/HomeSection';
 
 
 function Home() {
+
+  const [dealsDayArr, setDealsDayArr] = useState([]);
+
+  useEffect(()=>{
+    productDataApi(1).then(data => setDealsDayArr(data));
+  }, [])
   
   return (
     <Stack spacing={4} style={{marginTop: "60px", width: "100vw", justifyContent: "center"}}>
@@ -20,7 +24,7 @@ function Home() {
       </Box>
 
       <Box component='div' id='Deals Of The Day' >
-        <HomeSection />
+        <HomeSection dealsDayArr={dealsDayArr} />
       </Box>
 
       {/* <Box component='div' id='Top Trending Deals' >

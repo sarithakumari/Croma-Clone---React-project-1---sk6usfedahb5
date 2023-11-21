@@ -25,14 +25,16 @@ const responsive = {
   },
 };
 
-function HomeSectionCarousel() {
+function HomeSectionCarousel({ dealsDayArr }) {
+  
   return (
     <Carousel responsive={responsive} renderArrowsWhenDisabled={true} renderButtonGroupOutside={true} customTransition="transform 500ms ease-in-out" >
-      <HomeSectionCard />
-      <HomeSectionCard />
-      <HomeSectionCard />
-      <HomeSectionCard />
-      <HomeSectionCard />
+      
+      {
+        dealsDayArr.map((deal)=>(
+          <HomeSectionCard cardInfo={deal} />
+        ))
+      }
       
     </Carousel>
   )

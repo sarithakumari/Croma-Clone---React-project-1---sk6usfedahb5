@@ -16,9 +16,15 @@ const StyledRating = styled(Rating)({
   "& .MuiRating-iconFilled": {
     color: "#00e9bf",
   },
+  "& .MuiRating-iconEmpty": {
+    color: "grey",
+  },
 });
 
-function ProductCard() {
+function HomeSectionCard({ cardInfo }) {
+  console.log("cardinfo: ", cardInfo);
+  const { displayImage, name, price, ratings } = cardInfo;
+
   return (
     <Toolbar
       sx={{
@@ -32,10 +38,13 @@ function ProductCard() {
         component="div"
         sx={{ height: 200, width: 200, m: 1, position: "relative" }}
       >
-        <CardActionArea disableRipple onClick={() => alert("redirect to product page")}>
+        <CardActionArea
+          disableRipple
+          onClick={() => alert("redirect to product page")}
+        >
           <CardMedia
             component="img"
-            src="https://media-ik.croma.com/prod/https://media.croma.com/image/upload/v1681112708/Croma%20Assets/Communication/Mobiles/Images/270909_k1wgvp.png?tr=w-480"
+            src={displayImage}
             alt="mobile"
             height="200"
             width="200"
@@ -71,11 +80,21 @@ function ProductCard() {
         onClick={() => alert("redirect to product page")}
       >
         <CardContent sx={{}}>
-          <Typography sx={{ fontWeight: 700, mb: 1 }}>
-            Redmi Note 12 (6GB RAM, 64GB, Sunrise Gold)
+          <Typography
+            sx={{
+              fontWeight: 700,
+              mb: 1,
+              overflow: "hidden",
+              textOverflow: "ellipsis",
+              display: "-webkit-box",
+              WebkitBoxOrient: "vertical",
+            //   WebkitLineClamp: "2"
+            }}
+          >
+            {name}
           </Typography>
           <Typography component="span" sx={{ fontWeight: 700 }}>
-            ₹11,999.00
+            ₹{price.toFixed(2)}
           </Typography>
           <Typography
             component="span"
@@ -86,13 +105,15 @@ function ProductCard() {
               color: "grey",
             }}
           >
-            ₹18,999.00
+            ₹{(price * 1.15).toFixed(2)}
           </Typography>
           <StyledRating
-            name="readOnly"
-            value="3.5"
+            name="cardRatings"
+            value={ratings}
             precision={0.5}
             readOnly
+            // readOnly={ratings ? true : false}
+            // disabled={!ratings ? true : false}
             size="small"
           />
         </CardContent>
@@ -101,6 +122,6 @@ function ProductCard() {
   );
 }
 
-export default ProductCard;
+export default HomeSectionCard;
 
 // https://media-ik.croma.com/prod/https://media.croma.com/image/upload/v1681112708/Croma%20Assets/Communication/Mobiles/Images/270909_k1wgvp.png?tr=w-480
