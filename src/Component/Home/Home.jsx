@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import HomeCarousel from './HomeCategoriesCarousel/HomeCarousel'
+import HomeCategoriesAlbum from './HomeCategoriesAlbum/HomeCategoriesAlbum'
 import HomeBanner from './HomeBanner/HomeBanner'
 import { Box, Stack } from "@mui/material";
 import { productDataApi } from '../../helper/productDataApi';
@@ -54,7 +54,7 @@ function Home() {
       <HomeBanner />
 
       <Box component='div' >
-        <HomeCarousel />
+        <HomeCategoriesAlbum />
       </Box>
 
       <Box component='div' id='Deals Of The Day' >

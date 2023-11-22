@@ -1,4 +1,4 @@
-export const carouselLists = [
+export const categoriesAlbums = [
     {
         id: 1,
         imagePath: 'https://media-ik.croma.com/prod/https://media.croma.com/image/upload/v1690220193/Croma%20Assets/CMS/LP%20Page%20Banners/2023/UNBOXED/UPDATE/2407/category-icon_unboxed_e123f4.png?tr=w-360',
