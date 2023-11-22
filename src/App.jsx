@@ -39,7 +39,8 @@ function App() {
 
                 {
                   categories.map((category, index) => (
-                    <Route key={index} path={category.path} element={ <Product />} />
+                    // <Route key={index} path={category.path} element={ <Product />} />
+                    <Route key={index} path={`/:productName`} element={ <Product />} />
                   ))
                 }
                 

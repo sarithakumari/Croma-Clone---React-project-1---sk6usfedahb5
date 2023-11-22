@@ -18,7 +18,8 @@ const StyledRating = styled(Rating)({
   },
 });
 
-function ProductCard() {
+function ProductCard({ params }) {
+  console.log("params from productcard", params);
   return (
     <Toolbar
       sx={{
