@@ -10,10 +10,12 @@ const responsive = {
     // the naming can be any, depends on you.
     breakpoint: { max: 4000, min: 1024 },
     items: 4,
+    slidesToSlide: 2
   },
   desktop: {
     breakpoint: { max: 1024, min: 800 },
     items: 4,
+    slidesToSlide: 2
   },
   tablet: {
     breakpoint: { max: 800, min: 464 },
@@ -25,13 +27,13 @@ const responsive = {
   },
 };
 
-function HomeSectionCarousel({ dealsDayArr }) {
+function HomeSectionCarousel({ sectionArr }) {
   
   return (
-    <Carousel responsive={responsive} renderArrowsWhenDisabled={true} renderButtonGroupOutside={true} customTransition="transform 500ms ease-in-out" >
+    <Carousel responsive={responsive} renderArrowsWhenDisabled={true} renderButtonGroupOutside={true} customTransition="transform 300ms ease-in-out" >
       
       {
-        dealsDayArr.map((deal)=>(
+        sectionArr.map((deal)=>(
           <HomeSectionCard cardInfo={deal} />
         ))
       }

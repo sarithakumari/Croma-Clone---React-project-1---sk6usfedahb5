@@ -9,10 +9,44 @@ import HomeSection from './HomeSection/HomeSection';
 function Home() {
 
   const [dealsDayArr, setDealsDayArr] = useState([]);
+  const [trendingArr, setTrendingArr] = useState([]);
+  const [mobilesArr, setMobileArr] = useState([]);
+  const [laptopArr, setLaptopArr] = useState([]);
+  const [tvArr, setTvArr] = useState([]);
+  const [refrigeratorsArr, setRefrigeratorsArr ] = useState([]);
+  const [audioArr, setAudioArr ] = useState([]);
 
   useEffect(()=>{
-    productDataApi(6).then(data => setDealsDayArr(data));
+    // productDataApi(6).then(data => setDealsDayArr(data));
+    // productDataApi(100).then(data => setTrendingArr(
+    //   data.filter((product)=>product.sellerTag == 'trending').slice(1, 9)
+    //   ));
+    // productDataApi(200).then(data => setMobileArr(
+    //   data.filter((product) => product.subCategory == 'mobile').slice(0, 15)
+    // ));
+    // productDataApi(200).then(data => setLaptopArr(
+    //   data.filter((product) => product.subCategory == 'laptop').slice(0, 9)
+    // ));
+    // productDataApi(200).then(data => setTvArr(
+    //   data.filter((product) => product.subCategory == 'tv').slice(0, 5)
+    // ));
+    // productDataApi(400).then(data => setRefrigeratorsArr(
+    //   data.filter((product) => product.subCategory == 'refrigerator').slice(2, 10)
+    // ));
+
+    productDataApi(632).then((data)=>{
+      setDealsDayArr(data.slice(0, 6));
+      setTrendingArr(data.filter((product)=>product.sellerTag == 'trending').slice(1, 9));
+      setMobileArr(data.filter((product)=>product.subCategory == 'mobile').slice(0, 15));
+      setLaptopArr(data.filter((product)=>product.subCategory == 'laptop').slice(0, 9));
+      setTvArr(data.filter((product)=>product.subCategory == 'tv').slice(0, 5));
+      setRefrigeratorsArr(data.filter((product)=>product.subCategory == 'refrigerator').slice(2, 10));
+      setAudioArr(data.filter((product)=>product.subCategory == 'audio').slice(0, 9));
+    })
+      
   }, [])
+
+  console.log(refrigeratorsArr);
   
   return (
     <Stack spacing={4} style={{marginTop: "60px", width: "100vw", justifyContent: "center"}}>
@@ -24,12 +58,32 @@ function Home() {
       </Box>
 
       <Box component='div' id='Deals Of The Day' >
-        <HomeSection dealsDayArr={dealsDayArr} />
+        <HomeSection sectionHeading="Deals of the Day" sectionArr={dealsDayArr} />
       </Box>
 
-      {/* <Box component='div' id='Top Trending Deals' >
-        <HomeSection />
-      </Box> */}
+      <Box component='div' id='Top Trending Deals' >
+        <HomeSection sectionHeading="Top Trending Deals" sectionArr={trendingArr} />
+      </Box>
+      
+      <Box component='div' id='Deals on Mobiles' >
+        <HomeSection sectionHeading="Deals on Mobiles" sectionArr={mobilesArr} />
+      </Box>
+      
+      <Box component='div' id='Deals on Laptops' >
+        <HomeSection sectionHeading="Deals on Laptops" sectionArr={laptopArr} />
+      </Box>
+      
+      <Box component='div' id='Deals on Audio' >
+        <HomeSection sectionHeading="Deals on Audio" sectionArr={audioArr} />
+      </Box>
+
+      <Box component='div' id='Deals on TVs' >
+        <HomeSection sectionHeading="Deals on TVs" sectionArr={tvArr} />
+      </Box>
+      
+      <Box component='div' id='Deals on Refrigerators' >
+        <HomeSection sectionHeading="Deals on Refrigerators" sectionArr={refrigeratorsArr} />
+      </Box>
 
     </Stack>
   )

@@ -8,7 +8,7 @@ export async function productDataApi(limit=20) {
       },
     });
     const data = await res.json();
-    console.log(data.data);
+    // console.log(data.data);
     // setState(data.data);
     return data.data;
   } catch (error) {

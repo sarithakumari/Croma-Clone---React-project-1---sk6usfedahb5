@@ -22,7 +22,7 @@ const StyledRating = styled(Rating)({
 });
 
 function HomeSectionCard({ cardInfo }) {
-  console.log("cardinfo: ", cardInfo);
+  // console.log("cardinfo: ", cardInfo);
   const { displayImage, name, price, ratings, subCategory } = cardInfo;
 
   return (

@@ -1,13 +1,13 @@
 import { Toolbar, Typography } from '@mui/material'
 import React from 'react'
 
-function HomeSectionHeader() {
+function HomeSectionHeader({ sectionHeading }) {
   return (
     <Toolbar style={{
         padding: '0px',
         alignItems: 'flex-end'
     }} >
-        <Typography variant='h5' component='div' sx={{mb: 1}} >Deals of the Day</Typography>
+        <Typography variant='h5' component='div' sx={{mb: 1}} >{sectionHeading}</Typography>
     </Toolbar>
   )
 }

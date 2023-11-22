@@ -3,12 +3,12 @@ import HomeSectionHeader from './HomeSectionHeader'
 import { Container } from '@mui/material'
 import HomeSectionCarousel from './HomeSectionCarousel'
 
-function HomeSection({ dealsDayArr }) {
+function HomeSection({ sectionHeading, sectionArr }) {
   return (
     <Container maxWidth='lg'>
-        <HomeSectionHeader />
+        <HomeSectionHeader sectionHeading={sectionHeading} />
 
-        <HomeSectionCarousel dealsDayArr={dealsDayArr} />
+        <HomeSectionCarousel sectionArr={sectionArr} />
     </Container>
   )
 }
