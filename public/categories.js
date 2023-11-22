@@ -4,7 +4,7 @@ export const categories = [
     {
         id: 1,
         label: "Televisions & Accessories",
-        path: "televisions-accessories",
+        path: "tv",
         children: [
             {
                 id: 1,
@@ -101,72 +101,91 @@ export const categories = [
             }
         ]
     },
+    // {
+    //     id: 2,
+    //     label: "Home Appliances",
+    //     path: "home-appliances",
+    //     children: []
+    // },
     {
         id: 2,
-        label: "Home Appliances",
-        path: "home-appliances",
+        label: "Mobile Phones",
+        path: "mobile",
         children: []
     },
     {
         id: 3,
-        label: "Phones & Wearables",
-        path: "phones-wearables",
+        label: "Tablets",
+        path: "tablet",
         children: []
     },
     {
         id: 4,
-        label: "Computers & Tablets",
-        path: "computers-tablets",
+        label: "Laptops",
+        path: "laptop",
         children: []
     },
     {
         id: 5,
-        label: "Kitchen Appliances",
-        path: "kitchen-appliances",
+        label: "Audio & Video",
+        path: "audio",
         children: []
     },
     {
         id: 6,
-        label: "Audio & Video",
-        path: "audio-video",
+        label: "Kitchen Appliances",
+        path: "kitchenappliances",
         children: []
     },
+    
     {
         id: 7,
-        label: "Health & Fitness",
-        path: "health-fitness",
+        label: "Refrigerators",
+        path: "refrigerator",
         children: []
     },
     {
         id: 8,
-        label: "Grooming & Personal Care",
-        path: "grooming-personal-care",
+        label: "Washing Machines",
+        path: "washingmachine",
         children: []
     },
     {
         id: 9,
-        label: "Cameras & Accessories",
-        path: "cameras-accessories",
+        label: "Air Conditioners",
+        path: "ac",
         children: []
     },
     {
         id: 10,
-        label: "Smart Devices",
-        path: "smart-devices",
+        label: "Health & Fitness",
+        path: "health",
         children: []
     },
     {
         id: 11,
-        label: "Gaming",
-        path: "gaming",
+        label: "Travel Accessories",
+        path: "travel",
         children: []
     },
-    {
-        id: 12,
-        label: "Accessories",
-        path: "accessories",
-        children: []
-    },
+    // {
+    //     id: 9,
+    //     label: "Cameras & Accessories",
+    //     path: "cameras-accessories",
+    //     children: []
+    // },
+    // {
+    //     id: 10,
+    //     label: "Smart Devices",
+    //     path: "smart-devices",
+    //     children: []
+    // },
+    // {
+    //     id: 11,
+    //     label: "Gaming",
+    //     path: "gaming",
+    //     children: []
+    // },
     // {
     //     id: 13,
     //     label: "Zipcare",

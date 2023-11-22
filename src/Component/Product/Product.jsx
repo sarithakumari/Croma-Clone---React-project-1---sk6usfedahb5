@@ -1,13 +1,15 @@
 import React from 'react'
 import ProductCard from './ProductCard'
 import { useParams } from 'react-router-dom'
+import ProductPage from './ProductPage';
 
 function Product() {
-  const params = useParams();
-  console.log(params);
+  const { productName } = useParams();
+  // console.log(params);
   return (
     <>
-      <ProductCard params={params} />
+      <ProductPage productName={productName} />
+      {/* <ProductCard productName={productName} /> */}
 
     </>
     
