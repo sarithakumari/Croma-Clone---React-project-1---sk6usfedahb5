@@ -1,12 +1,13 @@
 import React from 'react'
 import { useParams } from 'react-router-dom'
 
-function ProductPage() {
+function ProductCategory({ productData }) {
     const { productName } = useParams();
     console.log("params from productPage", productName);
+    console.log("dataaa", productData);
   return (
-    <div>ProductPage</div>
+    <div style={{marginTop: "70px"}}>{productName}</div>
   )
 }
 
-export default ProductPage
+export default ProductCategory

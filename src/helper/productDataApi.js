@@ -15,8 +15,3 @@ export async function productDataApi(limit=20) {
     console.error("error in fetching data", error.message);
   }
 }
-
-// export const productDataApi = () => {
-    
-//     fetch()
-// }
