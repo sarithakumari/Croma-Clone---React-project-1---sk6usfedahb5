@@ -7,6 +7,7 @@ import { productsPage } from '../../../public/productsPage';
 import ProductHeader from './ProductHeader';
 import { Container } from '@mui/material';
 import ProductBanner from './ProductBanner';
+import ProductContainer from './ProductContainer';
 
 function Product() {
 
@@ -22,7 +23,7 @@ function Product() {
   }, [productName])
 
   // console.log(productData)
-  console.log(productInfo)
+  // console.log(productInfo)
 
   return (
     <>
@@ -30,6 +31,9 @@ function Product() {
         <ProductHeader heading={productInfo?.heading} />
       </Container>
       <ProductBanner imagePath={productInfo?.imagePath} title={productInfo?.title} />
+      <Container maxWidth='lg' >
+        <ProductContainer productData={productData}  />
+      </Container>
     </>
     
   )

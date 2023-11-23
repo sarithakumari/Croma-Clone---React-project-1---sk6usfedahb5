@@ -1,9 +1,11 @@
-import { CardMedia } from '@mui/material';
+import { Card, CardMedia } from '@mui/material';
 import React from 'react'
 
 function ProductBanner({ imagePath, title }) {
   return (
-    <CardMedia component='img' src={imagePath} alt='title' />
+    <Card>
+        <CardMedia component='img' src={imagePath} alt='title' />
+    </Card>
   )
 }
 
