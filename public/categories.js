@@ -147,7 +147,7 @@ export const categories = [
     {
         id: 8,
         label: "Washing Machines",
-        path: "washingmachine",
+        path: "washingMachine",
         children: []
     },
     {

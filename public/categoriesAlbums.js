@@ -63,7 +63,7 @@ export const categoriesAlbums = [
         id: 11,
         imagePath: 'https://media-ik.croma.com/prod/https://media.croma.com/image/upload/v1683281227/Croma%20Assets/CMS/LP%20Page%20Banners/2023/HP%20Category%20Navigation/kitchenappliances_categoryicons_xulmep.png?tr=w-720',
         title: 'kitchen-appliances',
-        path: 'kitchenaappliances'
+        path: 'kitchenappliances'
     },
     // {
     //     id: 12,

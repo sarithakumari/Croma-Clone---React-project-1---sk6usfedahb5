@@ -38,7 +38,7 @@ export const productsPage = [
     {
         id: 7,
         imagePath: 'https://media-ik.croma.com/prod/https://media.croma.com/image/upload/v1687777519/Croma%20Assets/CMS/PCP/June%20-2023/26-06-2023/desktop/main%20banner/PCP_WM_26june2023_aytvbo.png?tr=w-2048',
-        title: 'washingmachine',
+        title: 'washingMachine',
         heading: 'Washing Machines & Dryers'
     },
     {

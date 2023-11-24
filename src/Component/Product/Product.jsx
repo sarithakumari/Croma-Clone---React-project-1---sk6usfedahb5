@@ -10,7 +10,10 @@ import ProductBanner from './ProductBanner';
 import ProductContainer from './ProductContainer';
 
 function Product() {
-
+  // productData - array of products based on category - mobile, tv, etc.
+  // productsPage.js - array of objects - each obj -   banner image of individual category of products
+  // productInfo - has the object obtained from productsPage.js after filtering the title==productName
+  
   const [productData, setProductData] = useState([]);
   const [productInfo, setProductInfo] = useState(null);
   const { productName } = useParams();
@@ -28,7 +31,7 @@ function Product() {
   return (
     <>
       <Container maxWidth='lg' >
-        <ProductHeader heading={productInfo?.heading} />
+        <ProductHeader heading={productInfo?.heading} productsFound={productData.length} />
       </Container>
       <ProductBanner imagePath={productInfo?.imagePath} title={productInfo?.title} />
       <Container maxWidth='lg' >
