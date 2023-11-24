@@ -35,6 +35,7 @@ function Product() {
       </Container>
       <ProductBanner imagePath={productInfo?.imagePath} title={productInfo?.title} />
       <Container maxWidth='lg' >
+        
         <ProductContainer productData={productData}  />
       </Container>
     </>
