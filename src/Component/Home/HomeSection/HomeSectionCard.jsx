@@ -88,25 +88,30 @@ function HomeSectionCard({ cardInfo }) {
               textOverflow: "ellipsis",
               display: "-webkit-box",
               WebkitBoxOrient: "vertical",
-              WebkitLineClamp: "2"
+              WebkitLineClamp: "2",
             }}
           >
             {name}
           </Typography>
-          <Typography component="span" sx={{ fontWeight: 700 }}>
-            ₹{price.toFixed(2)}
-          </Typography>
-          <Typography
-            component="span"
-            sx={{
-              fontWeight: 300,
-              fontSize: "small",
-              textDecoration: "line-through",
-              color: "grey",
-            }}
-          >
-            ₹{(price * 1.15).toFixed(2)}
-          </Typography>
+
+          <Box>
+            <Typography component="span" sx={{ fontWeight: 700 }}>
+              ₹{price.toFixed(2)}
+            </Typography>
+
+            <Typography
+              component="span"
+              sx={{
+                fontWeight: 300,
+                fontSize: "small",
+                textDecoration: "line-through",
+                color: "grey",
+              }}
+            >
+              ₹{(price * 1.15).toFixed(2)}
+            </Typography>
+          </Box>
+
           <StyledRating
             name="cardRatings"
             value={ratings}

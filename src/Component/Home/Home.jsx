@@ -4,6 +4,9 @@ import HomeBanner from './HomeBanner/HomeBanner'
 import { Box, Stack } from "@mui/material";
 import { productDataApi } from '../../helper/productDataApi';
 import HomeSection from './HomeSection/HomeSection';
+import { dealsDataApi } from '../../helper/dealsDataApi';
+import { trendingDataApi } from '../../helper/trendingDataApi';
+import { dealsProductDataApi } from '../../helper/dealsProductDataApi';
 
 
 function Home() {
@@ -15,17 +18,37 @@ function Home() {
   const [tvArr, setTvArr] = useState([]);
   const [refrigeratorsArr, setRefrigeratorsArr ] = useState([]);
   const [audioArr, setAudioArr ] = useState([]);
+  const [acArr, setAcArr ] = useState([]);
+  const [healthArr, setHealthArr ] = useState([]);
+  const [kitchenAppliancesArr, setKitchenAppliancesArr ] = useState([]);
+  const [tabletArr, setTabletArr ] = useState([]);
+  const [travelArr, setTravelArr ] = useState([]);
+  const [washingMachineArr, setWashingMachineArr ] = useState([]);
   
   useEffect(()=>{
-    productDataApi(632).then((data)=>{
-      setDealsDayArr(data.slice(0, 6));
-      setTrendingArr(data.filter((product)=>product.sellerTag == 'trending').slice(0, 9));
-      setMobileArr(data.filter((product)=>product.subCategory == 'mobile').slice(0, 15));
-      setLaptopArr(data.filter((product)=>product.subCategory == 'laptop').slice(0, 9));
-      setTvArr(data.filter((product)=>product.subCategory == 'tv').slice(0, 5));
-      setRefrigeratorsArr(data.filter((product)=>product.subCategory == 'refrigerator').slice(2, 10));
-      setAudioArr(data.filter((product)=>product.subCategory == 'audio').slice(0, 9));
-    })
+    // productDataApi(632).then((data)=>{
+    //   setDealsDayArr(data.slice(0, 6));
+    //   setTrendingArr(data.filter((product)=>product.sellerTag == 'trending').slice(0, 9));
+    //   setMobileArr(data.filter((product)=>product.subCategory == 'mobile').slice(0, 15));
+    //   setLaptopArr(data.filter((product)=>product.subCategory == 'laptop').slice(0, 9));
+    //   setTvArr(data.filter((product)=>product.subCategory == 'tv').slice(0, 5));
+    //   setRefrigeratorsArr(data.filter((product)=>product.subCategory == 'refrigerator').slice(2, 10));
+    //   setAudioArr(data.filter((product)=>product.subCategory == 'audio').slice(0, 9));
+    // })
+    dealsDataApi().then(data => setDealsDayArr(data));
+    trendingDataApi().then(data => setTrendingArr(data));
+    dealsProductDataApi("mobile").then(data => setMobileArr(data));
+    dealsProductDataApi("laptop").then(data => setLaptopArr(data));
+    dealsProductDataApi("tv").then(data => setTvArr(data));
+    dealsProductDataApi("refrigerator").then(data => setRefrigeratorsArr(data));
+    dealsProductDataApi("audio").then(data => setAudioArr(data));
+
+    dealsProductDataApi("ac").then(data => setAcArr(data));
+    dealsProductDataApi("health").then(data => setHealthArr(data));
+    dealsProductDataApi("kitchenappliances").then(data => setKitchenAppliancesArr(data));
+    dealsProductDataApi("tablet").then(data => setTabletArr(data));
+    dealsProductDataApi("travel").then(data => setTravelArr(data));
+    dealsProductDataApi("washingMachine").then(data => setWashingMachineArr(data));
       
   }, [])
 
@@ -66,6 +89,25 @@ function Home() {
       
       <Box component='div' id='Deals on Refrigerators' >
         <HomeSection sectionHeading="Deals on Refrigerators" sectionArr={refrigeratorsArr} />
+      </Box>
+      
+      <Box component='div' id='Deals on ACs' >
+        <HomeSection sectionHeading="Deals on ACs" sectionArr={acArr} />
+      </Box>
+      <Box component='div' id='Deals on Health' >
+        <HomeSection sectionHeading="Deals on Health Care" sectionArr={healthArr} />
+      </Box>
+      <Box component='div' id='Deals on Kitchen Appliances' >
+        <HomeSection sectionHeading="Deals on Kitchen Appliances" sectionArr={kitchenAppliancesArr} />
+      </Box>
+      <Box component='div' id='Deals on Tablets' >
+        <HomeSection sectionHeading="Deals on Tablets" sectionArr={tabletArr} />
+      </Box>
+      <Box component='div' id='Deals on Travel Accessories' >
+        <HomeSection sectionHeading="Deals on Travel Accessories" sectionArr={travelArr} />
+      </Box>
+      <Box component='div' id='Deals on Washing Machine' >
+        <HomeSection sectionHeading="Deals on Washing Machine" sectionArr={washingMachineArr} />
       </Box>
 
     </Stack>
