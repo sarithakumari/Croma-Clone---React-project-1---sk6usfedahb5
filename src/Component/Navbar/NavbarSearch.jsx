@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useRef, useState } from "react";
 import Toolbar from "@mui/material/Toolbar";
 import Box from "@mui/material/Box";
 import { styled, alpha } from "@mui/material/styles";
@@ -8,11 +8,11 @@ import LocationOnIcon from "@mui/icons-material/LocationOn";
 import EditIcon from "@mui/icons-material/Edit";
 import PersonIcon from "@mui/icons-material/Person";
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
-import { IconButton, Typography, Badge } from "@mui/material";
-import { teal } from '@mui/material/colors';
-import { useNavigate } from "react-router-dom";
+import { Typography, Badge } from "@mui/material";
+import { createSearchParams, useNavigate, useSearchParams } from "react-router-dom";
+// import { teal } from '@mui/material/colors';
 
-const color = teal['A400'];
+// const color = teal['A400'];
 
 const Search = styled("div")(({ theme }) => ({
   position: "relative",
@@ -58,7 +58,27 @@ const SearchIconWrapper = styled("div")(({ theme }) => ({
 
 function NavbarSearch() {
 
+  const [searchText, setSearchText] = useState('');
+
   const navigate = useNavigate();
+
+  function handleInput(e) {
+    // if(!searchText) return navigate(-1);
+    if(e.key === 'Enter') {
+      navigate({
+        pathname: "/searchB",
+        search: createSearchParams({
+            search: searchText
+        }).toString()
+    });
+
+    } else {
+      setSearchText(e.target.value);
+    }
+  }
+
+  // console.log('searchparams', searchParams.get('search'));
+
 
   return (
     <>
@@ -85,6 +105,8 @@ function NavbarSearch() {
             <StyledInputBase
               placeholder="What are you looking for ?"
               inputProps={{ "aria-label": "search" }}
+              // onChange={(e)=>setSearchText(e.target.value)}
+              onKeyUp={handleInput}
               style={{
                 width: "100%",
                 padding: "0px",

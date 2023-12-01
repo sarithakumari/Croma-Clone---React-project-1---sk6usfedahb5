@@ -15,6 +15,7 @@ import Grid from '@mui/material/Grid';
 
 import { categories } from "../public/categories";
 import Footer from "./Component/Footer/Footer";
+import SearchResults from "./Component/Navbar/SearchResults";
 
 const darkTheme = createTheme({
   palette: {
@@ -45,6 +46,7 @@ function App() {
                 }
                 
                 <Route path='/cart' element={<Cart />} />
+                <Route path='/searchB' element={<SearchResults />} />
 
               </Routes>
             </Grid>

@@ -17,7 +17,7 @@ function Product() {
   const [productData, setProductData] = useState([]);
   const [productInfo, setProductInfo] = useState(null);
   const { productName } = useParams();
-  console.log('productname', productName);
+  // console.log('productname', productName);
   
   useEffect(()=>{
     subCategoriesApi(productName).then(data => setProductData(data));

@@ -94,18 +94,23 @@ function Home() {
       <Box component='div' id='Deals on ACs' >
         <HomeSection sectionHeading="Deals on ACs" sectionArr={acArr} />
       </Box>
+      
       <Box component='div' id='Deals on Health' >
         <HomeSection sectionHeading="Deals on Health Care" sectionArr={healthArr} />
       </Box>
+      
       <Box component='div' id='Deals on Kitchen Appliances' >
         <HomeSection sectionHeading="Deals on Kitchen Appliances" sectionArr={kitchenAppliancesArr} />
       </Box>
+      
       <Box component='div' id='Deals on Tablets' >
         <HomeSection sectionHeading="Deals on Tablets" sectionArr={tabletArr} />
       </Box>
+      
       <Box component='div' id='Deals on Travel Accessories' >
         <HomeSection sectionHeading="Deals on Travel Accessories" sectionArr={travelArr} />
       </Box>
+      
       <Box component='div' id='Deals on Washing Machine' >
         <HomeSection sectionHeading="Deals on Washing Machine" sectionArr={washingMachineArr} />
       </Box>

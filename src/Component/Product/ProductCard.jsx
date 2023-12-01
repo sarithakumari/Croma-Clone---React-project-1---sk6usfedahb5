@@ -19,7 +19,7 @@ const StyledRating = styled(Rating)({
 });
 
 function ProductCard({ product }) {
-  console.log("card", product );
+  // console.log("card", product );
   return (
     <Toolbar
       sx={{
@@ -29,7 +29,8 @@ function ProductCard({ product }) {
         bgcolor: "black",
         borderRadius: 1.5,
         // justifyContent: "center",
-        margin: "1rem auto"
+        margin: "1rem auto",
+        // borderBottom: "1px solid #f6f6f6",
       }}
     >
       <Box

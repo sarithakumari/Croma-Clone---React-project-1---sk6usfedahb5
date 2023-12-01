@@ -9,7 +9,7 @@ export async function dealsProductDataApi(category) {
             }
         });
         const data = await res.json();
-        console.log(`${category}:`,data.data);
+        // console.log(`${category}:`,data.data);
         return data.data;
 
     } catch(error) {
