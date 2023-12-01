@@ -1,8 +1,8 @@
-const URL = `https://academics.newtonschool.co/api/v1/ecommerce/electronics/products?search=`;
+const URL = `https://academics.newtonschool.co/api/v1/ecommerce/electronics/products?limit=632&search=`;
 
 export async function searchProductsApi(searchItem) {
   try {
-    const res = await fetch(URL+`{"name": "${searchItem}", "description": "${searchItem}"}`, {
+    const res = await fetch(URL+`{"description": "${searchItem}", "name": "${searchItem}"}`, {
       method: "GET",
       headers: {
         projectID: "sk6usfedahb5",
@@ -15,3 +15,7 @@ export async function searchProductsApi(searchItem) {
     console.error("error fetching search data", error.message);
   }
 }
+
+
+// "name": "${searchItem}", 
+//  "description": "${searchItem}"
