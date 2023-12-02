@@ -1,8 +1,6 @@
 import React, { useEffect, useState } from 'react'
-import ProductCard from './ProductCard'
 import { useParams } from 'react-router-dom'
 import { subCategoriesApi } from '../../helper/subCategoriesApi';
-import ProductCategory from './ProductCategory';
 import { productsPage } from '../../../public/productsPage';
 import ProductHeader from './ProductHeader';
 import { Container } from '@mui/material';

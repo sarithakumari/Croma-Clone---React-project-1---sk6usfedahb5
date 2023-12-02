@@ -51,6 +51,11 @@ function HomeSectionCard({ cardInfo }) {
             sx={{
               objectFit: "contain",
             }}
+            onError={(e) => {
+              e.target.onerror = null;
+              e.target.src =
+                "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d3/Stadtbild_M%C3%BCnchen.jpg/2560px-Stadtbild_M%C3%BCnchen.jpg";
+            }}
           />
         </CardActionArea>
       </Box>

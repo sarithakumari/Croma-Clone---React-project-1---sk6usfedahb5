@@ -1,10 +1,6 @@
 import React, { useState } from "react";
 import Toolbar from "@mui/material/Toolbar";
-import Box from "@mui/material/Box";
-import IconButton from "@mui/material/IconButton";
 import Typography from "@mui/material/Typography";
-import MenuIcon from "@mui/icons-material/Menu";
-import CloseIcon from "@mui/icons-material/Close";
 import KeyboardArrowRightIcon from '@mui/icons-material/KeyboardArrowRight';
 import { Menu, MenuItem } from "@mui/material";
 import { categories } from "../../../public/categories";
@@ -12,7 +8,6 @@ import { Link } from "@mui/material";
 import { Link as RouterLink } from "react-router-dom";
 import styled from "@emotion/styled";
 import NavbarMenuButton from "./NavbarMenuButton";
-import MainMenu from "./MainMenu";
 
 const StyledMenu = styled(Menu)(({ theme }) => ({
   '& .MuiList-root': {

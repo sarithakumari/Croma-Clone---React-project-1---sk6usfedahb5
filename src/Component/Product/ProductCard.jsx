@@ -35,9 +35,18 @@ function ProductCard({ product }) {
     >
       <Box
         component="div"
-        sx={{ height: 300, width: 300, m: 1, position: "relative", padding: "0.5rem 1rem" }}
+        sx={{
+          height: 300,
+          width: 300,
+          m: 1,
+          position: "relative",
+          padding: "0.5rem 1rem",
+        }}
       >
-        <CardActionArea disableRipple onClick={() => alert("redirect to product page")}>
+        <CardActionArea
+          disableRipple
+          onClick={() => alert("redirect to product page")}
+        >
           <CardMedia
             component="img"
             src={product.displayImage}
@@ -46,6 +55,11 @@ function ProductCard({ product }) {
             width="250"
             sx={{
               objectFit: "contain",
+            }}
+            onError={(e) => {
+              e.target.onerror = null;
+              e.target.src =
+                "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d3/Stadtbild_M%C3%BCnchen.jpg/2560px-Stadtbild_M%C3%BCnchen.jpg";
             }}
           />
         </CardActionArea>
@@ -76,15 +90,17 @@ function ProductCard({ product }) {
         onClick={() => alert("redirect to product page")}
       >
         <CardContent sx={{}}>
-          <Typography sx={{
+          <Typography
+            sx={{
               fontWeight: 700,
               mb: 1,
               overflow: "hidden",
               textOverflow: "ellipsis",
               display: "-webkit-box",
               WebkitBoxOrient: "vertical",
-              WebkitLineClamp: "2"
-            }} >
+              WebkitLineClamp: "2",
+            }}
+          >
             {product.name}
           </Typography>
           <Typography component="span" sx={{ fontWeight: 700 }}>
@@ -99,18 +115,17 @@ function ProductCard({ product }) {
               color: "grey",
             }}
           >
-            ₹{(1.15*product.price).toFixed(2)}
+            ₹{(1.15 * product.price).toFixed(2)}
           </Typography>
-          <Box component='div' padding="0.5rem 0" >
+          <Box component="div" padding="0.5rem 0">
             <StyledRating
-            name="readOnly"
-            value={product.ratings}
-            precision={0.5}
-            readOnly
-            size="small"
-          />
+              name="readOnly"
+              value={product.ratings}
+              precision={0.5}
+              readOnly
+              size="small"
+            />
           </Box>
-          
         </CardContent>
       </CardActionArea>
     </Toolbar>

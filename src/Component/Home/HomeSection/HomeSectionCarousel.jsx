@@ -33,8 +33,8 @@ function HomeSectionCarousel({ sectionArr }) {
     <Carousel responsive={responsive} renderArrowsWhenDisabled={true} renderButtonGroupOutside={true} customTransition="transform 300ms ease-in-out" >
       
       {
-        sectionArr.map((deal)=>(
-          <HomeSectionCard cardInfo={deal} />
+        sectionArr.map((deal, index)=>(
+          <HomeSectionCard key={index} cardInfo={deal} />
         ))
       }
       
