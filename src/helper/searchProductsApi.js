@@ -19,3 +19,5 @@ export async function searchProductsApi(searchItem) {
 
 // "name": "${searchItem}", 
 //  "description": "${searchItem}"
+
+// URL?description=${searchItem}&name=${searchItem}

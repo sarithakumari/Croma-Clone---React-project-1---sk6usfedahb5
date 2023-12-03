@@ -5,17 +5,13 @@ import Home from "./Component/Home/Home";
 import Product from "./Component/Product/Product";
 import Cart from "./Component/Cart/Cart"
 import Navbar from "./Component/Navbar/Navbar";
-import Container from "@mui/material/Container";
 import { createTheme } from "@mui/material";
-
-import { styled } from '@mui/material/styles';
-import Box from '@mui/material/Box';
-import Paper from '@mui/material/Paper';
 import Grid from '@mui/material/Grid';
 
 import { categories } from "../public/categories";
 import Footer from "./Component/Footer/Footer";
 import SearchResults from "./Component/Navbar/SearchResults";
+import SingleProductDetail from "./Component/SingleProduct/SingleProductDetail";
 
 const darkTheme = createTheme({
   palette: {
@@ -45,6 +41,7 @@ function App() {
                   ))
                 }
                 
+                <Route path='/product/:productID' element={<SingleProductDetail />} />
                 <Route path='/cart' element={<Cart />} />
                 <Route path='/searchB' element={<SearchResults />} />
 

@@ -11,6 +11,7 @@ import {
 } from "@mui/material";
 import FavoriteBorderOutlinedIcon from "@mui/icons-material/FavoriteBorderOutlined";
 import styled from "@emotion/styled";
+import { useNavigate } from "react-router-dom";
 
 const StyledRating = styled(Rating)({
   "& .MuiRating-iconFilled": {
@@ -19,6 +20,7 @@ const StyledRating = styled(Rating)({
 });
 
 function ProductCard({ product }) {
+  const navigate = useNavigate();
   // console.log("card", product );
   return (
     <Toolbar
@@ -45,7 +47,8 @@ function ProductCard({ product }) {
       >
         <CardActionArea
           disableRipple
-          onClick={() => alert("redirect to product page")}
+          // onClick={() => alert(`productId is : ${product._id}`)}
+          onClick={()=>navigate(`/product/${product._id}`)}
         >
           <CardMedia
             component="img"
@@ -53,6 +56,7 @@ function ProductCard({ product }) {
             alt={product.brand}
             height="250"
             width="250"
+            loading="lazy"
             sx={{
               objectFit: "contain",
             }}
@@ -87,7 +91,8 @@ function ProductCard({ product }) {
 
       <CardActionArea
         disableRipple
-        onClick={() => alert("redirect to product page")}
+        // onClick={() => alert("redirect to product page")}
+        onClick={()=>navigate(`/product/${product._id}`)}
       >
         <CardContent sx={{}}>
           <Typography
