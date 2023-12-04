@@ -9,7 +9,7 @@ export async function singleProductDetail(productID) {
         }
     });
     const data = await res.json();
-    console.log(data.data);
+    // console.log(data.data);
     return data.data;
   } catch (error) {
     console.error("error in fetching single product data", error.message);
