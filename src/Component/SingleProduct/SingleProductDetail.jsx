@@ -6,6 +6,9 @@ import ImageGallery from "react-image-gallery";
 // import stylesheet if you're not already using CSS @import
 import "react-image-gallery/styles/css/image-gallery.css";
 import {
+  Accordion,
+  AccordionDetails,
+  AccordionSummary,
   Box,
   CardActionArea,
   Container,
@@ -14,6 +17,7 @@ import {
   Typography,
 } from "@mui/material";
 import FavoriteBorderOutlinedIcon from "@mui/icons-material/FavoriteBorderOutlined";
+import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import SingleProductGallery from "./SingleProductGallery";
 import styled from "@emotion/styled";
 import { singleProductRatingReview } from "../../helper/singleProductRatingReview";
@@ -25,11 +29,18 @@ const StyledRating = styled(Rating)({
   },
 });
 
+// const StyledAccordion = styled(Accordion)({
+//   "& > .MuiPaper-root": {
+//     backgroundColor: "black",
+//   }
+// })
+
 function SingleProductDetail() {
   const [productDetails, setProductDetails] = useState(null);
   const [productImages, setProductImages] = useState([]);
   const [productFeatures, setProductFeatures] = useState([]);
   const [productRatingReviews, setProductRatingReview] = useState(null);
+  // const [productDescription, setProductDescription] = useState(null);
   const { productID } = useParams();
 
   useEffect(() => {
@@ -37,6 +48,7 @@ function SingleProductDetail() {
       setProductDetails(data);
       setProductImages(data.images);
       setProductFeatures(data.features);
+      // setProductDescription(data.description);
     });
     singleProductRatingReview(productID).then((data) =>
       setProductRatingReview(data)
@@ -50,6 +62,8 @@ function SingleProductDetail() {
       originalHeight: "100%",
     };
   });
+
+  const productDescription = `${productDetails?.description}`
 
   // console.log("ratings from singleproductdetails", productRatingReviews);
   // console.log("details from singleproductdetails", productDetails);
@@ -155,7 +169,11 @@ function SingleProductDetail() {
             <Box
               component="div"
               id="productFeatures"
-              sx={{ marginTop: 4, border: 1, padding: "0 0 1rem 1rem" }}
+              sx={{
+                marginTop: 4,
+                border: "1px solid #3d3a3a",
+                padding: "0 0 1rem 1rem",
+              }}
             >
               <Box component="div" sx={{ padding: "1rem 0" }}>
                 <Typography variant="body2" component="div">
@@ -181,6 +199,41 @@ function SingleProductDetail() {
           </div>
         </Grid>
       </Grid>
+
+      <Box
+        component="div"
+        id="overview"
+        sx={{
+          marginTop: 5,
+          border: "1px solid #3d3a3a",
+          borderRadius: 1,
+        }}
+      >
+        <Accordion
+          defaultExpanded
+          sx={{
+            backgroundColor: "transparent",
+            color: "inherit",
+            "& > .MuiSvgIcon-root": {
+              backgroundColor: "transparent",
+              color: "inherit",
+            },
+          }}
+        >
+          <AccordionSummary
+            expandIcon={<ExpandMoreIcon sx={{ color: "white" }} />}
+            aria-controls="productOverview"
+            id="productOverview"
+          >
+            <Typography>Overview</Typography>
+          </AccordionSummary>
+          <AccordionDetails>
+            <Typography component='div' >
+              {productDescription}
+            </Typography>
+          </AccordionDetails>
+        </Accordion>
+      </Box>
     </Container>
   );
 }
