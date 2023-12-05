@@ -40,7 +40,6 @@ function SingleProductDetail() {
   const [productImages, setProductImages] = useState([]);
   const [productFeatures, setProductFeatures] = useState([]);
   const [productRatingReviews, setProductRatingReview] = useState(null);
-  // const [productDescription, setProductDescription] = useState(null);
   const { productID } = useParams();
 
   useEffect(() => {
@@ -48,7 +47,6 @@ function SingleProductDetail() {
       setProductDetails(data);
       setProductImages(data.images);
       setProductFeatures(data.features);
-      // setProductDescription(data.description);
     });
     singleProductRatingReview(productID).then((data) =>
       setProductRatingReview(data)
@@ -62,8 +60,6 @@ function SingleProductDetail() {
       originalHeight: "100%",
     };
   });
-
-  const productDescription = `${productDetails?.description}`
 
   // console.log("ratings from singleproductdetails", productRatingReviews);
   // console.log("details from singleproductdetails", productDetails);
@@ -85,7 +81,7 @@ function SingleProductDetail() {
               marginTop: "5rem",
               marginLeft: "2rem",
               // border: "1px solid white",
-              padding: "10px",
+              padding: "0 10px 10px",
             }}
           >
             <Typography variant="h5" component="div">
@@ -228,9 +224,7 @@ function SingleProductDetail() {
             <Typography>Overview</Typography>
           </AccordionSummary>
           <AccordionDetails>
-            <Typography component='div' >
-              {productDescription}
-            </Typography>
+            <Typography component='div' sx={{padding: "1rem"}} dangerouslySetInnerHTML={{__html: productDetails?.description}} ></Typography>
           </AccordionDetails>
         </Accordion>
       </Box>
