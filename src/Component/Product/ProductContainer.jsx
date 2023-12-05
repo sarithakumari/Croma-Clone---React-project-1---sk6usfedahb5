@@ -8,7 +8,7 @@ function ProductContainer({ productData }) {
   return (
     <Box sx={{ flexGrow: 1 }}>
       <Grid container spacing={1}>
-        {productData.map((data) => (
+        {productData?.map((data) => (
           <Grid key={data._id} item md={6} lg={4} xs={12}>
             
             <ProductCard product={data} />
