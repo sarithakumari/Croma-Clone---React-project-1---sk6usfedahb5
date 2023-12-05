@@ -196,6 +196,7 @@ function SingleProductDetail() {
         </Grid>
       </Grid>
 
+      {/* Product Overview Accordion */}
       <Box
         component="div"
         id="overview"
@@ -221,10 +222,68 @@ function SingleProductDetail() {
             aria-controls="productOverview"
             id="productOverview"
           >
-            <Typography>Overview</Typography>
+            <Typography variant="h5" component="div" sx={{ fontWeight: "700" }}>
+              Overview
+            </Typography>
           </AccordionSummary>
           <AccordionDetails>
-            <Typography component='div' sx={{padding: "1rem"}} dangerouslySetInnerHTML={{__html: productDetails?.description}} ></Typography>
+            <Typography
+              component="div"
+              sx={{ padding: "1rem" }}
+              dangerouslySetInnerHTML={{ __html: productDetails?.description }}
+            ></Typography>
+          </AccordionDetails>
+        </Accordion>
+      </Box>
+
+      <Box
+        component="div"
+        id="reviews"
+        sx={{
+          marginTop: 5,
+          border: "1px solid #3d3a3a",
+          borderRadius: 1,
+        }}
+      >
+        <Accordion
+          sx={{
+            backgroundColor: "transparent",
+            color: "inherit",
+            "& > .MuiSvgIcon-root": {
+              backgroundColor: "transparent",
+              color: "inherit",
+            },
+          }}
+        >
+          <AccordionSummary
+            expandIcon={<ExpandMoreIcon sx={{ color: "white" }} />}
+            aria-controls="productReviews"
+            id="productReviews"
+          >
+            <Box component='div' sx={{ display: "flex", alignItems: "center"}}>
+              <Typography
+                variant="h5"
+                component="div"
+                sx={{ fontWeight: "700", marginRight: 1 }}
+              >
+                Reviews
+              </Typography>
+              <Typography
+                component="div"
+                sx={{ fontWeight: "700", fontSize: "18px", lineHeight: 0, color: "#00e9bf" }}
+              >
+                {productDetails?.ratings}
+                <StyledRating
+                  defaultValue={1}
+                  max={1}
+                  readOnly
+                  sx={{ fontSize: "18px" }}
+                />
+              </Typography>
+            </Box>
+          </AccordionSummary>
+          <AccordionDetails>
+            {productRatingReviews?.length}
           </AccordionDetails>
         </Accordion>
       </Box>
