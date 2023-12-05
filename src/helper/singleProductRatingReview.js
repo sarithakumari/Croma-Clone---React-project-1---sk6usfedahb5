@@ -9,7 +9,7 @@ export async function singleProductRatingReview(productID) {
       },
     });
     const data = await res.json();
-    console.log(data.data);
+    // console.log(data.data);
     return data.data;
   } catch (error) {
     console.error("error fetching rating/review data", error.message);

@@ -28,6 +28,7 @@ const StyledRating = styled(Rating)({
 function SingleProductDetail() {
   const [productDetails, setProductDetails] = useState(null);
   const [productImages, setProductImages] = useState([]);
+  const [productFeatures, setProductFeatures] = useState([]);
   const [productRatingReviews, setProductRatingReview] = useState(null);
   const { productID } = useParams();
 
@@ -35,6 +36,7 @@ function SingleProductDetail() {
     singleProductDetail(productID).then((data) => {
       setProductDetails(data);
       setProductImages(data.images);
+      setProductFeatures(data.features)
     });
     singleProductRatingReview(productID).then((data) =>
       setProductRatingReview(data)
@@ -49,8 +51,9 @@ function SingleProductDetail() {
     };
   });
 
-  console.log("ratings from singleproductdetails", productRatingReviews);
+  // console.log("ratings from singleproductdetails", productRatingReviews);
   // console.log("details from singleproductdetails", productDetails);
+  // console.log("features from singleproductdetails", productFeatures);
   // console.log('images from singleproductdetails', productImages)
   // console.log("images: ", images);
 
@@ -66,6 +69,7 @@ function SingleProductDetail() {
             id="productDetails"
             style={{
               marginTop: "5rem",
+              marginLeft: "2rem",
               // border: "1px solid white",
               padding: "10px",
             }}
@@ -128,6 +132,21 @@ function SingleProductDetail() {
               <Typography variant="body2" component="div" sx={{fontSize: "12px"}} > (Incl. all taxes.) </Typography>
 
             </Box>
+            
+            <Box component='div' id="productFeatures" sx={{marginTop: 4, border: 1, padding: "0 0 1rem 1rem"}} >
+                <Box component='div' sx={{padding: "1rem 0"}} >
+                  <Typography variant="body2" component="div">Key Features</Typography>
+                </Box>
+                <Box component='div' sx={{fontFamily: "inherit", fontSize: "15px", lineHeight: 1.5}} >
+                  <ul style={{marginLeft: "1rem"}}>
+                    {productFeatures.map((feature, index)=>(
+                      <li key={index}> {feature} </li>
+                    ))}
+                  </ul>
+                </Box>
+                
+            </Box>
+
           </div>
         </Grid>
       </Grid>

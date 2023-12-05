@@ -11,7 +11,7 @@ function SingleProductGallery({images}) {
   return (
     <div
       id="productImageGallery"
-      style={{ marginTop: "5rem", position: "relative", borderBottom: "1px solid grey" }}
+      style={{ marginTop: "5rem", position: "relative", borderBottom: "1px solid #3d3a3a" }}
     >
       <ImageGallery
         items={images}
