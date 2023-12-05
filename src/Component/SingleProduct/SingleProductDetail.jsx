@@ -36,7 +36,7 @@ function SingleProductDetail() {
     singleProductDetail(productID).then((data) => {
       setProductDetails(data);
       setProductImages(data.images);
-      setProductFeatures(data.features)
+      setProductFeatures(data.features);
     });
     singleProductRatingReview(productID).then((data) =>
       setProductRatingReview(data)
@@ -110,7 +110,6 @@ function SingleProductDetail() {
                     ({productRatingReviews?.length} Ratings &{" "}
                     {productRatingReviews?.length} Reviews)
                   </Typography>
-
                 </>
               ) : (
                 <Typography
@@ -121,32 +120,64 @@ function SingleProductDetail() {
                   (Be the First One to Review)
                 </Typography>
               )}
-
             </Box>
 
-            <Box component='div' id="productPrice">
-              <Box component='div' >
-                <Typography variant="h5" component="span" sx={{fontWeight: "500"}} > ₹ </Typography>
-                <Typography variant="h5" component="span" sx={{fontWeight: "500"}} > {productDetails?.price} </Typography>
+            <Box component="div" id="productPrice">
+              <Box component="div">
+                <Typography
+                  variant="h5"
+                  component="span"
+                  sx={{ fontWeight: "500" }}
+                >
+                  {" "}
+                  ₹{" "}
+                </Typography>
+                <Typography
+                  variant="h5"
+                  component="span"
+                  sx={{ fontWeight: "500" }}
+                >
+                  {" "}
+                  {productDetails?.price}{" "}
+                </Typography>
               </Box>
-              <Typography variant="body2" component="div" sx={{fontSize: "12px"}} > (Incl. all taxes.) </Typography>
 
-            </Box>
-            
-            <Box component='div' id="productFeatures" sx={{marginTop: 4, border: 1, padding: "0 0 1rem 1rem"}} >
-                <Box component='div' sx={{padding: "1rem 0"}} >
-                  <Typography variant="body2" component="div">Key Features</Typography>
-                </Box>
-                <Box component='div' sx={{fontFamily: "inherit", fontSize: "15px", lineHeight: 1.5}} >
-                  <ul style={{marginLeft: "1rem"}}>
-                    {productFeatures.map((feature, index)=>(
-                      <li key={index}> {feature} </li>
-                    ))}
-                  </ul>
-                </Box>
-                
+              <Typography
+                variant="body2"
+                component="div"
+                sx={{ fontSize: "12px" }}
+              >
+                {" "}
+                (Incl. all taxes.){" "}
+              </Typography>
             </Box>
 
+            <Box
+              component="div"
+              id="productFeatures"
+              sx={{ marginTop: 4, border: 1, padding: "0 0 1rem 1rem" }}
+            >
+              <Box component="div" sx={{ padding: "1rem 0" }}>
+                <Typography variant="body2" component="div">
+                  Key Features
+                </Typography>
+              </Box>
+
+              <Box
+                component="div"
+                sx={{
+                  fontFamily: "inherit",
+                  fontSize: "15px",
+                  lineHeight: 1.5,
+                }}
+              >
+                <ul style={{ marginLeft: "1rem" }}>
+                  {productFeatures.map((feature, index) => (
+                    <li key={index}> {feature} </li>
+                  ))}
+                </ul>
+              </Box>
+            </Box>
           </div>
         </Grid>
       </Grid>
