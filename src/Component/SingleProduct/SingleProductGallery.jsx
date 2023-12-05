@@ -21,6 +21,7 @@ function SingleProductGallery({images}) {
         showPlayButton={false}
         slideDuration={200}
         // slideInterval={5000}
+        // startIndex={3}
 
       />
       <Box

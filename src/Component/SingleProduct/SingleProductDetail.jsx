@@ -25,6 +25,7 @@ function SingleProductDetail() {
     return {
       original: image,
       thumbnail: image,
+      originalHeight: "100%"
     };
   });
 
@@ -45,7 +46,7 @@ function SingleProductDetail() {
             id="productDetails"
             style={{ marginTop: "5rem", border: "1px solid white" }}
           >
-            
+
           </div>
         </Grid>
       </Grid>
