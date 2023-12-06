@@ -2,25 +2,24 @@ import React, { useEffect, useState } from "react";
 import { singleProductDetail } from "../../helper/singleProductDetail";
 import { useParams } from "react-router-dom";
 
-import ImageGallery from "react-image-gallery";
-// import stylesheet if you're not already using CSS @import
-import "react-image-gallery/styles/css/image-gallery.css";
 import {
   Accordion,
   AccordionDetails,
   AccordionSummary,
   Box,
-  CardActionArea,
   Container,
   Grid,
   Rating,
   Typography,
 } from "@mui/material";
-import FavoriteBorderOutlinedIcon from "@mui/icons-material/FavoriteBorderOutlined";
-import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
+
 import SingleProductGallery from "./SingleProductGallery";
+import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import styled from "@emotion/styled";
 import { singleProductRatingReview } from "../../helper/singleProductRatingReview";
+import ProductDetails from "./ProductDetails";
+import ProductOverview from "./ProductOverview";
+import ProductReviewRating from "./ProductReviewRating";
 
 const StyledRating = styled(Rating)({
   "& .MuiRating-iconFilled": {
@@ -28,12 +27,6 @@ const StyledRating = styled(Rating)({
     fontSize: "14px",
   },
 });
-
-// const StyledAccordion = styled(Accordion)({
-//   "& > .MuiPaper-root": {
-//     backgroundColor: "black",
-//   }
-// })
 
 function SingleProductDetail() {
   const [productDetails, setProductDetails] = useState(null);
@@ -70,172 +63,26 @@ function SingleProductDetail() {
   return (
     <Container maxWidth="lg">
       <Grid container>
+        {/* Product Gallery */}
         <Grid item md={6} sm={12}>
           <SingleProductGallery images={images} />
         </Grid>
 
+        {/* Product Details */}
         <Grid item md={6} sm={12}>
-          <div
-            id="productDetails"
-            style={{
-              marginTop: "5rem",
-              marginLeft: "2rem",
-              // border: "1px solid white",
-              padding: "0 10px 10px",
-            }}
-          >
-            <Typography variant="h5" component="div">
-              {productDetails?.name}
-            </Typography>
-
-            <Box
-              component="div"
-              sx={{
-                display: "flex",
-                justifyContent: "flex-start",
-                alignItems: "center",
-                gap: 0.2,
-                margin: "10px 0",
-                color: "#00e9bf",
-              }}
-            >
-              {productRatingReviews ? (
-                <>
-                  <Typography component="div" fontSize="14px">
-                    {productDetails?.ratings.toFixed(1)}
-                  </Typography>
-
-                  <StyledRating
-                    readOnly
-                    max={1}
-                    defaultValue={1}
-                    size="small"
-                  />
-
-                  <Typography
-                    variant="body2"
-                    component="div"
-                    sx={{ textDecoration: "underline", marginLeft: "5px" }}
-                  >
-                    ({productRatingReviews?.length} Ratings &{" "}
-                    {productRatingReviews?.length} Reviews)
-                  </Typography>
-                </>
-              ) : (
-                <Typography
-                  variant="body2"
-                  component="div"
-                  sx={{ textDecoration: "underline", marginLeft: "5px" }}
-                >
-                  (Be the First One to Review)
-                </Typography>
-              )}
-            </Box>
-
-            <Box component="div" id="productPrice">
-              <Box component="div">
-                <Typography
-                  variant="h5"
-                  component="span"
-                  sx={{ fontWeight: "500" }}
-                >
-                  {" "}
-                  ₹{" "}
-                </Typography>
-                <Typography
-                  variant="h5"
-                  component="span"
-                  sx={{ fontWeight: "500" }}
-                >
-                  {" "}
-                  {productDetails?.price}{" "}
-                </Typography>
-              </Box>
-
-              <Typography
-                variant="body2"
-                component="div"
-                sx={{ fontSize: "12px" }}
-              >
-                {" "}
-                (Incl. all taxes.){" "}
-              </Typography>
-            </Box>
-
-            <Box
-              component="div"
-              id="productFeatures"
-              sx={{
-                marginTop: 4,
-                border: "1px solid #3d3a3a",
-                padding: "0 0 1rem 1rem",
-              }}
-            >
-              <Box component="div" sx={{ padding: "1rem 0" }}>
-                <Typography variant="body2" component="div">
-                  Key Features
-                </Typography>
-              </Box>
-
-              <Box
-                component="div"
-                sx={{
-                  fontFamily: "inherit",
-                  fontSize: "15px",
-                  lineHeight: 1.5,
-                }}
-              >
-                <ul style={{ marginLeft: "1rem" }}>
-                  {productFeatures.map((feature, index) => (
-                    <li key={index}> {feature} </li>
-                  ))}
-                </ul>
-              </Box>
-            </Box>
-          </div>
+          <ProductDetails
+            productDetails={productDetails}
+            productRatingReviews={productRatingReviews}
+            productFeatures={productFeatures}
+          />
         </Grid>
       </Grid>
 
       {/* Product Overview Accordion */}
-      <Box
-        component="div"
-        id="overview"
-        sx={{
-          marginTop: 5,
-          border: "1px solid #3d3a3a",
-          borderRadius: 1,
-        }}
-      >
-        <Accordion
-          defaultExpanded
-          sx={{
-            backgroundColor: "transparent",
-            color: "inherit",
-            "& > .MuiSvgIcon-root": {
-              backgroundColor: "transparent",
-              color: "inherit",
-            },
-          }}
-        >
-          <AccordionSummary
-            expandIcon={<ExpandMoreIcon sx={{ color: "white" }} />}
-            aria-controls="productOverview"
-            id="productOverview"
-          >
-            <Typography variant="h5" component="div" sx={{ fontWeight: "700" }}>
-              Overview
-            </Typography>
-          </AccordionSummary>
-          <AccordionDetails>
-            <Typography
-              component="div"
-              sx={{ padding: "1rem" }}
-              dangerouslySetInnerHTML={{ __html: productDetails?.description }}
-            ></Typography>
-          </AccordionDetails>
-        </Accordion>
-      </Box>
+      <ProductOverview productDetails={productDetails} />
 
+      {/* Product Review-Rating Accordion */}
+      <ProductReviewRating productDetails={productDetails} productRatingReviews={productRatingReviews} />
       <Box
         component="div"
         id="reviews"
@@ -260,7 +107,7 @@ function SingleProductDetail() {
             aria-controls="productReviews"
             id="productReviews"
           >
-            <Box component='div' sx={{ display: "flex", alignItems: "center"}}>
+            <Box component="div" sx={{ display: "flex", alignItems: "center" }}>
               <Typography
                 variant="h5"
                 component="div"
@@ -270,7 +117,12 @@ function SingleProductDetail() {
               </Typography>
               <Typography
                 component="div"
-                sx={{ fontWeight: "700", fontSize: "18px", lineHeight: 0, color: "#00e9bf" }}
+                sx={{
+                  fontWeight: "700",
+                  fontSize: "18px",
+                  lineHeight: 0,
+                  color: "#00e9bf",
+                }}
               >
                 {productDetails?.ratings}
                 <StyledRating
@@ -282,9 +134,7 @@ function SingleProductDetail() {
               </Typography>
             </Box>
           </AccordionSummary>
-          <AccordionDetails>
-            {productRatingReviews?.length}
-          </AccordionDetails>
+          <AccordionDetails>{productRatingReviews?.length}</AccordionDetails>
         </Accordion>
       </Box>
     </Container>
