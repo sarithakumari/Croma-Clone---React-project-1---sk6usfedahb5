@@ -2,31 +2,14 @@ import React, { useEffect, useState } from "react";
 import { singleProductDetail } from "../../helper/singleProductDetail";
 import { useParams } from "react-router-dom";
 
-import {
-  Accordion,
-  AccordionDetails,
-  AccordionSummary,
-  Box,
-  Container,
-  Grid,
-  Rating,
-  Typography,
-} from "@mui/material";
+import { Container, Grid } from "@mui/material";
 
 import SingleProductGallery from "./SingleProductGallery";
-import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
-import styled from "@emotion/styled";
 import { singleProductRatingReview } from "../../helper/singleProductRatingReview";
 import ProductDetails from "./ProductDetails";
 import ProductOverview from "./ProductOverview";
 import ProductReviewRating from "./ProductReviewRating";
-
-const StyledRating = styled(Rating)({
-  "& .MuiRating-iconFilled": {
-    color: "#00e9bf",
-    fontSize: "14px",
-  },
-});
+import ProductFooter from "./ProductFooter";
 
 function SingleProductDetail() {
   const [productDetails, setProductDetails] = useState(null);
@@ -62,6 +45,7 @@ function SingleProductDetail() {
 
   return (
     <Container maxWidth="lg">
+      {/* Product Gallery and details */}
       <Grid container>
         {/* Product Gallery */}
         <Grid item md={6} sm={12}>
@@ -82,61 +66,13 @@ function SingleProductDetail() {
       <ProductOverview productDetails={productDetails} />
 
       {/* Product Review-Rating Accordion */}
-      <ProductReviewRating productDetails={productDetails} productRatingReviews={productRatingReviews} />
-      <Box
-        component="div"
-        id="reviews"
-        sx={{
-          marginTop: 5,
-          border: "1px solid #3d3a3a",
-          borderRadius: 1,
-        }}
-      >
-        <Accordion
-          sx={{
-            backgroundColor: "transparent",
-            color: "inherit",
-            "& > .MuiSvgIcon-root": {
-              backgroundColor: "transparent",
-              color: "inherit",
-            },
-          }}
-        >
-          <AccordionSummary
-            expandIcon={<ExpandMoreIcon sx={{ color: "white" }} />}
-            aria-controls="productReviews"
-            id="productReviews"
-          >
-            <Box component="div" sx={{ display: "flex", alignItems: "center" }}>
-              <Typography
-                variant="h5"
-                component="div"
-                sx={{ fontWeight: "700", marginRight: 1 }}
-              >
-                Reviews
-              </Typography>
-              <Typography
-                component="div"
-                sx={{
-                  fontWeight: "700",
-                  fontSize: "18px",
-                  lineHeight: 0,
-                  color: "#00e9bf",
-                }}
-              >
-                {productDetails?.ratings}
-                <StyledRating
-                  defaultValue={1}
-                  max={1}
-                  readOnly
-                  sx={{ fontSize: "18px" }}
-                />
-              </Typography>
-            </Box>
-          </AccordionSummary>
-          <AccordionDetails>{productRatingReviews?.length}</AccordionDetails>
-        </Accordion>
-      </Box>
+      <ProductReviewRating
+        productDetails={productDetails}
+        productRatingReviews={productRatingReviews}
+      />
+
+      {/* Product Footer - Buy/Add to cart button */}
+      <ProductFooter productDetails={productDetails} />
     </Container>
   );
 }

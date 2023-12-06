@@ -2,6 +2,7 @@ import { Accordion, AccordionDetails, AccordionSummary, Box, Rating, Typography 
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import React from "react";
 import styled from "@emotion/styled";
+import CustomerReview from "./CustomerReview";
 
 const StyledRating = styled(Rating)({
     "& .MuiRating-iconFilled": {
@@ -11,12 +12,14 @@ const StyledRating = styled(Rating)({
   });
 
 function ProductReviewRating({ productDetails, productRatingReviews }) {
+    console.log('ratings', productRatingReviews);
   return (
     <Box
       component="div"
       id="reviews"
       sx={{
         marginTop: 5,
+        marginBottom: 12,
         border: "1px solid #3d3a3a",
         borderRadius: 1,
       }}
@@ -53,7 +56,7 @@ function ProductReviewRating({ productDetails, productRatingReviews }) {
                 color: "#00e9bf",
               }}
             >
-              {productDetails?.ratings}
+              {productDetails?.ratings.toFixed(1)}
               <StyledRating
                 defaultValue={1}
                 max={1}
@@ -63,7 +66,12 @@ function ProductReviewRating({ productDetails, productRatingReviews }) {
             </Typography>
           </Box>
         </AccordionSummary>
-        <AccordionDetails>{productRatingReviews?.length}</AccordionDetails>
+
+        <AccordionDetails>
+            {productRatingReviews?.map((review)=> (
+                <CustomerReview key={review._id} review={review} />
+            ))}
+        </AccordionDetails>
       </Accordion>
     </Box>
   );
