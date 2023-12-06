@@ -1,16 +1,19 @@
 import styled from "@emotion/styled";
-import { Box, Rating, Typography } from "@mui/material";
+import { Box, Link, Rating, Typography } from "@mui/material";
 import React from "react";
 
-
 const StyledRating = styled(Rating)({
-    "& .MuiRating-iconFilled": {
-      color: "#00e9bf",
-      fontSize: "14px",
-    },
-  });
+  "& .MuiRating-iconFilled": {
+    color: "#00e9bf",
+    fontSize: "14px",
+  },
+});
 
-function ProductDetails({ productDetails, productRatingReviews, productFeatures }) {
+function ProductDetails({
+  productDetails,
+  productRatingReviews,
+  productFeatures,
+}) {
   return (
     <div
       id="productDetails"
@@ -44,14 +47,16 @@ function ProductDetails({ productDetails, productRatingReviews, productFeatures 
 
             <StyledRating readOnly max={1} defaultValue={1} size="small" />
 
-            <Typography
-              variant="body2"
-              component="div"
-              sx={{ textDecoration: "underline", marginLeft: "5px" }}
-            >
-              ({productRatingReviews?.length} Ratings &{" "}
-              {productRatingReviews?.length} Reviews)
-            </Typography>
+            <Link href="#productReviews" color="inherit" >
+              <Typography
+                variant="body2"
+                component="div"
+                sx={{ textDecoration: "underline", marginLeft: "5px" }}
+              >
+                ({productRatingReviews?.length} Ratings &{" "}
+                {productRatingReviews?.length} Reviews)
+              </Typography>
+            </Link>
           </>
         ) : (
           <Typography
@@ -72,7 +77,7 @@ function ProductDetails({ productDetails, productRatingReviews, productFeatures 
           </Typography>
           <Typography variant="h5" component="span" sx={{ fontWeight: "500" }}>
             {" "}
-            {productDetails?.price}{" "}
+            {productDetails?.price.toFixed(2)}{" "}
           </Typography>
         </Box>
 

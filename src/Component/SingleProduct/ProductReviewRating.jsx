@@ -25,6 +25,7 @@ function ProductReviewRating({ productDetails, productRatingReviews }) {
       }}
     >
       <Accordion
+        defaultExpanded
         sx={{
           backgroundColor: "transparent",
           color: "inherit",
