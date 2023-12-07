@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import {
   Box,
   Button,
@@ -7,18 +7,37 @@ import {
   TextField,
   Typography,
 } from "@mui/material";
+import { signUpApi } from "../../helper/signUpApi";
+import { useNavigate } from "react-router-dom";
 
 function LoginForm({ handleClose }) {
   const [name, setName] = useState("");
-  const [username, setUserName] = useState("");
+  const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const navigate = useNavigate();
 
-  // console.log({ name, username, password });
+  // console.log({ name, email, password });
+  // useEffect(()=>{
+  //   signUpApi()
+  // },[])
+  async function handleSignUpSubmit(e) {
+    e.preventDefault();
+    const data = await signUpApi(name, email, password);
+    // console.log('response', res);
+    if(data.status === 'success')
+    {
+      const token = data.token;
+      // console.log(token);
+      localStorage.setItem('userToken', JSON.stringify(token))
+      navigate("/");
+    }
+  }
 
   return (
     <Box flexGrow={1}>
       <Card
-        component="div"
+        component="form"
+        // onSubmit={handleSignUpSubmit}
         sx={{
           width: "460px",
           padding: "1rem 2rem",
@@ -41,7 +60,7 @@ function LoginForm({ handleClose }) {
           }}
         >
           <Typography variant="body1" component="p" textAlign="center">
-            Please enter your Email ID and Password
+            Please enter Full Name, Email ID and Password
           </Typography>
           <TextField
             type="text"
@@ -54,9 +73,9 @@ function LoginForm({ handleClose }) {
           <TextField
             type="email"
             placeholder="Enter Email Address"
-            value={username}
+            value={email}
             required
-            onChange={(e) => setUserName(e.target.value)}
+            onChange={(e) => setEmail(e.target.value)}
             sx={{ border: "1px solid white", borderRadius: 1, marginTop: 2 }}
           />
           <TextField
@@ -95,7 +114,8 @@ function LoginForm({ handleClose }) {
           </Typography>
           <Button
             variant="contained"
-            onClick={() => console.log({ name, username, password })}
+            // onClick={() => console.log({ name, email, password })}
+            onClick={handleSignUpSubmit}
             sx={{ backgroundColor: "#12daa8", color: "black" }}
           >
             Sign Up
