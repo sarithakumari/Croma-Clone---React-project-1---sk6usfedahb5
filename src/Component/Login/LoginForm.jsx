@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import {
   Box,
   Button,
@@ -7,12 +7,26 @@ import {
   TextField,
   Typography,
 } from "@mui/material";
+import { loginApi } from "../../helper/loginApi";
+import CromaContext from "../../ContextAPI/CromaContext";
 
 function LoginForm({ handleClose }) {
   const [username, setUserName] = useState("");
   const [password, setPassword] = useState("");
 
+  const {handleCloseAuthDialog} = useContext(CromaContext);
+
   // console.log({ username, password });
+  async function handleLogin() {
+    const res = await loginApi(username, password);
+    // console.log('loginform data: ', res);
+    if(res.status === 'success') {
+        const token = res.token;
+        // console.log(token);
+        localStorage.setItem('userToken', JSON.stringify(token));
+        handleCloseAuthDialog()
+    }
+  }
 
   return (
     <Box flexGrow={1} sx={{backgroundColor: "black",}} >
@@ -87,7 +101,7 @@ function LoginForm({ handleClose }) {
           </Typography>
           <Button
             variant="contained"
-            onClick={() => console.log({ username, password })}
+            onClick={handleLogin}
             sx={{ backgroundColor: "#12daa8", color: "black" }}
           >
             Login
