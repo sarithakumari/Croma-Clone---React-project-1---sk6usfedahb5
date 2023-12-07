@@ -10,6 +10,9 @@ import PersonIcon from "@mui/icons-material/Person";
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 import { Typography, Badge } from "@mui/material";
 import { createSearchParams, useNavigate, useSearchParams } from "react-router-dom";
+import NavbarAuthentication from "./NavbarAuthentication";
+import NavbarCart from "./NavbarCart";
+import NavbarLocation from "./NavbarLocation";
 // import { teal } from '@mui/material/colors';
 
 // const color = teal['A400'];
@@ -128,47 +131,15 @@ function NavbarSearch() {
             alignItems: "center",
           }}
         >
-          <Box
-            style={{
-              display: "flex",
-              justifyContent: "space-between",
-              alignItems: "center",
-              marginRight: "20px",
-            }}
-            onClick={() => alert("pincode modal")}
-          >
-            <LocationOnIcon style={{ padding: "0" }} fontSize="xs" />
-            <Typography variant="body2" component="p">
-              Mumbai,
-            </Typography>
-            <Typography variant="body2" component="p">
-              400049
-            </Typography>
-            <EditIcon fontSize="xs" />
-          </Box>
+          {/* Location/Pincode component */}
+          <NavbarLocation />
 
-          <Box
-            style={{
-              marginRight: "20px",
-              cursor: "pointer",
-            }}
-            onClick={()=>alert('sign-in/sign-up modal')}
-          >
-            <PersonIcon style={{ fontSize: "25px" }} />
-          </Box>
+          {/* Authentication */}
+          <NavbarAuthentication />
 
-          <Box
-            style={{
-              marginRight: "20px",
-              cursor: "pointer",
-              position: "relative",
-            }}
-            onClick={()=>navigate('cart')}
-          >
-            <Badge badgeContent={0} showZero overlap="circular"  >
-              <ShoppingCartIcon />
-            </Badge>
-          </Box>
+          {/* Cart */}
+          <NavbarCart />
+
         </Box>
       </Toolbar>
     </>
