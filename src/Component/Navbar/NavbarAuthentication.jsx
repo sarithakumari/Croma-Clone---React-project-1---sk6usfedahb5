@@ -42,7 +42,7 @@ function NavbarAuthentication() {
           },
         }}
       >
-        <LoginForm />
+        <LoginForm handleClose={handleClose} />
       </Dialog>
     </>
   );

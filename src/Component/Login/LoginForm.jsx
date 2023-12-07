@@ -7,12 +7,14 @@ import {
   DialogContent,
   DialogContentText,
   DialogTitle,
+  IconButton,
   Stack,
   TextField,
   Typography,
 } from "@mui/material";
+import CloseIcon from "@mui/icons-material/Close";
 
-function LoginForm() {
+function LoginForm({ handleClose }) {
   const [username, setUserName] = useState("");
   const [password, setPassword] = useState("");
 
@@ -29,6 +31,7 @@ function LoginForm() {
           backgroundColor: "black",
           color: "white",
           borderRadius: 1,
+          position: "relative",
         }}
       >
         <Stack
@@ -60,8 +63,13 @@ function LoginForm() {
             onChange={(e) => setPassword(e.target.value)}
             sx={{ border: "1px solid white", borderRadius: 1, marginTop: 2 }}
           />
-          <Typography variant="body2" component="p" textAlign="center" fontSize="10px">
-            By continuing you agree to our {" "}
+          <Typography
+            variant="body2"
+            component="p"
+            textAlign="center"
+            fontSize="10px"
+          >
+            By continuing you agree to our{" "}
             <Typography
               variant="body2"
               component="a"
@@ -90,6 +98,19 @@ function LoginForm() {
             Login
           </Button>
         </Stack>
+        <Box
+          component="span"
+          sx={{
+            position: "absolute",
+            top: "0",
+            right: "0",
+            margin: 2,
+            cursor: "pointer",
+          }}
+          onClick={handleClose}
+        >
+          <CloseIcon />
+        </Box>
       </Card>
     </Box>
   );
