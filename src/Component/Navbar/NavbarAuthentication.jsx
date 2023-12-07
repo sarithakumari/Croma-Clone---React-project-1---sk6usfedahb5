@@ -1,22 +1,18 @@
 import { Box, Button, ButtonGroup, Dialog, Typography } from "@mui/material";
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import PersonIcon from "@mui/icons-material/Person";
 import LoginForm from "../Login/LoginForm";
 import SignUpForm from "../SignUp/SignUpForm";
 
 import CloseIcon from "@mui/icons-material/Close";
+import CromaContext from "../../ContextAPI/CromaContext";
 
 function NavbarAuthentication() {
-  const [open, setOpen] = useState(false);
+
   const [showLogin, setShowLogin] = useState(false);
 
-  const handleClickOpen = () => {
-    setOpen(true);
-  };
+  const { openAuthDialog, handleCloseAuthDialog, handleOpenAuthDialog } = useContext(CromaContext);
 
-  const handleClose = () => {
-    setOpen(false);
-  };
 
   return (
     <>
@@ -25,15 +21,15 @@ function NavbarAuthentication() {
           marginRight: "20px",
           cursor: "pointer",
         }}
-        onClick={handleClickOpen}
+        onClick={handleOpenAuthDialog}
       >
         <PersonIcon style={{ fontSize: "25px" }} />
       </Box>
 
       <Dialog
         disableEscapeKeyDown
-        open={open}
-        onClose={handleClose}
+        open={openAuthDialog}
+        // onClose={handleCloseAuthDialog}
         sx={{
           "& .MuiBackdrop-root": {
             backgroundColor: "#353535",
@@ -102,7 +98,7 @@ function NavbarAuthentication() {
             cursor: "pointer",
             color: "white",
           }}
-          onClick={handleClose}
+          onClick={handleCloseAuthDialog}
         >
           <CloseIcon />
         </Box>
