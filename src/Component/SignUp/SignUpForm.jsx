@@ -9,13 +9,14 @@ import {
 } from "@mui/material";
 
 function LoginForm({ handleClose }) {
+  const [name, setName] = useState("");
   const [username, setUserName] = useState("");
   const [password, setPassword] = useState("");
 
-  // console.log({ username, password });
+  // console.log({ name, username, password });
 
   return (
-    <Box flexGrow={1} sx={{backgroundColor: "black",}} >
+    <Box flexGrow={1}>
       <Card
         component="div"
         sx={{
@@ -25,7 +26,6 @@ function LoginForm({ handleClose }) {
           backgroundColor: "black",
           color: "white",
           borderRadius: 1,
-          position: "relative",
         }}
       >
         <Stack
@@ -43,6 +43,14 @@ function LoginForm({ handleClose }) {
           <Typography variant="body1" component="p" textAlign="center">
             Please enter your Email ID and Password
           </Typography>
+          <TextField
+            type="text"
+            placeholder="Enter Your Full Name"
+            value={name}
+            required
+            onChange={(e) => setName(e.target.value)}
+            sx={{ border: "1px solid white", borderRadius: 1, marginTop: 2 }}
+          />
           <TextField
             type="email"
             placeholder="Enter Email Address"
@@ -90,7 +98,7 @@ function LoginForm({ handleClose }) {
             onClick={() => console.log({ username, password })}
             sx={{ backgroundColor: "#12daa8", color: "black" }}
           >
-            Login
+            Sign Up
           </Button>
         </Stack>
       </Card>

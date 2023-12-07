@@ -1,6 +1,6 @@
 import React from "react";
 import LoginForm from "../Login/LoginForm";
-import SignUpForm from "../../SignUp/SignUpForm";
+import SignUpForm from "../SignUp/SignUpForm";
 import { Stack } from "@mui/material";
 
 function Cart() {
