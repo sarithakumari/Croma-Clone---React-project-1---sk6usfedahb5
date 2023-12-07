@@ -95,7 +95,7 @@ function LoginForm({ handleClose }) {
           </Typography>
           <Button
             variant="contained"
-            onClick={() => console.log({ username, password })}
+            onClick={() => console.log({ name, username, password })}
             sx={{ backgroundColor: "#12daa8", color: "black" }}
           >
             Sign Up
