@@ -131,13 +131,13 @@ function NavbarSearch() {
             alignItems: "center",
           }}
         >
-          {/* Location/Pincode component */}
+          {/* Navbar Location/Pincode component */}
           <NavbarLocation />
 
-          {/* Authentication */}
+          {/* Navbar Authentication */}
           <NavbarAuthentication />
 
-          {/* Cart */}
+          {/* Navbar Cart */}
           <NavbarCart />
 
         </Box>

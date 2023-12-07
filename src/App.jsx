@@ -12,6 +12,7 @@ import { categories } from "../public/categories";
 import Footer from "./Component/Footer/Footer";
 import SearchResults from "./Component/Navbar/SearchResults";
 import SingleProductDetail from "./Component/SingleProduct/SingleProductDetail";
+import CromaContext from "./ContextAPI/CromaContext";
 
 const darkTheme = createTheme({
   palette: {
@@ -22,6 +23,7 @@ const darkTheme = createTheme({
 function App() {
   return (
     <React.Fragment>
+      <CromaContext.Provider value={{}} >
         <BrowserRouter>
           <Grid container direction="column" style={{height: "999px"}} >
 
@@ -53,6 +55,8 @@ function App() {
             </Grid>
           </Grid>
         </BrowserRouter>
+      </CromaContext.Provider>
+        
     </React.Fragment>
   );
 }
