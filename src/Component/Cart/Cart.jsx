@@ -23,13 +23,13 @@ function Cart() {
           <Typography
             variant="h5"
             component="p"
-            sx={{ fontWeight: "700", borderRadius: 1 }}
+            sx={{ fontWeight: "700", borderRadius: 1, padding: "1rem 0" }}
           >
             YOUR CART
           </Typography>
 
           <Box sx={{ width: "100%", marginTop: 1 }}>
-            <Grid container>
+            <Grid container >
               <Grid item lg={8} md={8} sm={12} xs={12}>
                 <CartProducts />
               </Grid>

@@ -19,10 +19,17 @@ function CartProducts() {
   return (
     <Box
       component="div"
-      sx={{ padding: "1rem 0 1rem 12rem", position: "relative" }}
+      sx={{
+        padding: "1rem 0 1rem 12rem",
+        position: "relative",
+        marginRight: 1,
+        borderRadius: "0.8rem",
+        backgroundColor: "#ffffff",
+      }}
     >
+        {/* left box || right box */}
       <Box component="div" sx={{ display: "flex", marginLeft: "1.5rem" }}>
-        <Box sx={{ paddingRight: "1.5rem" }}>
+        <Box component='div' id="cartDetails-left" sx={{ paddingRight: "1.5rem" }}>
           <Typography
             component="p"
             variant="h6"
@@ -35,8 +42,7 @@ function CartProducts() {
               fontWeight: "500",
             }}
           >
-            Apple AirPods Pro (2nd Generation) with MagSafe Charging CaseApple
-            AirPods Pro (2nd Generation) with
+            Apple AirPods Pro (2nd Generation) with MagSafe Charging Case
           </Typography>
 
           <Box component="div" marginTop={1}>
@@ -114,8 +120,61 @@ function CartProducts() {
           </Box>
         </Box>
 
-        <Box sx={{}}>price</Box>
+        <Box component='div' id="cartDetails-right" sx={{paddingRight: "1.5rem"}}>
+          <Box>
+            <Typography component="span" sx={{ fontSize: "24px" }}>
+              ₹
+            </Typography>
+            <Typography
+              component="span"
+              sx={{ fontSize: "24px", fontWeight: "700" }}
+            >
+              24,499.00
+            </Typography>
+          </Box>
+
+          <Typography
+            component="p"
+            variant="body2"
+            textAlign="end"
+            sx={{ padding: "1rem 0" }}
+          >
+            (Incl. all Taxes)
+          </Typography>
+
+          <Divider />
+
+          <Box component="div" sx={{ textAlign: "end" }}>
+            <Typography
+              component="span"
+              fontWeight="500"
+              fontSize="14px"
+              sx={{ textDecoration: "line-through" }}
+            >
+              MRP{" "}
+            </Typography>
+            <Typography
+              component="span"
+              fontWeight="500"
+              fontSize="14px"
+              sx={{ textDecoration: "line-through" }}
+            >
+              ₹26,900
+            </Typography>
+            <Typography
+              component="p"
+              fontWeight="500"
+              fontSize="12px"
+              color="grey"
+              textAlign="end"
+            >
+              (Save ₹2401.00)
+            </Typography>
+          </Box>
+          <Divider />
+        </Box>
       </Box>
+
       {/* image */}
       <Box
         component="div"
