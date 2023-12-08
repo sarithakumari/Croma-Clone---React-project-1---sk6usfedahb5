@@ -31,6 +31,8 @@ function Cart() {
 
   console.log(cartProducts);
 
+  if(!cartProducts || cartProducts?.items?.length===0) return (<CartEmpty />)
+
   return (
     <>
       <Box
@@ -40,11 +42,10 @@ function Cart() {
           color: "black",
           width: "100vw",
           paddingTop: "6rem",
-          overflowY: "clip",
         }}
       >
         <Container maxWidth="lg">
-          {cartProducts?.items.length !== 0 ? (
+          {cartProducts?.items?.length !== 0 ? (
             <>
               <Typography
                 variant="h5"
