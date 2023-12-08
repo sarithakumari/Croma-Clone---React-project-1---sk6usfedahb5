@@ -6,6 +6,7 @@ import CartProducts from "./CartProducts";
 import { getCartItemApi } from "../../helper/getCartItemsApi";
 import { clearCartApi } from "../../helper/clearCartApi";
 import { removeProductFromCartApi } from "../../helper/removeProductFromCartApi";
+import CartEmpty from "./CartEmpty";
 
 function Cart() {
   const navigate = useNavigate();
@@ -24,8 +25,8 @@ function Cart() {
     clearCartApi(userToken);
   }
 
-  function handleRemoveProductFromCart() {
-    removeProductFromCartApi();
+  function handleSetCartProducts(data) {
+    setCartProducts(data);
   }
 
   console.log(cartProducts);
@@ -43,32 +44,41 @@ function Cart() {
         }}
       >
         <Container maxWidth="lg">
-          <Typography
-            variant="h5"
-            component="p"
-            sx={{ fontWeight: "700", borderRadius: 1, padding: "1rem 0" }}
-          >
-            YOUR CART
-          </Typography>
+          {cartProducts?.items.length !== 0 ? (
+            <>
+              <Typography
+                variant="h5"
+                component="p"
+                sx={{ fontWeight: "700", borderRadius: 1, padding: "1rem 0" }}
+              >
+                YOUR CART
+              </Typography>
 
-          <Box sx={{ width: "100%", marginTop: 1 }}>
-            <Grid container>
-              <Grid item lg={8} md={8} sm={12} xs={12}>
-                {cartProducts?.items.map((product, index) => (
-                  <CartProducts
-                    key={index}
-                    product={product}
-                    handleClearCart={handleClearCart}
-                    handleRemoveProductFromCart={handleRemoveProductFromCart}
-                  />
-                ))}
-              </Grid>
+              <Box sx={{ width: "100%", marginTop: 1 }}>
+                <Grid container>
+                  <Grid item lg={8} md={8} sm={12} xs={12}>
+                    {cartProducts?.items.map((product, index) => (
+                      <CartProducts
+                        key={index}
+                        product={product}
+                        handleClearCart={handleClearCart}
+                        handleSetCartProducts={handleSetCartProducts}
+                      />
+                    ))}
+                  </Grid>
 
-              <Grid item lg={4} md={4} sm={12} xs={12}>
-                <CartOrderSummary totalPrice={cartProducts?.totalPrice} totalItems={cartProducts?.items.length} />
-              </Grid>
-            </Grid>
-          </Box>
+                  <Grid item lg={4} md={4} sm={12} xs={12}>
+                    <CartOrderSummary
+                      totalPrice={cartProducts?.totalPrice}
+                      totalItems={cartProducts?.items.length}
+                    />
+                  </Grid>
+                </Grid>
+              </Box>
+            </>
+          ) : (
+            <CartEmpty />
+          )}
         </Container>
       </Box>
     </>

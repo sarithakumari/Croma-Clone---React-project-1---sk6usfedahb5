@@ -12,6 +12,7 @@ export async function removeProductFromCartApi(productId, userToken) {
         });
         const data = await res.json();
         console.log('cart item deleted: ', data);
+        return data;
     }catch(error) {
         console.error("error getting cart items: ", error.message);
     }

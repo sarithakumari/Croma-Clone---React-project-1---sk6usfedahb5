@@ -8,6 +8,7 @@ import {
   Typography,
 } from "@mui/material";
 import React from "react";
+import { removeProductFromCartApi } from "../../helper/removeProductFromCartApi";
 
 const StyledRating = styled(Rating)({
   "& .MuiRating-iconFilled": {
@@ -15,8 +16,16 @@ const StyledRating = styled(Rating)({
   },
 });
 
-function CartProducts({ product, handleClearCart, handleRemoveProductFromCart }) {
-    console.log('product in cart: ', product);
+function CartProducts({ product, handleSetCartProducts, handleClearCart }) {
+    const userToken = JSON.parse(localStorage.getItem("userToken"));
+
+    async function handleRemoveProductFromCart() {
+        const data = await removeProductFromCartApi(product.product._id, userToken);
+        console.log(data);
+        handleSetCartProducts(data.data);
+    }
+
+    console.log('product in cart: ', product.product._id);
   return (
     <Box
       component="div"
@@ -115,7 +124,7 @@ function CartProducts({ product, handleClearCart, handleRemoveProductFromCart })
                 padding: "10px 40px",
                 fontWeight: "700",
               }}
-              onClick={()=>alert('product removed')}
+              onClick={handleRemoveProductFromCart}
             >
               Remove
             </Button>

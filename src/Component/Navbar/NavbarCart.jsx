@@ -26,7 +26,7 @@ function NavbarCart() {
       }}
       onClick={() => navigate("cart")}
     >
-      <StyledBadge badgeContent={(itemsInCart)} showZero overlap="circular"  >
+      <StyledBadge badgeContent={itemsInCart?itemsInCart:0} showZero overlap="circular"  >
         <ShoppingCartIcon />
       </StyledBadge>
     </Box>
