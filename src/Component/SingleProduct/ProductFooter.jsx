@@ -7,11 +7,30 @@ import {
   Grid,
   Typography,
 } from "@mui/material";
-import React from "react";
+import React, { useContext } from "react";
 import { useNavigate } from "react-router-dom";
+import CromaContext from "../../ContextAPI/CromaContext";
+import { addToCart } from "../../helper/addToCart";
 
 function ProductFooter({ productDetails }) {
-    const navigate = useNavigate();
+  const navigate = useNavigate();
+
+  const userToken = JSON.parse(localStorage.getItem('userToken'));
+
+  async function handleAddToCart(e) {
+    // console.log(userToken);
+    // console.log(productDetails._id);
+    const res = await addToCart(productDetails._id, userToken);
+    // const res = addToCart(productDetails._id, userToken);
+    console.log(res)
+  }
+
+  function handleBuyNow(e) {
+    console.log("token", userToken);
+  }
+
+  // console.log("token", userToken);
+
   return (
     <AppBar
       position="fixed"
@@ -65,7 +84,7 @@ function ProductFooter({ productDetails }) {
                 alignItems: "center",
                 height: "70px",
                 width: "20rem",
-                margin: "auto"
+                margin: "auto",
               }}
             >
               <Button
@@ -81,11 +100,11 @@ function ProductFooter({ productDetails }) {
                   color: "#121212",
                   marginRight: "1rem",
                   "&.MuiButtonBase-root:hover": {
-                    backgroundColor: "#12daa8"
-                  }
+                    backgroundColor: "#12daa8",
+                  },
                 }}
                 disableRipple
-                onClick={()=>navigate('/cart')}
+                onClick={handleBuyNow}
               >
                 Buy Now
               </Button>
@@ -100,10 +119,11 @@ function ProductFooter({ productDetails }) {
                   border: "1px solid #fff",
                   fontWeight: "900",
                   "&.MuiButtonBase-root:hover": {
-                    backgroundColor: "#353535"
-                  }
+                    backgroundColor: "#353535",
+                  },
                 }}
                 disableRipple
+                onClick={handleAddToCart}
               >
                 Add to Cart
               </Button>

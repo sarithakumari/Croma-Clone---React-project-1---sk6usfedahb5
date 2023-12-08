@@ -3,9 +3,16 @@ import { Box, Container, Grid, Stack, Typography } from "@mui/material";
 import { useNavigate } from "react-router-dom";
 import CartOrderSummary from "./CartOrderSummary";
 import CartProducts from "./CartProducts";
+import { getCartItemApi } from "../../helper/getCartItemsApi";
 
 function Cart() {
   const navigate = useNavigate();
+
+  const userToken = JSON.parse(localStorage.getItem('userToken'));
+  useEffect(()=>{
+    // console.log(userToken);
+    getCartItemApi(userToken)
+  }, [])
 
   return (
     <>
