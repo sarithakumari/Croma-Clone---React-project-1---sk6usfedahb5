@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import {
   Box,
   Button,
@@ -9,12 +9,15 @@ import {
 } from "@mui/material";
 import { signUpApi } from "../../helper/signUpApi";
 import { useNavigate } from "react-router-dom";
+import CromaContext from "../../ContextAPI/CromaContext";
 
 function LoginForm({ handleClose }) {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const navigate = useNavigate();
+
+  const {handleCloseAuthDialog} = useContext(CromaContext);
 
   // console.log({ name, email, password });
   // useEffect(()=>{
@@ -29,6 +32,7 @@ function LoginForm({ handleClose }) {
       const token = data.token;
       // console.log(token);
       localStorage.setItem('userToken', JSON.stringify(token))
+      handleCloseAuthDialog();
       navigate("/");
     }
   }

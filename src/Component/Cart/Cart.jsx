@@ -17,6 +17,7 @@ function Cart() {
           width: "100vw",
           height: "100vh",
           paddingTop: "6rem",
+          overflowY: "clip"
         }}
       >
         <Container maxWidth="lg">

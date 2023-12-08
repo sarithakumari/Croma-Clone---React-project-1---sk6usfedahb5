@@ -5,6 +5,7 @@ import Home from "./Component/Home/Home";
 import Product from "./Component/Product/Product";
 import Cart from "./Component/Cart/Cart"
 import Navbar from "./Component/Navbar/Navbar";
+
 import { createTheme } from "@mui/material";
 import Grid from '@mui/material/Grid';
 
@@ -20,6 +21,7 @@ const darkTheme = createTheme({
 });
 
 function App() {
+  // openAuthDialog state to open the login/signup form DIALOG
   const [openAuthDialog, setOpenAuthDialog] = useState(false);
 
   function handleOpenAuthDialog() {
@@ -34,7 +36,7 @@ function App() {
     <React.Fragment>
       <CromaContext.Provider value={{openAuthDialog, handleOpenAuthDialog, handleCloseAuthDialog}} >
         <BrowserRouter>
-          <Grid container direction="column" style={{height: "999px"}} sx={{pointerEvents: openAuthDialog ? "none" : "auto"}} >
+          <Grid container direction="column" sx={{pointerEvents: openAuthDialog ? "none" : "auto"}} >
 
             <Grid item>
               <Navbar />
@@ -60,9 +62,6 @@ function App() {
               </Routes>
             </Grid>
             
-            <Grid item style={{marginTop: "auto"}} >
-              {/* <Footer /> */}
-            </Grid>
           </Grid>
         </BrowserRouter>
       </CromaContext.Provider>

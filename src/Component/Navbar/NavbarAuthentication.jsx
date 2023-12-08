@@ -8,9 +8,9 @@ import CloseIcon from "@mui/icons-material/Close";
 import CromaContext from "../../ContextAPI/CromaContext";
 
 function NavbarAuthentication() {
-
+  // showLogin state to display loginForm if true else signUp form if false
   const [showLogin, setShowLogin] = useState(false);
-
+  
   const { openAuthDialog, handleCloseAuthDialog, handleOpenAuthDialog } = useContext(CromaContext);
 
 
