@@ -1,7 +1,7 @@
 import { Box, Button, Stack, Typography } from "@mui/material";
 import React from "react";
 
-function CartOrderSummary() {
+function CartOrderSummary({ totalPrice, totalItems }) {
   return (
     <Box
       width="100%"
@@ -18,7 +18,7 @@ function CartOrderSummary() {
         fontSize="18px"
         marginBottom={2}
       >
-        Order Summary (x items){" "}
+        Order Summary ({totalItems} items){" "}
       </Typography>
       <Stack spacing={3}>
         <Box
@@ -29,7 +29,7 @@ function CartOrderSummary() {
             Original Price
           </Typography>
           <Typography component="p" variant="body1">
-            49999
+          ₹{totalPrice}
           </Typography>
         </Box>
         <Box
@@ -37,21 +37,25 @@ function CartOrderSummary() {
           sx={{ display: "flex", justifyContent: "space-between" }}
         >
           <Typography component="p" variant="body1">
-            Original Price
+            Delivery
           </Typography>
-          <Typography component="p" variant="body1">
-            49999
+          <Box>
+            <Typography component="span" variant="body1" sx={{textDecoration: "line-through", fontSize: "small"}}>
+            ₹60
           </Typography>
+          <Typography component='span'>Free</Typography>
+          </Box>
+          
         </Box>
         <Box
           component="div"
           sx={{ display: "flex", justifyContent: "space-between" }}
         >
           <Typography component="p" variant="body1">
-            Original Price
+            Total
           </Typography>
           <Typography component="p" variant="body1">
-            49999
+          ₹{totalPrice}
           </Typography>
         </Box>
       </Stack>

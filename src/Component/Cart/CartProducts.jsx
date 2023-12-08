@@ -15,16 +15,18 @@ const StyledRating = styled(Rating)({
   },
 });
 
-function CartProducts() {
+function CartProducts({ product, handleClearCart, handleRemoveProductFromCart }) {
+    console.log('product in cart: ', product);
   return (
     <Box
       component="div"
       sx={{
-        padding: "1rem 0 1rem 12rem",
+        padding: "1rem 0 1rem 9rem",
         position: "relative",
         marginRight: 1,
         borderRadius: "0.8rem",
         backgroundColor: "#ffffff",
+        marginBottom: 1,
       }}
     >
         {/* left box || right box */}
@@ -42,14 +44,14 @@ function CartProducts() {
               fontWeight: "500",
             }}
           >
-            Apple AirPods Pro (2nd Generation) with MagSafe Charging Case
+            {product.product.name}
           </Typography>
 
           <Box component="div" marginTop={1}>
             <StyledRating
-              defaultValue="4"
+              value={product?.product?.ratings}
               readOnly
-              precision={0.5}
+              precision={0.1}
               size="small"
             />
           </Box>
@@ -60,7 +62,7 @@ function CartProducts() {
               variant="body2"
               sx={{ width: "150px", padding: "0 1rem 1rem 0", borderRadius: 1 }}
             >
-              standard delivery by tomorrow
+              Standard delivery by tomorrow
             </Typography>
             <Divider
               orientation="vertical"
@@ -72,7 +74,7 @@ function CartProducts() {
               variant="body2"
               sx={{ width: "150px", padding: "0 0 1rem 1rem", borderRadius: 1 }}
             >
-              express delivery by today
+              Express delivery by today
             </Typography>
           </Box>
 
@@ -92,7 +94,6 @@ function CartProducts() {
                 textAlign: "center",
                 borderRadius: "8px",
                 border: "1px solid black",
-
                 textTransform: "capitalize",
                 marginRight: 1.2,
                 fontSize: "12px",
@@ -114,13 +115,14 @@ function CartProducts() {
                 padding: "10px 40px",
                 fontWeight: "700",
               }}
+              onClick={()=>alert('product removed')}
             >
               Remove
             </Button>
           </Box>
         </Box>
 
-        <Box component='div' id="cartDetails-right" sx={{paddingRight: "1.5rem"}}>
+        <Box component='div' id="cartDetails-right" sx={{paddingRight: "1.5rem", width: "200px", textAlign: "end" }}>
           <Box>
             <Typography component="span" sx={{ fontSize: "24px" }}>
               ₹
@@ -129,7 +131,7 @@ function CartProducts() {
               component="span"
               sx={{ fontSize: "24px", fontWeight: "700" }}
             >
-              24,499.00
+              {product.product.price.toFixed(2)}
             </Typography>
           </Box>
 
@@ -159,7 +161,7 @@ function CartProducts() {
               fontSize="14px"
               sx={{ textDecoration: "line-through" }}
             >
-              ₹26,900
+              ₹{(product.product.price*1.15).toFixed(2)}
             </Typography>
             <Typography
               component="p"
@@ -168,7 +170,7 @@ function CartProducts() {
               color="grey"
               textAlign="end"
             >
-              (Save ₹2401.00)
+              (Save ₹{((product.product.price)*1.15 - (product.product.price)).toFixed(2)})
             </Typography>
           </Box>
           <Divider />
@@ -178,11 +180,11 @@ function CartProducts() {
       {/* image */}
       <Box
         component="div"
-        sx={{ position: "absolute", top: "1rem", left: "3.6%" }}
+        sx={{ position: "absolute", top: "2rem", left: "3.6%" }}
       >
         <CardMedia
           component="img"
-          src="https://upload.wikimedia.org/wikipedia/commons/thumb/d/d3/Stadtbild_M%C3%BCnchen.jpg/2560px-Stadtbild_M%C3%BCnchen.jpg"
+          src={product.product.displayImage}
           alt="image"
           height="100"
           width="100"

@@ -1,9 +1,9 @@
-const URL = `https://academics.newtonschool.co/api/v1/ecommerce/cart`
+const URL = `https://academics.newtonschool.co/api/v1/ecommerce/cart/`;
 
-export async function getCartItemApi(userToken) {
+export async function removeProductFromCartApi(productId, userToken) {
     try {
-        const res = await fetch(URL, {
-            method: "GET",
+        const res = await fetch(URL+productId, {
+            method: "DELETE",
             headers: {
                 "Authorization": "Bearer "+`${userToken}`,
                 "projectID": "sk6usfedahb5",
@@ -11,9 +11,8 @@ export async function getCartItemApi(userToken) {
             }
         });
         const data = await res.json();
-        // console.log('cart items: ', data);
-        return data;
-    } catch(error) {
+        console.log('cart item deleted: ', data);
+    }catch(error) {
         console.error("error getting cart items: ", error.message);
     }
 }

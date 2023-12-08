@@ -1,10 +1,22 @@
 import { Badge, Box } from "@mui/material";
-import React from "react";
+import React, { useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
+import CromaContext from "../../ContextAPI/CromaContext";
+import styled from "@emotion/styled";
+
+const StyledBadge = styled(Badge)({
+  "& .MuiBadge-badge": {
+    // border: "1px solid white",
+    backgroundColor: "#12daa8",
+    color: "black",
+  }
+})
 
 function NavbarCart() {
     const navigate = useNavigate();
+    const { itemsInCart } = useContext(CromaContext);
+    console.log(itemsInCart);
   return (
     <Box
       style={{
@@ -14,9 +26,9 @@ function NavbarCart() {
       }}
       onClick={() => navigate("cart")}
     >
-      <Badge badgeContent={0} showZero overlap="circular">
+      <StyledBadge badgeContent={(itemsInCart)} showZero overlap="circular"  >
         <ShoppingCartIcon />
-      </Badge>
+      </StyledBadge>
     </Box>
   );
 }
