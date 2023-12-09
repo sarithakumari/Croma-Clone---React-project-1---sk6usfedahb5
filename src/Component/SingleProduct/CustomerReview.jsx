@@ -30,8 +30,8 @@ const configPlace = {
 function CustomerReview({ review }) {
   const uniqueName = uniqueNamesGenerator(configName);
   const uniquePlace = uniqueNamesGenerator(configPlace);
-  console.log(uniqueName);
-  console.log(uniquePlace);
+  // console.log(uniqueName);
+  // console.log(uniquePlace);
   return (
     <Box component="div" id="customerReviewRatingBox" sx={{ margin: "1rem 0" }}>
       <Box

@@ -12,7 +12,7 @@ const StyledRating = styled(Rating)({
   });
 
 function ProductReviewRating({ productDetails, productRatingReviews }) {
-    console.log('ratings', productRatingReviews);
+    // console.log('ratings', productRatingReviews);
   return (
     <Box
       component="div"

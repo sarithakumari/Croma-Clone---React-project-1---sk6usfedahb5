@@ -2,6 +2,10 @@ import { Box, Button, Stack, Typography } from "@mui/material";
 import React from "react";
 
 function CartOrderSummary({ totalPrice, totalItems }) {
+
+  function handleCheckout() {
+    alert('checkout component');
+  }
   return (
     <Box
       width="100%"
@@ -73,6 +77,7 @@ function CartOrderSummary({ totalPrice, totalItems }) {
           fontWeight: "700",
           //   fontSize: "1.2rem"
         }}
+        onClick={handleCheckout}
       >
         Checkout
       </Button>

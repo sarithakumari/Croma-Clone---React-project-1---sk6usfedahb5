@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext, useEffect, useState } from "react";
 import {
   Box,
   Card,
@@ -12,6 +12,10 @@ import {
 import FavoriteBorderOutlinedIcon from "@mui/icons-material/FavoriteBorderOutlined";
 import styled from "@emotion/styled";
 import { useNavigate } from "react-router-dom";
+import Wishlist from "../Wishlist/Wishlist";
+import { addProductToWishlist } from "../../helper/addProductToWishlist";
+import CromaContext from "../../ContextAPI/CromaContext";
+import { deleteProductFromWishlist } from "../../helper/deleteProductFromWishlist";
 
 const StyledRating = styled(Rating)({
   "& .MuiRating-iconFilled": {
@@ -20,8 +24,38 @@ const StyledRating = styled(Rating)({
 });
 
 function ProductCard({ product }) {
+  const [wishlist, setWishlist] = useState(false);
   const navigate = useNavigate();
+
+  const userToken = JSON.parse(localStorage.getItem('userToken'));
+
+  // useEffect(()=>{
+
+  // }, [])
+
+  async function handleWishlistAdd() {
+    const data = await addProductToWishlist(product._id, userToken);
+    console.log(data);
+    if(data.status === 'success') {
+      handleSetWishlist(true);
+    }
+    console.log("wishlisted ",product._id);
+  }
+
+  async function handleWishlistRemove() {
+    const data = await deleteProductFromWishlist(product._id, userToken);
+    if(data.status === 'success') {
+      handleSetWishlist(false);
+    }
+    console.log('removed ', product._id);
+  }
+
+  function handleSetWishlist(value) {
+    setWishlist(value);
+  }
+
   // console.log("card", product );
+
   return (
     <Toolbar
       sx={{
@@ -48,7 +82,7 @@ function ProductCard({ product }) {
         <CardActionArea
           disableRipple
           // onClick={() => alert(`productId is : ${product._id}`)}
-          onClick={()=>navigate(`/product/${product._id}`)}
+          onClick={() => navigate(`/product/${product._id}`)}
         >
           <CardMedia
             component="img"
@@ -79,20 +113,24 @@ function ProductCard({ product }) {
           "&:hover .fav-icon": {
             color: "#00e9bf",
           },
+          "& .fav-icon-filled>path": {
+            color: "#00e9bf",
+          },
         }}
       >
-        <CardActionArea disableRipple onClick={() => alert("fav clicked")}>
-          <FavoriteBorderOutlinedIcon
-            className="fav-icon"
-            sx={{ transition: "all 0.3s ease" }}
-          />
-        </CardActionArea>
+        <Wishlist
+          productId={product._id}
+          handleWishlistAdd={handleWishlistAdd}
+          handleWishlistRemove={handleWishlistRemove}
+          wishlist={wishlist}
+          handleSetWishlist={handleSetWishlist}
+        />
       </Box>
 
       <CardActionArea
         disableRipple
         // onClick={() => alert("redirect to product page")}
-        onClick={()=>navigate(`/product/${product._id}`)}
+        onClick={() => navigate(`/product/${product._id}`)}
       >
         <CardContent sx={{}}>
           <Typography

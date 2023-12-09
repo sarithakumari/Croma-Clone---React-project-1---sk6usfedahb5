@@ -49,7 +49,7 @@ function SingleProductDetail() {
       <Grid container>
         {/* Product Gallery */}
         <Grid item md={6} sm={12}>
-          <SingleProductGallery images={images} />
+          <SingleProductGallery images={images} productId={productID} />
         </Grid>
 
         {/* Product Details */}
