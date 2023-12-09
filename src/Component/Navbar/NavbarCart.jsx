@@ -10,6 +10,7 @@ const StyledBadge = styled(Badge)({
     // border: "1px solid white",
     backgroundColor: "#12daa8",
     color: "black",
+    minWidth: "5px",
   }
 })
 
@@ -26,7 +27,7 @@ function NavbarCart() {
       }}
       onClick={() => navigate("cart")}
     >
-      <StyledBadge badgeContent={itemsInCart?itemsInCart:0} showZero overlap="circular"  >
+      <StyledBadge badgeContent={itemsInCart?itemsInCart:0} showZero overlap="circular" sx={{}} >
         <ShoppingCartIcon />
       </StyledBadge>
     </Box>

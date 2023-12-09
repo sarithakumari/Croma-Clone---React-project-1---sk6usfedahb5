@@ -7,13 +7,14 @@ import {
   Grid,
   Typography,
 } from "@mui/material";
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import CromaContext from "../../ContextAPI/CromaContext";
 import { addToCart } from "../../helper/addToCart";
 
 function ProductFooter({ productDetails }) {
   const navigate = useNavigate();
+  const [isAdding, setIsAdding] = useState(false);
   const { handleItemsInCart } = useContext(CromaContext);
 
   const userToken = JSON.parse(localStorage.getItem('userToken'));
@@ -28,8 +29,14 @@ function ProductFooter({ productDetails }) {
     alert(res.message);
   }
 
-  function handleBuyNow(e) {
-    console.log("token", userToken);
+  async function handleBuyNow(e) {
+    // console.log("token", userToken);
+    const res = await addToCart(productDetails._id, userToken);
+    // const res = addToCart(productDetails._id, userToken);
+    console.log(res)
+    handleItemsInCart(res.data.items.length)
+    navigate('/cart');
+    alert(res.message);
   }
 
   // console.log("token", userToken);
