@@ -5,7 +5,6 @@ import CartOrderSummary from "./CartOrderSummary";
 import CartProducts from "./CartProducts";
 import { getCartItemApi } from "../../helper/getCartItemsApi";
 import { clearCartApi } from "../../helper/clearCartApi";
-import { removeProductFromCartApi } from "../../helper/removeProductFromCartApi";
 import CartEmpty from "./CartEmpty";
 
 function Cart() {

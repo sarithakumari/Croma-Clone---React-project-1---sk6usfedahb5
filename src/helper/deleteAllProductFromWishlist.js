@@ -10,6 +10,8 @@ export async function deleteAllProductFromWishlist(userToken) {
                 "Authorization": "Bearer "+`${userToken}`
             }
         })
+        const data = res.json();
+        console.log("deletedAll: ", data);
     } catch(error) {
         console.error("error adding product to wishlist: ", error.message);
     }
