@@ -52,6 +52,7 @@ function NavbarCheckoutButtons() {
             fontWeight: "500",
             padding: "10px 20px",
           }}
+          onClick={() => navigate(isPaymentPath && "/checkout")}
         >
           Shipping
         </Button>
