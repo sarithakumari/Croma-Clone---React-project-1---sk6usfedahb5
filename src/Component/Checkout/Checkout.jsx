@@ -1,4 +1,3 @@
-import { LocalTaxi } from "@mui/icons-material";
 import {
   Box,
   Button,
@@ -10,11 +9,12 @@ import {
   Typography,
 } from "@mui/material";
 import React, { useState } from "react";
+import ShippingAddress from "./ShippingAddress";
 
 function Checkout() {
   const [name, setName] = useState("");
   const [phone, setPhone] = useState("");
-  const [addressNickName, setAddressNickname] = useState("");
+  const [country, setCountry] = useState("");
   const [pincode, setPincode] = useState("");
   const [street, setStreet] = useState("");
   const [landmark, setLandmark] = useState("");
@@ -23,7 +23,49 @@ function Checkout() {
   const [city, setCity] = useState("");
   const [addressType, setAddressType] = useState("");
 
-  console.log(addressType);
+  const nameError = !Boolean(name);
+  const phoneError = !Boolean(phone);
+  const countryError = !Boolean(country);
+  const pincodeError = !Boolean(pincode);
+  const streetError = !Boolean(street);
+  const landmarkError = !Boolean(landmark);
+  const localityError = !Boolean(locality);
+  const stateError = !Boolean(state);
+  const cityError = !Boolean(city);
+
+  const noError = !(
+    nameError ||
+    phoneError ||
+    countryError ||
+    pincodeError ||
+    streetError ||
+    landmarkError ||
+    localityError ||
+    stateError ||
+    cityError ||
+    !addressType
+  );
+  function handleSubmit(e) {
+    if (noError) {
+      console.log({
+        name,
+        phone,
+        pincode,
+        street,
+        landmark,
+        locality,
+        country,
+        state,
+        city,
+        addressType,
+      });
+    } else {
+      alert("form incomplete");
+    }
+  }
+
+  //   console.log(addressType);
+  //   console.log({ name, phone, pincode });
   return (
     <Box
       flexGrow={1}
@@ -36,7 +78,18 @@ function Checkout() {
       }}
     >
       <Container maxWidth="lg">
-        <Box component="form" sx={{ paddingBottom: "3rem" }}>
+        <Box
+          component="form"
+          sx={{
+            paddingBottom: "3rem",
+            backgroundColor: "white",
+            padding: 1,
+            borderRadius: "8px",
+          }}
+          noValidate
+          autoComplete="off"
+          //   onSubmit={handleSubmit}
+        >
           <Stack>
             {/* name phone no */}
             <Box component="div">
@@ -58,7 +111,9 @@ function Checkout() {
                       required
                       fullWidth
                       value={name}
-                      onClick={(e) => setName(e.target.value)}
+                      error={nameError}
+                      helperText={nameError ? "Field Required" : ""}
+                      onChange={(e) => setName(e.target.value)}
                     />
                   </Box>
                 </Grid>
@@ -75,7 +130,9 @@ function Checkout() {
                       required
                       fullWidth
                       value={phone}
-                      onClick={(e) => setPhone(e.target.value)}
+                      error={phoneError}
+                      helperText={phoneError ? "Field Required" : ""}
+                      onChange={(e) => setPhone(e.target.value)}
                     />
                   </Box>
                 </Grid>
@@ -97,11 +154,13 @@ function Checkout() {
                 >
                   <Box component="div" minWidth="400px">
                     <TextField
-                      label="Address Nickname"
+                      label="Country"
                       required
                       fullWidth
-                      value={addressNickName}
-                      onClick={(e) => setAddressNickname(e.target.value)}
+                      value={country}
+                      error={countryError}
+                      helperText={countryError ? "Field Required" : ""}
+                      onChange={(e) => setCountry(e.target.value)}
                     />
                   </Box>
                 </Grid>
@@ -118,7 +177,9 @@ function Checkout() {
                       required
                       fullWidth
                       value={pincode}
-                      onClick={(e) => setPincode(e.target.value)}
+                      error={pincodeError}
+                      helperText={pincodeError ? "Field Required" : ""}
+                      onChange={(e) => setPincode(e.target.value)}
                     />
                   </Box>
                 </Grid>
@@ -138,7 +199,9 @@ function Checkout() {
                       required
                       fullWidth
                       value={street}
-                      onClick={(e) => setStreet(e.target.value)}
+                      error={streetError}
+                      helperText={streetError ? "Field Required" : ""}
+                      onChange={(e) => setStreet(e.target.value)}
                     />
                   </Box>
                 </Grid>
@@ -155,7 +218,9 @@ function Checkout() {
                       required
                       fullWidth
                       value={landmark}
-                      onClick={(e) => setLandmark(e.target.value)}
+                      error={landmarkError}
+                      helperText={landmarkError ? "Field Required" : ""}
+                      onChange={(e) => setLandmark(e.target.value)}
                     />
                   </Box>
                 </Grid>
@@ -183,7 +248,9 @@ function Checkout() {
                       required
                       fullWidth
                       value={locality}
-                      onClick={(e) => setLocality(e.target.value)}
+                      error={localityError}
+                      helperText={localityError ? "Field Required" : ""}
+                      onChange={(e) => setLocality(e.target.value)}
                     />
                   </Box>
                 </Grid>
@@ -203,7 +270,9 @@ function Checkout() {
                       required
                       fullWidth
                       value={state}
-                      onClick={(e) => setState(e.target.value)}
+                      error={stateError}
+                      helperText={stateError ? "Field Required" : ""}
+                      onChange={(e) => setState(e.target.value)}
                     />
                   </Box>
                 </Grid>
@@ -220,7 +289,9 @@ function Checkout() {
                       required
                       fullWidth
                       value={city}
-                      onClick={(e) => setCity(e.target.value)}
+                      error={cityError}
+                      helperText={cityError ? "Field Required" : ""}
+                      onChange={(e) => setCity(e.target.value)}
                     />
                   </Box>
                 </Grid>
@@ -291,21 +362,37 @@ function Checkout() {
               </Box>
             </Box>
 
+            {noError && (
+              <ShippingAddress
+                addressType={addressType}
+                street={street}
+                locality={locality}
+                city={city}
+                state={state}
+                country={country}
+                pincode={pincode}
+              />
+            )}
+
             <Box
               component="div"
               sx={{
+                display: "flex",
+                justifyContent: "center",
                 "& .MuiButtonBase-root:hover": { backgroundColor: "#12daa8" },
               }}
             >
               <Button
                 sx={{
-                  width: "100%",
+                  minWidth: "400px",
                   borderRadius: "8px",
                   backgroundColor: "#12daa8",
                   color: "black",
                 }}
+                disabled={!noError}
+                onClick={handleSubmit}
               >
-                Submit
+                Proceed to Payment
               </Button>
             </Box>
           </Stack>
