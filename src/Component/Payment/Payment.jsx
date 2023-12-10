@@ -14,6 +14,8 @@ import {
 } from "@mui/material";
 import React, { useState } from "react";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
+import PaymentCard from "./PaymentCard";
+import PaymentUPI from "./PaymentUPI";
 
 function Payment() {
   const [openCard, setCard] = useState(true);
@@ -44,12 +46,15 @@ function Payment() {
         backgroundColor: "#f9f9f9!important",
         color: "black",
         width: "100vw",
+        height: "100vh",
         paddingTop: "6rem",
+        paddingBottom: "3rem"
       }}
     >
       <Container maxWidth="lg">
         <Accordion defaultExpanded sx={{ border: "1px solid #12daa8" }}>
           <AccordionSummary
+          sx={{borderBottom: "1px solid lightgrey"}}
             expandIcon={<ExpandMoreIcon sx={{ color: "#12daa8" }} />}
           >
             <Typography variant="h6" component="div" sx={{ fontWeight: "500" }}>
@@ -87,13 +92,13 @@ function Payment() {
 
                 <Collapse in={openCard}>
                   <Box component="div" id="card">
-                    <Typography variant="body2">card</Typography>
+                    <PaymentCard />
                   </Box>
                 </Collapse>
 
                 <Collapse in={openUPI}>
                   <Box component="div" id="upi">
-                    <Typography variant="body2">upi</Typography>
+                    <PaymentUPI />
                   </Box>
                 </Collapse>
 
