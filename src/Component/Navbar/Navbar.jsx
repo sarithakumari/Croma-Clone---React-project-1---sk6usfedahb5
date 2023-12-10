@@ -13,6 +13,7 @@ import NavbarCheckoutButtons from "../Checkout/NavbarCheckoutButtons";
 export default function Navbar() {
   const location = useLocation();
   const isCheckoutPath = Boolean(location.pathname == "/checkout");
+  const isPaymentPath = Boolean(location.pathname == "/payment");
   console.log(location.pathname);
   console.log(isCheckoutPath);
 
@@ -23,11 +24,11 @@ export default function Navbar() {
           <Toolbar style={{ width: "100%", padding: "0" }}>
             <NavbarLogo />
 
-            {!isCheckoutPath && <NavbarMenu />}
+            {(!isCheckoutPath && !isPaymentPath) && <NavbarMenu />}
 
-            {!isCheckoutPath && <NavbarSearch />}
+            {(!isCheckoutPath && !isPaymentPath) && <NavbarSearch />}
 
-            {isCheckoutPath && <NavbarCheckoutButtons />}
+            {(isCheckoutPath || isPaymentPath) && <NavbarCheckoutButtons />}
             
           </Toolbar>
         </Container>

@@ -15,6 +15,7 @@ import SingleProductDetail from "./Component/SingleProduct/SingleProductDetail";
 import CromaContext from "./ContextAPI/CromaContext";
 import Wishlists from "./Component/Wishlist/WIshlistPage/Wishlists";
 import Checkout from "./Component/Checkout/Checkout";
+import Payment from "./Component/Payment/Payment";
 
 const darkTheme = createTheme({
   palette: {
@@ -79,10 +80,11 @@ function App() {
                   path="/product/:productID"
                   element={<SingleProductDetail />}
                 />
-                <Route path="/cart" element={<Cart />} />
                 <Route path="/searchB" element={<SearchResults />} />
                 <Route path="/wishlists" element={<Wishlists />} />
+                <Route path="/cart" element={<Cart />} />
                 <Route path="/checkout" element={<Checkout />} />
+                <Route path="/payment" element={<Payment />} />
               </Routes>
             </Grid>
           </Grid>

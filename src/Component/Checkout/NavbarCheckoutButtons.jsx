@@ -6,6 +6,8 @@ function NavbarCheckoutButtons() {
   const navigate = useNavigate();
   const { pathname: location } = useLocation();
   const isCheckoutPath = Boolean(location === "/checkout");
+  const isPaymentPath = Boolean(location === "/payment");
+  
   console.log(isCheckoutPath);
 
   return (
@@ -21,8 +23,7 @@ function NavbarCheckoutButtons() {
         component="div"
         sx={{
           "& .payment-btn": {
-            backgroundColor: "transparent",
-            color: "#353535",
+            color: isPaymentPath? "white":"#353535",
           },
         }}
       >
@@ -45,7 +46,7 @@ function NavbarCheckoutButtons() {
             backgroundColor: "transparent",
             color: "white",
             borderRadius: "5px",
-            border: "1px solid #12daa8",
+            border: isPaymentPath?"":"1px solid #12daa8",
             textTransform: "capitalize",
             fontSize: "14px",
             fontWeight: "500",
@@ -57,15 +58,17 @@ function NavbarCheckoutButtons() {
         <Button
           className="payment-btn"
           sx={{
-            // backgroundColor: "transparent",
+            backgroundColor: "transparent",
             // color: "white",
+            border: isPaymentPath?"1px solid #12daa8":"",
             borderRadius: "5px",
             textTransform: "capitalize",
             fontSize: "14px",
             fontWeight: "500",
             padding: "10px 20px",
           }}
-          variant={isCheckoutPath ? "disabled" : "contained"}
+          variant={isCheckoutPath ? "disabled" : ""}
+          onClick={()=>alert('payment')}
         >
           Payment
         </Button>
