@@ -14,13 +14,13 @@ import { useNavigate } from "react-router-dom";
 import CromaContext from "../../ContextAPI/CromaContext";
 
 function Checkout() {
-  const username = JSON.parse(localStorage.getItem('username'));
+  
   const userToken = JSON.parse(localStorage.getItem('userToken'));
   
-  const [name, setName] = useState(username);
+  // const [name, setName] = useState(username);
   const [phone, setPhone] = useState("");
 
-  const {address, handleSetAddress, addressType, handleAddressType, handleOpenAuthDialog} = useContext(CromaContext);
+  const {name, handleSetName, address, handleSetAddress, addressType, handleAddressType, handleOpenAuthDialog} = useContext(CromaContext);
 
   const navigate = useNavigate();
 
@@ -117,7 +117,7 @@ function Checkout() {
                       value={name}
                       error={nameError}
                       helperText={nameError ? "Field Required" : ""}
-                      onChange={(e) => setName(e.target.value)}
+                      onChange={handleSetName}
                     />
                   </Box>
                 </Grid>

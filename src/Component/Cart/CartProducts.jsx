@@ -10,6 +10,7 @@ import {
 import React, { useContext } from "react";
 import { removeProductFromCartApi } from "../../helper/removeProductFromCartApi";
 import CromaContext from "../../ContextAPI/CromaContext";
+import { addProductToWishlist } from "../../helper/addProductToWishlist";
 
 const StyledRating = styled(Rating)({
   "& .MuiRating-iconFilled": {
@@ -26,6 +27,11 @@ function CartProducts({ product, handleSetCartProducts, handleClearCart }) {
         console.log(data);
         handleSetCartProducts(data.data);
         handleItemsInCart(data.data.items.length);
+    }
+
+    async function handleMoveProductToWishlist() {
+      const data = await addProductToWishlist(product.product._id, userToken);
+      handleRemoveProductFromCart();
     }
 
     console.log('product in cart: ', product.product._id);
@@ -112,6 +118,7 @@ function CartProducts({ product, handleSetCartProducts, handleClearCart }) {
                 padding: "10px 40px",
                 fontWeight: "700",
               }}
+              onClick={handleMoveProductToWishlist}
             >
               Move to Wishlist
             </Button>

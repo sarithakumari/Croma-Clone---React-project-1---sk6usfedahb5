@@ -12,11 +12,20 @@ import React, { useContext } from "react";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import CromaContext from "../../ContextAPI/CromaContext";
 import ShippingAddress from "../Checkout/ShippingAddress";
+import { checkoutApi } from "../../helper/checkoutApi";
 
 function PaymentOrderSummary() {
-  const { cartProducts, address, addressType } = useContext(CromaContext);
+  const { name, cartProducts, address, addressType } = useContext(CromaContext);
 
-  const username = JSON.parse(localStorage.getItem("username"));
+  const username = JSON.parse(localStorage.getItem("username")) || name;
+  const userToken = JSON.parse(localStorage.getItem("userToken")) || name;
+
+  async function handleCheckout() {
+    // console.log({addressType, address, userToken}, cartProducts.items[0].product._id)
+    const data = await checkoutApi(cartProducts.items[0].product._id, addressType, address, userToken);
+    console.log("Order Placed Successfully", data);
+    alert("Order Placed Successfully");
+  }
 
   console.log(cartProducts?.items.length);
 
@@ -181,7 +190,7 @@ function PaymentOrderSummary() {
             "& .MuiButtonBase-root:hover": { backgroundColor: "#12daa8" },
           }}
         >
-          <Button fullWidth sx={{ color: "black", backgroundColor: "#12daa8" }} onClick={()=>alert('Payment Successful')} >
+          <Button fullWidth sx={{ color: "black", backgroundColor: "#12daa8" }} onClick={handleCheckout} >
             Pay Now
           </Button>
         </Box>

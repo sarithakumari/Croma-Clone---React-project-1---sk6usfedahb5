@@ -24,7 +24,8 @@ function NavbarCart() {
     useEffect(()=>{
       if(!userToken) {
         navigate('/');
-        handleOpenAuthDialog();
+        // handleOpenAuthDialog();
+        // toastify - you need to login/signup first
       }
     }, [])
 

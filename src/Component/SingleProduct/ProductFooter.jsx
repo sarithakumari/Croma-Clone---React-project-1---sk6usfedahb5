@@ -25,11 +25,11 @@ function ProductFooter({ productDetails }) {
     if (!userToken) {
       handleOpenAuthDialog();
     } else {
-      const res = await addToCart(productDetails._id, userToken);
+      const data = await addToCart(productDetails._id, userToken);
       // const res = addToCart(productDetails._id, userToken);
-      console.log(res);
-      handleItemsInCart(res.data.items.length);
-      alert(res.message);
+      console.log(data);
+      handleItemsInCart(data.data.items.length);
+      alert(data.message);
     }
   }
 

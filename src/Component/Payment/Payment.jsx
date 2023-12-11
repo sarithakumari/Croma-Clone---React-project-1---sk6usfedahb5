@@ -27,6 +27,8 @@ function Payment() {
   
   const {cartProducts, handleOpenAuthDialog} = useContext(CromaContext);
 
+  const userToken = JSON.parse(localStorage.getItem('userToken'));
+
   useEffect(()=>{
     if(!userToken) {
       navigate('/');
