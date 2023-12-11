@@ -14,8 +14,8 @@ export default function Navbar() {
   const location = useLocation();
   const isCheckoutPath = Boolean(location.pathname == "/checkout");
   const isPaymentPath = Boolean(location.pathname == "/payment");
-  console.log(location.pathname);
-  console.log(isCheckoutPath);
+  // console.log(location.pathname);
+  // console.log(isCheckoutPath);
 
   return (
     <Box sx={{ flexGrow: 1 }}>

@@ -27,6 +27,7 @@ function PaymentCard() {
           fullWidth
           label="Card Number"
           variant="filled"
+          sx={{minWidth: "300px"}}
           InputProps={{
             endAdornment: (
               <InputAdornment position="end">

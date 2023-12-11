@@ -26,12 +26,13 @@ function LoginForm({ handleClose }) {
   async function handleSignUpSubmit(e) {
     e.preventDefault();
     const data = await signUpApi(name, email, password);
-    // console.log('response', res);
+    console.log('response', data);
     if(data.status === 'success')
     {
       const token = data.token;
       // console.log(token);
-      localStorage.setItem('userToken', JSON.stringify(token))
+      localStorage.setItem('userToken', JSON.stringify(token));
+      localStorage.setItem('username', JSON.stringify(name));
       handleCloseAuthDialog();
       navigate("/");
     }

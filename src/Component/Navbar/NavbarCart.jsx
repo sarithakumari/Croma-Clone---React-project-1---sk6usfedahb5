@@ -17,7 +17,7 @@ const StyledBadge = styled(Badge)({
 function NavbarCart() {
     const navigate = useNavigate();
     const { itemsInCart } = useContext(CromaContext);
-    console.log(itemsInCart);
+    // console.log(itemsInCart);
   return (
     <Box
       style={{

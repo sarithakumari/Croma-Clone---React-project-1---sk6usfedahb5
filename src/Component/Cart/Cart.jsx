@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { Box, Container, Grid, Stack, Typography } from "@mui/material";
 import { useNavigate } from "react-router-dom";
 import CartOrderSummary from "./CartOrderSummary";
@@ -6,17 +6,19 @@ import CartProducts from "./CartProducts";
 import { getCartItemApi } from "../../helper/getCartItemsApi";
 import { clearCartApi } from "../../helper/clearCartApi";
 import CartEmpty from "./CartEmpty";
+import CromaContext from "../../ContextAPI/CromaContext";
 
 function Cart() {
   const navigate = useNavigate();
-  const [cartProducts, setCartProducts] = useState(null);
+  // const [cartProducts, setCartProducts] = useState(null);
+  const {cartProducts, handleSetCartProducts} = useContext(CromaContext);
 
   const userToken = JSON.parse(localStorage.getItem("userToken"));
 
   useEffect(() => {
     getCartItemApi(userToken).then((data) => {
       // console.log(data);
-      setCartProducts(data.data);
+      handleSetCartProducts(data.data);
     });
   }, []);
 
@@ -24,9 +26,9 @@ function Cart() {
     clearCartApi(userToken);
   }
 
-  function handleSetCartProducts(data) {
-    setCartProducts(data);
-  }
+  // function handleSetCartProducts(data) {
+  //   setCartProducts(data);
+  // }
 
   console.log(cartProducts);
 

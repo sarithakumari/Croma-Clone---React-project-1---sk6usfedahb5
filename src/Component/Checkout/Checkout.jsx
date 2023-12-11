@@ -8,30 +8,41 @@ import {
   TextField,
   Typography,
 } from "@mui/material";
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import ShippingAddress from "./ShippingAddress";
+import { useNavigate } from "react-router-dom";
+import CromaContext from "../../ContextAPI/CromaContext";
 
 function Checkout() {
-  const [name, setName] = useState("");
+  const username = JSON.parse(localStorage.getItem('username'));
+  const [name, setName] = useState(username);
   const [phone, setPhone] = useState("");
-  const [country, setCountry] = useState("");
-  const [pincode, setPincode] = useState("");
-  const [street, setStreet] = useState("");
-  const [landmark, setLandmark] = useState("");
-  const [locality, setLocality] = useState("");
-  const [state, setState] = useState("");
-  const [city, setCity] = useState("");
-  const [addressType, setAddressType] = useState("");
+
+  const {address, handleSetAddress, addressType, handleAddressType} = useContext(CromaContext);
+
+  // const [address, setAddress] = useState({});
+
+  // function handleSetAddress(e) {
+  //   const {name, value} = e.target;
+  //   console.log(name, value);
+  //   setAddress((prev)=> ({
+  //     ...prev,
+  //     [name]: value,
+  //   }))
+  // }
+  console.log(address)
+
+  const navigate = useNavigate();
 
   const nameError = !Boolean(name);
   const phoneError = !Boolean(phone);
-  const countryError = !Boolean(country);
-  const pincodeError = !Boolean(pincode);
-  const streetError = !Boolean(street);
-  const landmarkError = !Boolean(landmark);
-  const localityError = !Boolean(locality);
-  const stateError = !Boolean(state);
-  const cityError = !Boolean(city);
+  const countryError = !Boolean(address.country);
+  const pincodeError = !Boolean(address.pincode);
+  const streetError = !Boolean(address.street);
+  const landmarkError = !Boolean(address.landmark);
+  const localityError = !Boolean(address.locality);
+  const stateError = !Boolean(address.state);
+  const cityError = !Boolean(address.city);
 
   const noError = !(
     nameError ||
@@ -50,20 +61,15 @@ function Checkout() {
       console.log({
         name,
         phone,
-        pincode,
-        street,
-        landmark,
-        locality,
-        country,
-        state,
-        city,
         addressType,
+        address
       });
+      navigate("/payment");
     } else {
       alert("form incomplete");
     }
   }
-
+  // console.log('username',username)
   //   console.log(addressType);
   //   console.log({ name, phone, pincode });
   return (
@@ -88,7 +94,6 @@ function Checkout() {
           }}
           noValidate
           autoComplete="off"
-          //   onSubmit={handleSubmit}
         >
           <Stack>
             {/* name phone no */}
@@ -108,6 +113,7 @@ function Checkout() {
                     <TextField
                       id="name"
                       label="Name"
+                      name="name"
                       required
                       fullWidth
                       value={name}
@@ -129,6 +135,7 @@ function Checkout() {
                       label="Phone Number"
                       required
                       fullWidth
+                      name="phone"
                       value={phone}
                       error={phoneError}
                       helperText={phoneError ? "Field Required" : ""}
@@ -157,10 +164,11 @@ function Checkout() {
                       label="Country"
                       required
                       fullWidth
-                      value={country}
+                      name="country"
+                      value={address.country}
                       error={countryError}
                       helperText={countryError ? "Field Required" : ""}
-                      onChange={(e) => setCountry(e.target.value)}
+                      onChange={handleSetAddress}
                     />
                   </Box>
                 </Grid>
@@ -176,10 +184,11 @@ function Checkout() {
                       label="Pincode"
                       required
                       fullWidth
-                      value={pincode}
+                      name="pincode"
+                      value={address.pincode}
                       error={pincodeError}
                       helperText={pincodeError ? "Field Required" : ""}
-                      onChange={(e) => setPincode(e.target.value)}
+                      onChange={handleSetAddress}
                     />
                   </Box>
                 </Grid>
@@ -198,10 +207,11 @@ function Checkout() {
                       label="(Flat no., Building, Street)"
                       required
                       fullWidth
-                      value={street}
+                      name="street"
+                      value={address.street}
                       error={streetError}
                       helperText={streetError ? "Field Required" : ""}
-                      onChange={(e) => setStreet(e.target.value)}
+                      onChange={handleSetAddress}
                     />
                   </Box>
                 </Grid>
@@ -217,10 +227,11 @@ function Checkout() {
                       label="Landmark"
                       required
                       fullWidth
-                      value={landmark}
+                      name="landmark"
+                      value={address.landmark}
                       error={landmarkError}
                       helperText={landmarkError ? "Field Required" : ""}
-                      onChange={(e) => setLandmark(e.target.value)}
+                      onChange={handleSetAddress}
                     />
                   </Box>
                 </Grid>
@@ -247,10 +258,11 @@ function Checkout() {
                       label="Locality/Sector/Area"
                       required
                       fullWidth
-                      value={locality}
+                      name="locality"
+                      value={address.locality}
                       error={localityError}
                       helperText={localityError ? "Field Required" : ""}
-                      onChange={(e) => setLocality(e.target.value)}
+                      onChange={handleSetAddress}
                     />
                   </Box>
                 </Grid>
@@ -269,10 +281,11 @@ function Checkout() {
                       label="State"
                       required
                       fullWidth
-                      value={state}
+                      name="state"
+                      value={address.state}
                       error={stateError}
                       helperText={stateError ? "Field Required" : ""}
-                      onChange={(e) => setState(e.target.value)}
+                      onChange={handleSetAddress}
                     />
                   </Box>
                 </Grid>
@@ -288,10 +301,11 @@ function Checkout() {
                       label="City"
                       required
                       fullWidth
-                      value={city}
+                      name="city"
+                      value={address.city}
                       error={cityError}
                       helperText={cityError ? "Field Required" : ""}
-                      onChange={(e) => setCity(e.target.value)}
+                      onChange={handleSetAddress}
                     />
                   </Box>
                 </Grid>
@@ -327,7 +341,7 @@ function Checkout() {
                     color: "black",
                     border: "1px solid black",
                   }}
-                  onClick={(e) => setAddressType(e.target.innerText)}
+                  onClick={handleAddressType}
                 >
                   Home
                 </Button>
@@ -341,7 +355,7 @@ function Checkout() {
                     color: "black",
                     border: "1px solid black",
                   }}
-                  onClick={(e) => setAddressType(e.target.innerText)}
+                  onClick={handleAddressType}
                 >
                   Work
                 </Button>
@@ -355,7 +369,7 @@ function Checkout() {
                     color: "black",
                     border: "1px solid black",
                   }}
-                  onClick={(e) => setAddressType(e.target.innerText)}
+                  onClick={handleAddressType}
                 >
                   Other
                 </Button>
@@ -365,12 +379,12 @@ function Checkout() {
             {noError && (
               <ShippingAddress
                 addressType={addressType}
-                street={street}
-                locality={locality}
-                city={city}
-                state={state}
-                country={country}
-                pincode={pincode}
+                street={address.street}
+                locality={address.locality}
+                city={address.city}
+                state={address.state}
+                country={address.country}
+                pincode={address.pincode}
               />
             )}
 

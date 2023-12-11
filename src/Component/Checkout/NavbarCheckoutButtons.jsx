@@ -8,7 +8,7 @@ function NavbarCheckoutButtons() {
   const isCheckoutPath = Boolean(location === "/checkout");
   const isPaymentPath = Boolean(location === "/payment");
   
-  console.log(isCheckoutPath);
+  // console.log(isCheckoutPath);
 
   return (
     <Box
