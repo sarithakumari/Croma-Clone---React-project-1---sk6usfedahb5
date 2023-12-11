@@ -1,5 +1,5 @@
 import { Badge, Box } from "@mui/material";
-import React, { useContext } from "react";
+import React, { useContext, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 import CromaContext from "../../ContextAPI/CromaContext";
@@ -16,8 +16,25 @@ const StyledBadge = styled(Badge)({
 
 function NavbarCart() {
     const navigate = useNavigate();
-    const { itemsInCart } = useContext(CromaContext);
+    const { itemsInCart, handleOpenAuthDialog } = useContext(CromaContext);
     // console.log(itemsInCart);
+    
+    const userToken = JSON.parse(localStorage.getItem('userToken'));
+
+    useEffect(()=>{
+      if(!userToken) {
+        navigate('/');
+        handleOpenAuthDialog();
+      }
+    }, [])
+
+    function handleCartClick() {
+      if(!userToken) {
+        handleOpenAuthDialog();
+      } else {
+        navigate("cart");
+      }
+    }
   return (
     <Box
       style={{
@@ -25,7 +42,7 @@ function NavbarCart() {
         cursor: "pointer",
         position: "relative",
       }}
-      onClick={() => navigate("cart")}
+      onClick={handleCartClick}
     >
       <StyledBadge badgeContent={itemsInCart?itemsInCart:0} showZero overlap="circular" sx={{}} >
         <ShoppingCartIcon />

@@ -15,28 +15,36 @@ import { addToCart } from "../../helper/addToCart";
 function ProductFooter({ productDetails }) {
   const navigate = useNavigate();
   const [isAdding, setIsAdding] = useState(false);
-  const { handleItemsInCart } = useContext(CromaContext);
+  const { handleItemsInCart, handleOpenAuthDialog } = useContext(CromaContext);
 
-  const userToken = JSON.parse(localStorage.getItem('userToken'));
+  const userToken = JSON.parse(localStorage.getItem("userToken"));
 
   async function handleAddToCart(e) {
     // console.log(userToken);
     // console.log(productDetails._id);
-    const res = await addToCart(productDetails._id, userToken);
-    // const res = addToCart(productDetails._id, userToken);
-    console.log(res)
-    handleItemsInCart(res.data.items.length)
-    alert(res.message);
+    if (!userToken) {
+      handleOpenAuthDialog();
+    } else {
+      const res = await addToCart(productDetails._id, userToken);
+      // const res = addToCart(productDetails._id, userToken);
+      console.log(res);
+      handleItemsInCart(res.data.items.length);
+      alert(res.message);
+    }
   }
 
   async function handleBuyNow(e) {
     // console.log("token", userToken);
-    const res = await addToCart(productDetails._id, userToken);
-    // const res = addToCart(productDetails._id, userToken);
-    console.log(res)
-    handleItemsInCart(res.data.items.length)
-    navigate('/cart');
-    alert(res.message);
+    if (!userToken) {
+      handleOpenAuthDialog();
+    } else {
+      const res = await addToCart(productDetails._id, userToken);
+      // const res = addToCart(productDetails._id, userToken);
+      console.log(res);
+      handleItemsInCart(res.data.items.length);
+      navigate("/cart");
+      alert(res.message);
+    }
   }
 
   // console.log("token", userToken);

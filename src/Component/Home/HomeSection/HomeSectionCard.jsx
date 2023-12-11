@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext, useState } from "react";
 import {
   Box,
   Card,
@@ -12,6 +12,10 @@ import {
 import FavoriteBorderOutlinedIcon from "@mui/icons-material/FavoriteBorderOutlined";
 import styled from "@emotion/styled";
 import { useNavigate } from "react-router-dom";
+import CromaContext from "../../../ContextAPI/CromaContext";
+import { addProductToWishlist } from "../../../helper/addProductToWishlist";
+import { deleteProductFromWishlist } from "../../../helper/deleteProductFromWishlist";
+import Wishlist from "../../Wishlist/Wishlist";
 
 const StyledRating = styled(Rating)({
   "& .MuiRating-iconFilled": {
@@ -24,8 +28,39 @@ const StyledRating = styled(Rating)({
 
 function HomeSectionCard({ cardInfo }) {
   // console.log("cardinfo: ", cardInfo);
+  const [wishlist, setWishlist] = useState(false);
+
   const { displayImage, name, price, ratings, subCategory, _id } = cardInfo;
   const navigate = useNavigate();
+
+  const userToken = JSON.parse(localStorage.getItem("userToken"));
+
+  const { handleOpenAuthDialog } = useContext(CromaContext);
+
+  async function handleWishlistAdd() {
+    if (!userToken) {
+      handleOpenAuthDialog();
+    } else {
+      const data = await addProductToWishlist(_id, userToken);
+      console.log(data);
+      if (data.status === "success") {
+        handleSetWishlist(true);
+        console.log("wishlisted ", _id);
+      }
+    }
+  }
+
+  async function handleWishlistRemove() {
+    const data = await deleteProductFromWishlist(_id, userToken);
+    if (data.status === "success") {
+      handleSetWishlist(false);
+      console.log("removed ", _id);
+    }
+  }
+
+  function handleSetWishlist(value) {
+    setWishlist(value);
+  }
 
   return (
     <Toolbar
@@ -43,8 +78,7 @@ function HomeSectionCard({ cardInfo }) {
         <CardActionArea
           disableRipple
           // onClick={() => alert("redirect to product page")}
-          onClick={()=>navigate(`/product/${_id}`)}
-
+          onClick={() => navigate(`/product/${_id}`)}
         >
           <CardMedia
             component="img"
@@ -75,21 +109,30 @@ function HomeSectionCard({ cardInfo }) {
           "&:hover .fav-icon": {
             color: "#00e9bf",
           },
+          "& .fav-icon-filled>path": {
+            color: "#00e9bf",
+          },
         }}
       >
-        <CardActionArea disableRipple onClick={() => alert("fav clicked")}>
+        {/* <CardActionArea disableRipple onClick={() => alert("fav clicked")}>
           <FavoriteBorderOutlinedIcon
             className="fav-icon"
             sx={{ transition: "all 0.3s ease" }}
           />
-        </CardActionArea>
+        </CardActionArea> */}
+        <Wishlist
+          productId={_id}
+          handleWishlistAdd={handleWishlistAdd}
+          handleWishlistRemove={handleWishlistRemove}
+          wishlist={wishlist}
+          handleSetWishlist={handleSetWishlist}
+        />
       </Box>
 
       <CardActionArea
         disableRipple
         // onClick={() => alert("redirect to product page")}
-        onClick={()=>navigate(`/product/${_id}`)}
-
+        onClick={() => navigate(`/product/${_id}`)}
       >
         <CardContent sx={{}}>
           <Typography

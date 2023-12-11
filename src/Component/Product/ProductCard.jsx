@@ -27,27 +27,33 @@ function ProductCard({ product }) {
   const [wishlist, setWishlist] = useState(false);
   const navigate = useNavigate();
 
-  const userToken = JSON.parse(localStorage.getItem('userToken'));
+  const { handleOpenAuthDialog } = useContext(CromaContext);
+
+  const userToken = JSON.parse(localStorage.getItem("userToken"));
 
   // useEffect(()=>{
 
   // }, [])
 
   async function handleWishlistAdd() {
-    const data = await addProductToWishlist(product._id, userToken);
-    console.log(data);
-    if(data.status === 'success') {
-      handleSetWishlist(true);
+    if (!userToken) {
+      handleOpenAuthDialog();
+    } else {
+      const data = await addProductToWishlist(product._id, userToken);
+      console.log(data);
+      if (data.status === "success") {
+        handleSetWishlist(true);
+        console.log("wishlisted ", product._id);
+      }
     }
-    console.log("wishlisted ",product._id);
   }
 
   async function handleWishlistRemove() {
     const data = await deleteProductFromWishlist(product._id, userToken);
-    if(data.status === 'success') {
+    if (data.status === "success") {
       handleSetWishlist(false);
     }
-    console.log('removed ', product._id);
+    console.log("removed ", product._id);
   }
 
   function handleSetWishlist(value) {

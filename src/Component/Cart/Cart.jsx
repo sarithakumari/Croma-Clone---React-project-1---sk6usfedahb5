@@ -11,7 +11,7 @@ import CromaContext from "../../ContextAPI/CromaContext";
 function Cart() {
   const navigate = useNavigate();
   // const [cartProducts, setCartProducts] = useState(null);
-  const {cartProducts, handleSetCartProducts} = useContext(CromaContext);
+  const { cartProducts, handleSetCartProducts, handleOpenAuthDialog } = useContext(CromaContext);
 
   const userToken = JSON.parse(localStorage.getItem("userToken"));
 
@@ -21,6 +21,13 @@ function Cart() {
       handleSetCartProducts(data.data);
     });
   }, []);
+
+  useEffect(()=>{
+    if(!userToken) {
+      navigate('/');
+      handleOpenAuthDialog();
+    }
+  }, [])
 
   function handleClearCart() {
     clearCartApi(userToken);

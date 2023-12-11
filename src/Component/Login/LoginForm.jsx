@@ -24,7 +24,7 @@ function LoginForm({ handleClose }) {
         const token = res.token;
         // console.log(token);
         localStorage.setItem('userToken', JSON.stringify(token));
-        handleCloseAuthDialog()
+        handleCloseAuthDialog();
     }
   }
 

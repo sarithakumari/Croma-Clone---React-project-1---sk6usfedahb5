@@ -8,29 +8,19 @@ import {
   TextField,
   Typography,
 } from "@mui/material";
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import ShippingAddress from "./ShippingAddress";
 import { useNavigate } from "react-router-dom";
 import CromaContext from "../../ContextAPI/CromaContext";
 
 function Checkout() {
   const username = JSON.parse(localStorage.getItem('username'));
+  const userToken = JSON.parse(localStorage.getItem('userToken'));
+  
   const [name, setName] = useState(username);
   const [phone, setPhone] = useState("");
 
-  const {address, handleSetAddress, addressType, handleAddressType} = useContext(CromaContext);
-
-  // const [address, setAddress] = useState({});
-
-  // function handleSetAddress(e) {
-  //   const {name, value} = e.target;
-  //   console.log(name, value);
-  //   setAddress((prev)=> ({
-  //     ...prev,
-  //     [name]: value,
-  //   }))
-  // }
-  console.log(address)
+  const {address, handleSetAddress, addressType, handleAddressType, handleOpenAuthDialog} = useContext(CromaContext);
 
   const navigate = useNavigate();
 
@@ -56,6 +46,14 @@ function Checkout() {
     cityError ||
     !addressType
   );
+
+  useEffect(()=>{
+    if(!userToken) {
+      navigate('/');
+      handleOpenAuthDialog();
+    }
+  }, [])
+
   function handleSubmit(e) {
     if (noError) {
       console.log({

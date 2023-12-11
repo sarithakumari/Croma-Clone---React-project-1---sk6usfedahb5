@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 
 import ImageGallery from "react-image-gallery";
 // import stylesheet if you're not already using CSS @import
@@ -8,27 +8,34 @@ import FavoriteBorderOutlinedIcon from "@mui/icons-material/FavoriteBorderOutlin
 import Wishlist from "../Wishlist/Wishlist";
 import { addProductToWishlist } from "../../helper/addProductToWishlist";
 import { deleteProductFromWishlist } from "../../helper/deleteProductFromWishlist";
+import CromaContext from "../../ContextAPI/CromaContext";
 
 function SingleProductGallery({ images, productId }) {
   const [wishlist, setWishlist] = useState(false);
 
+  const { handleOpenAuthDialog } = useContext(CromaContext);
+
   const userToken = JSON.parse(localStorage.getItem("userToken"));
 
   async function handleWishlistAdd() {
-    const data = await addProductToWishlist(productId, userToken);
-    console.log(data);
-    if (data.status === "success") {
-      handleSetWishlist(true);
+    if (!userToken) {
+      handleOpenAuthDialog();
+    } else {
+      const data = await addProductToWishlist(productId, userToken);
+      console.log(data);
+      if (data.status === "success") {
+        handleSetWishlist(true);
+        console.log("wishlisted ", productId);
+      }
     }
-    console.log("wishlisted ", productId);
   }
 
   async function handleWishlistRemove() {
     const data = await deleteProductFromWishlist(productId, userToken);
     if (data.status === "success") {
       handleSetWishlist(false);
+      console.log("removed ", productId);
     }
-    console.log("removed ", productId);
   }
 
   function handleSetWishlist(value) {
@@ -69,12 +76,6 @@ function SingleProductGallery({ images, productId }) {
           },
         }}
       >
-        {/* <CardActionArea disableRipple onClick={() => alert("fav clicked")}>
-          <FavoriteBorderOutlinedIcon
-            className="fav-icon"
-            sx={{ transition: "all 0.3s ease" }}
-          />
-        </CardActionArea> */}
         <Wishlist
           productId={productId}
           handleWishlistAdd={handleWishlistAdd}

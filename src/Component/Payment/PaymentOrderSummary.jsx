@@ -141,7 +141,7 @@ function PaymentOrderSummary() {
                 </Box>
               </Stack>
             </AccordionSummary>
-            <AccordionDetails sx={{padding: "0"}} >
+            <AccordionDetails sx={{ padding: "0" }}>
               <ShippingAddress
                 addressType={addressType}
                 street={address.street}
@@ -181,7 +181,7 @@ function PaymentOrderSummary() {
             "& .MuiButtonBase-root:hover": { backgroundColor: "#12daa8" },
           }}
         >
-          <Button fullWidth sx={{ color: "black", backgroundColor: "#12daa8" }}>
+          <Button fullWidth sx={{ color: "black", backgroundColor: "#12daa8" }} onClick={()=>alert('Payment Successful')} >
             Pay Now
           </Button>
         </Box>

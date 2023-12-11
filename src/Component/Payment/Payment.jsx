@@ -12,7 +12,7 @@ import {
   ListItemText,
   Typography,
 } from "@mui/material";
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import PaymentCard from "./PaymentCard";
 import PaymentUPI from "./PaymentUPI";
@@ -25,7 +25,14 @@ function Payment() {
   const [openUPI, setOpenUPI] = useState(false);
   // const [openBanking, setBanking] = useState(false);
   
-  const {cartProducts} = useContext(CromaContext);
+  const {cartProducts, handleOpenAuthDialog} = useContext(CromaContext);
+
+  useEffect(()=>{
+    if(!userToken) {
+      navigate('/');
+      handleOpenAuthDialog();
+    }
+  }, [])
 
   function handleUPIClick() {
     setCard(false);

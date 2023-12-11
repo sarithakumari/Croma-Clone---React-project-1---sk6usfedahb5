@@ -34,7 +34,7 @@ function LoginForm({ handleClose }) {
       localStorage.setItem('userToken', JSON.stringify(token));
       localStorage.setItem('username', JSON.stringify(name));
       handleCloseAuthDialog();
-      navigate("/");
+      // navigate("/");
     }
   }
 
