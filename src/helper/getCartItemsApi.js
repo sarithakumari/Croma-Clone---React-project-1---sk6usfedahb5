@@ -11,7 +11,7 @@ export async function getCartItemApi(userToken) {
             }
         });
         const data = await res.json();
-        // console.log('cart items: ', data);
+        console.log('cart items: ', data);
         return data;
     } catch(error) {
         console.error("error getting cart items: ", error.message);

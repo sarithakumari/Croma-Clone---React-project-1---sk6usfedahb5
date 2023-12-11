@@ -51,12 +51,13 @@ function App() {
   // wishlists - state for all items wishlisted
   const [wishlists, setWishlists] = useState(null);
 
-  const userToken = JSON.stringify(localStorage.getItem("userToken"));
+  const userToken = JSON.parse(localStorage.getItem("userToken"));
 
   useEffect(() => {
     getCartItemApi(userToken).then((data) => {
-      // console.log(data);
+      console.log(data.data);
       handleSetCartProducts(data.data);
+      handleItemsInCart(data.data.items.length)
     });
   }, []);
 
