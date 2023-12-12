@@ -18,6 +18,7 @@ import Checkout from "./Component/Checkout/Checkout";
 import Payment from "./Component/Payment/Payment";
 import { getCartItemApi } from "./helper/getCartItemsApi";
 import { getAllProductFromWishlist } from "./helper/getAllProductFromWishlist";
+import Orders from "./Component/Orders/Orders";
 
 const darkTheme = createTheme({
   palette: {
@@ -163,6 +164,7 @@ function App() {
                 <Route path="/cart" element={<Cart />} />
                 <Route path="/checkout" element={<Checkout />} />
                 <Route path="/payment" element={<Payment />} />
+                <Route path="/orders" element={<Orders />} />
               </Routes>
             </Grid>
           </Grid>

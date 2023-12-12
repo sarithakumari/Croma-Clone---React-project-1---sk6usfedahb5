@@ -1,27 +1,60 @@
-import { Box, Button, ButtonGroup, Dialog, Typography } from "@mui/material";
+import {
+  Box,
+  Button,
+  ButtonGroup,
+  Dialog,
+  Link,
+  Menu,
+  MenuItem,
+  Typography,
+} from "@mui/material";
 import React, { useContext, useState } from "react";
 import PersonIcon from "@mui/icons-material/Person";
 import LoginForm from "../Login/LoginForm";
 import SignUpForm from "../SignUp/SignUpForm";
+import NavAuthAccount from "./NavAuthAccount";
+import NavAuthLogout from "./NavAuthLogout";
 
 import CloseIcon from "@mui/icons-material/Close";
+import FavoriteIcon from "@mui/icons-material/Favorite";
+import LocalShippingIcon from "@mui/icons-material/LocalShipping";
+import AccountCircleIcon from "@mui/icons-material/AccountCircle";
+import { Link as RouterLink } from "react-router-dom";
 import CromaContext from "../../ContextAPI/CromaContext";
+import styled from "@emotion/styled";
+
+const StyledMenu = styled(Menu)(({ theme }) => ({
+  "& .MuiList-root": {
+    backgroundColor: "#090909",
+    color: "white",
+  },
+}));
 
 function NavbarAuthentication() {
+  const userToken = JSON.parse(localStorage.getItem("userToken"));
   // showLogin state to display loginForm if true else signUp form if false
   const [showLogin, setShowLogin] = useState(false);
-  
-  const { openAuthDialog, handleCloseAuthDialog, handleOpenAuthDialog } = useContext(CromaContext);
 
+  const [anchorEl, setAnchorEl] = useState(null);
+  const openUserMenu = Boolean(anchorEl);
+
+  const { openAuthDialog, handleCloseAuthDialog, handleOpenAuthDialog } =
+    useContext(CromaContext);
+
+  function handleCloseUserMenu() {
+    setAnchorEl(null);
+  }
 
   return (
     <>
       <Box
+        component="div"
         style={{
           marginRight: "20px",
           cursor: "pointer",
         }}
         onClick={handleOpenAuthDialog}
+        onMouseEnter={(e) => setAnchorEl(e.currentTarget)}
       >
         <PersonIcon style={{ fontSize: "25px" }} />
       </Box>
@@ -62,7 +95,7 @@ function NavbarAuthentication() {
                   textAlign: "center",
                   cursor: "pointer",
                   textDecoration: "underline",
-                  fontSize: "12px"
+                  fontSize: "12px",
                 }}
                 onClick={() => setShowLogin(false)}
               >
@@ -76,7 +109,7 @@ function NavbarAuthentication() {
                   textAlign: "center",
                   cursor: "pointer",
                   textDecoration: "underline",
-                  fontSize: "12px"
+                  fontSize: "12px",
                 }}
                 onClick={() => setShowLogin(true)}
               >
@@ -103,6 +136,85 @@ function NavbarAuthentication() {
           <CloseIcon />
         </Box>
       </Dialog>
+
+      <StyledMenu
+        anchorEl={anchorEl}
+        open={openUserMenu}
+        onClose={handleCloseUserMenu}
+        sx={{
+          "& .MuiButtonBase-root:hover": {
+            backgroundColor: "#12DAA8",
+            color: "black",
+          },
+        }}
+        anchorOrigin={{
+          vertical: "bottom",
+          horizontal: "right",
+        }}
+        transformOrigin={{
+          vertical: "top",
+          horizontal: "center",
+        }}
+      >
+        <MenuItem onClick={handleCloseUserMenu} sx={{ padding: "1rem" }}>
+          <Link
+            component={RouterLink}
+            to="/wishlists"
+            sx={{ textDecoration: "none", color: "inherit" }}
+          >
+            <Box component="div" sx={{ display: "flex", alignItems: "center" }}>
+              <Box component="div" sx={{ padding: "0 1rem" }}>
+                <FavoriteIcon />
+              </Box>
+              <Box component="div" sx={{}}>
+                <Typography component="p">My Wishlists</Typography>
+                <Typography
+                  component="p"
+                  sx={{ fontSize: "0.75rem", marginTop: "0.2rem" }}
+                >
+                  Have a look at your favorite products
+                </Typography>
+              </Box>
+            </Box>
+          </Link>
+        </MenuItem>
+        <MenuItem onClick={handleCloseUserMenu} sx={{ padding: "1rem" }}>
+          <Link
+            component={RouterLink}
+            to="/orders"
+            sx={{ textDecoration: "none", color: "inherit" }}
+          >
+            <Box component="div" sx={{ display: "flex", alignItems: "center" }}>
+              <Box component="div" sx={{ padding: "0 1rem" }}>
+                <LocalShippingIcon />
+              </Box>
+              <Box component="div" sx={{}}>
+                <Typography component="p">My Orders</Typography>
+                <Typography
+                  component="p"
+                  sx={{ fontSize: "0.75rem", marginTop: "0.2rem" }}
+                >
+                  All your placed orders (Order History)
+                </Typography>
+              </Box>
+            </Box>
+          </Link>
+        </MenuItem>
+
+        <MenuItem onClick={handleCloseUserMenu} sx={{ padding: "1rem" }}>
+          <Box component="div" sx={{ display: "flex", alignItems: "center" }}>
+            <Box component="div" sx={{ padding: "0 1rem" }}>
+              <AccountCircleIcon />
+            </Box>
+            <Box component="div" sx={{}}>
+              {/* <Typography component="p">My Orders</Typography> */}
+              <Typography component="p" sx={{ padding: "0" }}>
+                {userToken ? <NavAuthLogout /> : <NavAuthAccount />}
+              </Typography>
+            </Box>
+          </Box>
+        </MenuItem>
+      </StyledMenu>
     </>
   );
 }

@@ -25,7 +25,11 @@ function CartProducts({ product, handleSetCartProducts, handleClearCart }) {
     async function handleRemoveProductFromCart() {
         const data = await removeProductFromCartApi(product.product._id, userToken);
         console.log(data);
-        handleSetCartProducts(data.data);
+        if(data.data.items.length==0) {
+          handleSetCartProducts(null);
+        } else {
+          handleSetCartProducts(data.data);
+        }
         handleItemsInCart(data.data.items.length);
     }
 

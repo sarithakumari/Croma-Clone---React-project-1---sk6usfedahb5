@@ -13,9 +13,6 @@ const StyledMenu = styled(Menu)(({ theme }) => ({
   '& .MuiList-root': {
     backgroundColor: "#090909",
     color: "white",
-    // '&:hover .MuiTypography-root': {
-    //   backgroundColor: "grey"
-    // }
   },
 }))
 
@@ -90,8 +87,6 @@ function NavbarMenu() {
               height: "40px",
               alignItems: "center",
               justifyContent: "space-between",
-              // backgroundColor: "black",
-              // color: "white"
                 }}>
               <Typography >{category.label}</Typography>
               <div style={{display: "flex" }}>

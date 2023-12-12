@@ -5,7 +5,7 @@ import { useLocation } from "react-router-dom";
 function ShippingAddress({
   addressType,
   street,
-  locality,
+  locality = undefined,
   city,
   state,
   country,
@@ -14,6 +14,62 @@ function ShippingAddress({
   const location = useLocation();
   const { pathname } = location;
   // console.log(pathname);
+
+  if (pathname === "/orders") {
+    return (
+      <Card
+        elevation={0}
+        sx={{
+          backgroundColor: "transparent",
+          color: "inherit",
+          "& .MuiCardContent-root": {
+            padding: "0"
+          },
+        }}
+      >
+        <CardContent sx={{ padding: "auto 0" }}>
+          <Box component="div">
+            <Typography
+              variant="body2"
+              component="span"
+              textTransform="uppercase"
+            >
+              {street},&nbsp;
+            </Typography>
+
+            <Typography
+              variant="body2"
+              component="span"
+              textTransform="uppercase"
+            >
+              {city}&nbsp;-&nbsp;
+            </Typography>
+            <Typography
+              variant="body2"
+              component="span"
+              textTransform="uppercase"
+            >
+              {pincode}.&nbsp;
+            </Typography>
+            <Typography
+              variant="body2"
+              component="span"
+              textTransform="uppercase"
+            >
+              {state}.&nbsp;
+            </Typography>
+            <Typography
+              variant="body2"
+              component="span"
+              textTransform="uppercase"
+            >
+              {country}.&nbsp;
+            </Typography>
+          </Box>
+        </CardContent>
+      </Card>
+    );
+  }
 
   if (pathname === "/payment") {
     return (
@@ -79,22 +135,46 @@ function ShippingAddress({
           {addressType}
         </Typography>
         <Box component="div">
-          <Typography variant="h6" component="span" sx={{ fontWeight: "500", textTransform: "uppercase" }}>
+          <Typography
+            variant="h6"
+            component="span"
+            sx={{ fontWeight: "500", textTransform: "uppercase" }}
+          >
             {street},&nbsp;
           </Typography>
-          <Typography variant="h6" component="span" sx={{ fontWeight: "500", textTransform: "uppercase" }}>
+          <Typography
+            variant="h6"
+            component="span"
+            sx={{ fontWeight: "500", textTransform: "uppercase" }}
+          >
             {locality},&nbsp;
           </Typography>
-          <Typography variant="h6" component="span" sx={{ fontWeight: "500", textTransform: "uppercase" }}>
+          <Typography
+            variant="h6"
+            component="span"
+            sx={{ fontWeight: "500", textTransform: "uppercase" }}
+          >
             {city}&nbsp;-&nbsp;
           </Typography>
-          <Typography variant="h6" component="span" sx={{ fontWeight: "500", textTransform: "uppercase" }}>
+          <Typography
+            variant="h6"
+            component="span"
+            sx={{ fontWeight: "500", textTransform: "uppercase" }}
+          >
             {pincode}.&nbsp;
           </Typography>
-          <Typography variant="h6" component="span" sx={{ fontWeight: "500", textTransform: "uppercase" }}>
+          <Typography
+            variant="h6"
+            component="span"
+            sx={{ fontWeight: "500", textTransform: "uppercase" }}
+          >
             {state}.&nbsp;
           </Typography>
-          <Typography variant="h6" component="span" sx={{ fontWeight: "500", textTransform: "uppercase" }}>
+          <Typography
+            variant="h6"
+            component="span"
+            sx={{ fontWeight: "500", textTransform: "uppercase" }}
+          >
             {country}.&nbsp;
           </Typography>
         </Box>

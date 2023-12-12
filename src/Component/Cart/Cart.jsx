@@ -31,6 +31,7 @@ function Cart() {
 
   function handleClearCart() {
     clearCartApi(userToken);
+    handleSetCartProducts(null)
   }
 
   // function handleSetCartProducts(data) {
