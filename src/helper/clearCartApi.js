@@ -1,4 +1,4 @@
-const URL = `http://academics.newtonschool.co/api/v1/ecommerce/cart/`;
+const URL = `https://academics.newtonschool.co/api/v1/ecommerce/cart/`;
 
 export async function clearCartApi(userToken) {
     try {

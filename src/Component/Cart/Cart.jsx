@@ -17,7 +17,7 @@ function Cart() {
 
   useEffect(() => {
     getCartItemApi(userToken).then((data) => {
-      // console.log(data);
+      console.log("Items in cart", data);
       handleSetCartProducts(data.data);
     });
   }, []);

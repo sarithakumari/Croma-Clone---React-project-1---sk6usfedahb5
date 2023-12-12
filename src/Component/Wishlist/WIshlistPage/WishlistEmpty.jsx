@@ -1,8 +1,8 @@
-import React from "react";
-import { Box, Link, Typography } from "@mui/material";
+import { Box, Link, Typography } from '@mui/material';
 import { Link as RouterLink } from "react-router-dom";
+import React from 'react'
 
-function CartEmpty() {
+function WishlistEmpty() {
   return (
     <Box
       component="div"
@@ -12,11 +12,11 @@ function CartEmpty() {
         justifyContent: "center",
         alignItems: "center",
         fontSize: "18px",
-        backgroundColor: "#f9f9f9!important",
-        color: "black",
+        // backgroundColor: "#f9f9f9!important",
+        // color: "black",
       }}
     >
-      <Typography component="div">Your Cart is Empty. &nbsp;</Typography>
+      <Typography component="div">No items to show. &nbsp;</Typography>
       <Link component={RouterLink} to="/" variant="body2" sx={{backgroundColor: "transparent", color: "#12daa8"}}>
         <Typography component="div">Continue Shopping</Typography>
       </Link>
@@ -24,4 +24,4 @@ function CartEmpty() {
   );
 }
 
-export default CartEmpty;
+export default WishlistEmpty

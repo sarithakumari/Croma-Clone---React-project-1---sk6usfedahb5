@@ -13,6 +13,7 @@ import { getAllProductFromWishlist } from "../../../helper/getAllProductFromWish
 import styled from "@emotion/styled";
 import WishlistCard from "./WishlistCard";
 import CromaContext from "../../../ContextAPI/CromaContext";
+import WishlistEmpty from "./WishlistEmpty";
 
 
 function Wishlists() {
@@ -26,6 +27,12 @@ function Wishlists() {
   }, []);
 
   console.log(wishlists?.data?.items);
+
+  if(wishlists?.data?.items.length === 0) {
+    return (
+      <WishlistEmpty />
+    )
+  }
 
   return (
     <Box flexGrow={1} sx={{ paddingTop: "6rem" }}>

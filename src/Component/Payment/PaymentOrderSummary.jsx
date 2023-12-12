@@ -13,18 +13,39 @@ import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import CromaContext from "../../ContextAPI/CromaContext";
 import ShippingAddress from "../Checkout/ShippingAddress";
 import { checkoutApi } from "../../helper/checkoutApi";
+import { useNavigate } from "react-router-dom";
+import { clearCartApi } from "../../helper/clearCartApi";
 
 function PaymentOrderSummary() {
-  const { name, cartProducts, address, addressType } = useContext(CromaContext);
+  const {
+    name,
+    cartProducts,
+    address,
+    addressType,
+    handleSetCartProducts,
+    handleItemsInCart,
+  } = useContext(CromaContext);
+  const navigate = useNavigate();
 
   const username = JSON.parse(localStorage.getItem("username")) || name;
-  const userToken = JSON.parse(localStorage.getItem("userToken")) || name;
+  const userToken = JSON.parse(localStorage.getItem("userToken"));
 
   async function handleCheckout() {
     // console.log({addressType, address, userToken}, cartProducts.items[0].product._id)
-    const data = await checkoutApi(cartProducts.items[0].product._id, addressType, address, userToken);
+    const data = await checkoutApi(
+      cartProducts.items[0].product._id,
+      addressType,
+      address,
+      userToken
+    );
     console.log("Order Placed Successfully", data);
-    alert("Order Placed Successfully");
+    if (data.status === "success") {
+      clearCartApi(userToken);
+      handleSetCartProducts(null);
+      handleItemsInCart('0');
+      navigate("/");
+      alert("Order Placed Successfully");
+    }
   }
 
   console.log(cartProducts?.items.length);
@@ -190,7 +211,11 @@ function PaymentOrderSummary() {
             "& .MuiButtonBase-root:hover": { backgroundColor: "#12daa8" },
           }}
         >
-          <Button fullWidth sx={{ color: "black", backgroundColor: "#12daa8" }} onClick={handleCheckout} >
+          <Button
+            fullWidth
+            sx={{ color: "black", backgroundColor: "#12daa8" }}
+            onClick={handleCheckout}
+          >
             Pay Now
           </Button>
         </Box>

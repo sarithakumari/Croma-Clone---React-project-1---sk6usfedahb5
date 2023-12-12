@@ -125,53 +125,53 @@ function ShippingAddress({
   }
 
   return (
-    <Card sx={{ margin: "2rem 0", maxWidth: "400px" }}>
+    <Card sx={{ margin: "2rem 0", maxWidth: "400px" }} elevation={4}>
       <CardContent>
         <Typography
           variant="h6"
           component="p"
-          sx={{ textDecoration: "underline", fontWeight: "700" }}
+          sx={{ fontWeight: "700", textTransform: "uppercase" }}
         >
           {addressType}
         </Typography>
         <Box component="div">
           <Typography
-            variant="h6"
+            variant="body1"
             component="span"
             sx={{ fontWeight: "500", textTransform: "uppercase" }}
           >
             {street},&nbsp;
           </Typography>
           <Typography
-            variant="h6"
+            variant="body1"
             component="span"
             sx={{ fontWeight: "500", textTransform: "uppercase" }}
           >
             {locality},&nbsp;
           </Typography>
           <Typography
-            variant="h6"
+            variant="body1"
             component="span"
             sx={{ fontWeight: "500", textTransform: "uppercase" }}
           >
             {city}&nbsp;-&nbsp;
           </Typography>
           <Typography
-            variant="h6"
+            variant="body1"
             component="span"
             sx={{ fontWeight: "500", textTransform: "uppercase" }}
           >
             {pincode}.&nbsp;
           </Typography>
           <Typography
-            variant="h6"
+            variant="body1"
             component="span"
             sx={{ fontWeight: "500", textTransform: "uppercase" }}
           >
             {state}.&nbsp;
           </Typography>
           <Typography
-            variant="h6"
+            variant="body1"
             component="span"
             sx={{ fontWeight: "500", textTransform: "uppercase" }}
           >

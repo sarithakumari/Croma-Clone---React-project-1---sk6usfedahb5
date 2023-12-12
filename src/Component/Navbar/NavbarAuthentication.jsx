@@ -207,10 +207,7 @@ function NavbarAuthentication() {
               <AccountCircleIcon />
             </Box>
             <Box component="div" sx={{}}>
-              {/* <Typography component="p">My Orders</Typography> */}
-              <Typography component="p" sx={{ padding: "0" }}>
                 {userToken ? <NavAuthLogout /> : <NavAuthAccount />}
-              </Typography>
             </Box>
           </Box>
         </MenuItem>
