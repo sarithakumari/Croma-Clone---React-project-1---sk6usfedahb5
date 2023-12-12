@@ -9,6 +9,7 @@ import {
 } from "@mui/material";
 import { loginApi } from "../../helper/loginApi";
 import CromaContext from "../../ContextAPI/CromaContext";
+import { toast } from 'react-toastify';
 
 function LoginForm({ handleClose }) {
   const [username, setUserName] = useState("");
@@ -25,6 +26,7 @@ function LoginForm({ handleClose }) {
         // console.log(token);
         localStorage.setItem('userToken', JSON.stringify(token));
         handleCloseAuthDialog();
+        toast.success('Logged In');
     }
   }
 

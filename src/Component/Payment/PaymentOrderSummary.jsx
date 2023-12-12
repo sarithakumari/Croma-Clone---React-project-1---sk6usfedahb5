@@ -16,6 +16,8 @@ import { checkoutApi } from "../../helper/checkoutApi";
 import { useNavigate } from "react-router-dom";
 import { clearCartApi } from "../../helper/clearCartApi";
 
+import { toast } from "react-toastify";
+
 function PaymentOrderSummary() {
   const {
     name,
@@ -38,13 +40,14 @@ function PaymentOrderSummary() {
       address,
       userToken
     );
-    console.log("Order Placed Successfully", data);
+    // console.log("Order Placed Successfully", data);
     if (data.status === "success") {
+      toast.success("Order Placed Successfully");
       clearCartApi(userToken);
       handleSetCartProducts(null);
-      handleItemsInCart('0');
+      handleItemsInCart("0");
       navigate("/");
-      alert("Order Placed Successfully");
+      // alert("Order Placed Successfully");
     }
   }
 

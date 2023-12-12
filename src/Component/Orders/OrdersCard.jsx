@@ -16,6 +16,7 @@ import ShippingAddress from "../Checkout/ShippingAddress";
 import CromaContext from "../../ContextAPI/CromaContext";
 import { addToCart } from "../../helper/addToCart";
 import { addProductToWishlist } from "../../helper/addProductToWishlist";
+import { toast } from 'react-toastify';
 
 const StyledRating = styled(Rating)({
   "& .MuiRating-iconFilled": {
@@ -35,8 +36,9 @@ function OrdersCard({ item }) {
       const res = await addToCart(orderDetails._id, userToken);
       // const res = addToCart(productDetails._id, userToken);
       console.log(res);
+      toast.success(res.message);
       handleItemsInCart(res.data.items.length);
-      alert(res.message);
+      // alert(res.message);
     }
   }
 

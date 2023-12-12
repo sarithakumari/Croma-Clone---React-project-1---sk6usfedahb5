@@ -6,6 +6,7 @@ function NavAuthLogout() {
   function handleAuthLogout() {
     localStorage.removeItem("userToken");
     localStorage.removeItem("username");
+    toast.info("Logged Out");
   }
 
   return (

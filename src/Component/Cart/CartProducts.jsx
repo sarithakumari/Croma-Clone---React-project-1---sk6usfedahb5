@@ -12,6 +12,9 @@ import { removeProductFromCartApi } from "../../helper/removeProductFromCartApi"
 import CromaContext from "../../ContextAPI/CromaContext";
 import { addProductToWishlist } from "../../helper/addProductToWishlist";
 
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+
 const StyledRating = styled(Rating)({
   "& .MuiRating-iconFilled": {
     color: "#00e9bf",
@@ -19,26 +22,36 @@ const StyledRating = styled(Rating)({
 });
 
 function CartProducts({ product, handleSetCartProducts, handleClearCart }) {
-    const userToken = JSON.parse(localStorage.getItem("userToken"));
-    const { handleItemsInCart } = useContext(CromaContext);
+  const userToken = JSON.parse(localStorage.getItem("userToken"));
+  const { handleItemsInCart } = useContext(CromaContext);
 
-    async function handleRemoveProductFromCart() {
-        const data = await removeProductFromCartApi(product.product._id, userToken);
-        console.log(data);
-        if(data.data.items.length==0) {
-          handleSetCartProducts(null);
-        } else {
-          handleSetCartProducts(data.data);
-        }
-        handleItemsInCart(data.data.items.length);
+  async function handleRemoveProductFromCart() {
+    const data = await removeProductFromCartApi(product.product._id, userToken);
+    console.log("removed from cart: ",data);
+    if (data.data.items.length == 0) {
+      handleSetCartProducts(null);
+    } else {
+      handleSetCartProducts(data.data);
     }
-
-    async function handleMoveProductToWishlist() {
-      const data = await addProductToWishlist(product.product._id, userToken);
-      handleRemoveProductFromCart();
+    if(data.status === 'success') {
+      toast.success(data.message);
     }
+    handleItemsInCart(data.data.items.length);
+  }
 
-    console.log('product in cart: ', product.product._id);
+  async function handleMoveProductToWishlist() {
+    const data = await addProductToWishlist(product.product._id, userToken);
+    console.log("wishlist from cart: ", data);
+    if (data.status === "fail" && data.message === "Product already exists in the wishlist.") {
+      toast.info(data.message);
+    } 
+    if(data.status === 'success') {
+      toast.success(data.message);
+    }
+    handleRemoveProductFromCart();
+  }
+
+  console.log("product in cart: ", product.product._id);
   return (
     <Box
       component="div"
@@ -51,9 +64,13 @@ function CartProducts({ product, handleSetCartProducts, handleClearCart }) {
         marginBottom: 1,
       }}
     >
-        {/* left box || right box */}
+      {/* left box || right box */}
       <Box component="div" sx={{ display: "flex", marginLeft: "1.5rem" }}>
-        <Box component='div' id="cartDetails-left" sx={{ paddingRight: "1.5rem" }}>
+        <Box
+          component="div"
+          id="cartDetails-left"
+          sx={{ paddingRight: "1.5rem" }}
+        >
           <Typography
             component="p"
             variant="h6"
@@ -145,7 +162,11 @@ function CartProducts({ product, handleSetCartProducts, handleClearCart }) {
           </Box>
         </Box>
 
-        <Box component='div' id="cartDetails-right" sx={{paddingRight: "1.5rem", width: "200px", textAlign: "end" }}>
+        <Box
+          component="div"
+          id="cartDetails-right"
+          sx={{ paddingRight: "1.5rem", width: "200px", textAlign: "end" }}
+        >
           <Box>
             <Typography component="span" sx={{ fontSize: "24px" }}>
               ₹
@@ -184,7 +205,7 @@ function CartProducts({ product, handleSetCartProducts, handleClearCart }) {
               fontSize="14px"
               sx={{ textDecoration: "line-through" }}
             >
-              ₹{(product.product.price*1.15).toFixed(2)}
+              ₹{(product.product.price * 1.15).toFixed(2)}
             </Typography>
             <Typography
               component="p"
@@ -193,7 +214,11 @@ function CartProducts({ product, handleSetCartProducts, handleClearCart }) {
               color="grey"
               textAlign="end"
             >
-              (Save ₹{((product.product.price)*1.15 - (product.product.price)).toFixed(2)})
+              (Save ₹
+              {(product.product.price * 1.15 - product.product.price).toFixed(
+                2
+              )}
+              )
             </Typography>
           </Box>
           <Divider />

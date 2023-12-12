@@ -10,6 +10,7 @@ import {
 import { signUpApi } from "../../helper/signUpApi";
 import { useNavigate } from "react-router-dom";
 import CromaContext from "../../ContextAPI/CromaContext";
+import { toast } from 'react-toastify';
 
 function LoginForm({ handleClose }) {
   const [name, setName] = useState("");
@@ -35,6 +36,7 @@ function LoginForm({ handleClose }) {
       localStorage.setItem('username', JSON.stringify(name));
       handleCloseAuthDialog();
       // navigate("/");
+      toast.success("Account Created!");
     }
   }
 

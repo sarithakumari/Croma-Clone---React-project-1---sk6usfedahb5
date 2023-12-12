@@ -12,6 +12,7 @@ import { addToCart } from "../../../helper/addToCart";
 import { removeProductFromCartApi } from "../../../helper/removeProductFromCartApi";
 import CromaContext from "../../../ContextAPI/CromaContext";
 import { deleteProductFromWishlist } from "../../../helper/deleteProductFromWishlist";
+import { toast } from 'react-toastify';
 
 const StyledRating = styled(Rating)({
   "& .MuiRating-iconFilled": {
@@ -22,13 +23,17 @@ const StyledRating = styled(Rating)({
 function WishlistCard({ item }) {
   const userToken = JSON.parse(localStorage.getItem("userToken"));
   const { handleItemsInCart, handleSetWishlists } = useContext(CromaContext);
+  
 
   async function handleAddToCart() {
     const data = await addToCart(item.products._id, userToken);
     // const res = addToCart(productDetails._id, userToken);
     console.log(data);
-    handleItemsInCart(data.data.items.length);
-    alert(data.message);
+    if(data.status === 'success') {
+      toast.success(data.message);
+      handleItemsInCart(data.data.items.length);
+    }
+    // alert(data.message);
   }
 
   async function handleRemoveProductFromWishlist() {
@@ -36,8 +41,9 @@ function WishlistCard({ item }) {
     const data = await deleteProductFromWishlist(item.products._id, userToken);
     if (data.status === "success") {
       //   handleSetWishlist(false);
-      console.log("removed ", item.products._id);
-      console.log("data LEFT", data);
+      toast.success(data.message);
+      // console.log("removed ", item.products._id);
+      // console.log("data LEFT", data);
       handleSetWishlists(data);
     }
   }

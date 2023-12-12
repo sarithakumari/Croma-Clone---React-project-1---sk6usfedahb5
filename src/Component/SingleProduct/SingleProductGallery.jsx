@@ -9,6 +9,7 @@ import Wishlist from "../Wishlist/Wishlist";
 import { addProductToWishlist } from "../../helper/addProductToWishlist";
 import { deleteProductFromWishlist } from "../../helper/deleteProductFromWishlist";
 import CromaContext from "../../ContextAPI/CromaContext";
+import { toast } from 'react-toastify';
 
 function SingleProductGallery({ images, productId }) {
   const [wishlist, setWishlist] = useState(false);
@@ -25,6 +26,7 @@ function SingleProductGallery({ images, productId }) {
       console.log(data);
       if (data.status === "success") {
         handleSetWishlist(true);
+        toast.success(data.message);
         console.log("wishlisted ", productId);
       }
     }
@@ -34,6 +36,7 @@ function SingleProductGallery({ images, productId }) {
     const data = await deleteProductFromWishlist(productId, userToken);
     if (data.status === "success") {
       handleSetWishlist(false);
+      toast.success(data.message);
       console.log("removed ", productId);
     }
   }

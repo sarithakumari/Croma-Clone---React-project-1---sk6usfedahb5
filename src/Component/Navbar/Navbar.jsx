@@ -10,6 +10,9 @@ import { useLocation } from "react-router-dom";
 import { Button, ButtonGroup } from "@mui/material";
 import NavbarCheckoutButtons from "../Checkout/NavbarCheckoutButtons";
 
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+
 export default function Navbar() {
   const location = useLocation();
   const isCheckoutPath = Boolean(location.pathname == "/checkout");
@@ -19,17 +22,29 @@ export default function Navbar() {
 
   return (
     <Box sx={{ flexGrow: 1 }}>
-      <AppBar position="fixed" style={{ backgroundColor: "black" }}>
+      <AppBar position="fixed" style={{ backgroundColor: "black" }} sx={{"& .toastPosition": {bottom: "3.5rem"}}}>
         <Container maxWidth="lg">
           <Toolbar style={{ width: "100%", padding: "0" }}>
             <NavbarLogo />
 
-            {(!isCheckoutPath && !isPaymentPath) && <NavbarMenu />}
+            <ToastContainer
+              className="toastPosition"
+              position="bottom-center"
+              autoClose={500}
+              limit={2}
+              hideProgressBar={false}
+              newestOnTop
+              closeOnClick
+              rtl={false}
+              draggable
+              theme="light"
+            />
 
-            {(!isCheckoutPath && !isPaymentPath) && <NavbarSearch />}
+            {!isCheckoutPath && !isPaymentPath && <NavbarMenu />}
+
+            {!isCheckoutPath && !isPaymentPath && <NavbarSearch />}
 
             {(isCheckoutPath || isPaymentPath) && <NavbarCheckoutButtons />}
-            
           </Toolbar>
         </Container>
       </AppBar>

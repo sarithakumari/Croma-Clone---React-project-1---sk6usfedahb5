@@ -16,6 +16,7 @@ import Wishlist from "../Wishlist/Wishlist";
 import { addProductToWishlist } from "../../helper/addProductToWishlist";
 import CromaContext from "../../ContextAPI/CromaContext";
 import { deleteProductFromWishlist } from "../../helper/deleteProductFromWishlist";
+import { toast } from 'react-toastify';
 
 const StyledRating = styled(Rating)({
   "& .MuiRating-iconFilled": {
@@ -43,6 +44,7 @@ function ProductCard({ product }) {
       console.log(data);
       if (data.status === "success") {
         handleSetWishlist(true);
+        toast.success(data.message);
         console.log("wishlisted ", product._id);
       }
     }
@@ -52,6 +54,7 @@ function ProductCard({ product }) {
     const data = await deleteProductFromWishlist(product._id, userToken);
     if (data.status === "success") {
       handleSetWishlist(false);
+      toast.success(data.message);
     }
     console.log("removed ", product._id);
   }
