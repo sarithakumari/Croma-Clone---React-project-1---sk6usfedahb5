@@ -1,5 +1,6 @@
 import { Box, Button, Typography } from "@mui/material";
 import React from "react";
+import { toast } from 'react-toastify';
 
 function NavAuthLogout() {
 

@@ -11,6 +11,7 @@ import React, { useContext, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import CromaContext from "../../ContextAPI/CromaContext";
 import { addToCart } from "../../helper/addToCart";
+import { toast } from 'react-toastify';
 
 function ProductFooter({ productDetails }) {
   const navigate = useNavigate();
@@ -29,7 +30,8 @@ function ProductFooter({ productDetails }) {
       // const res = addToCart(productDetails._id, userToken);
       console.log(data);
       handleItemsInCart(data.data.items.length);
-      alert(data.message);
+      toast.success(data.message);
+      // alert(data.message);
     }
   }
 
@@ -43,7 +45,8 @@ function ProductFooter({ productDetails }) {
       console.log(res);
       handleItemsInCart(res.data.items.length);
       navigate("/cart");
-      alert(res.message);
+      toast.success(res.message);
+      // alert(res.message);
     }
   }
 

@@ -27,6 +27,8 @@ function LoginForm({ handleClose }) {
         localStorage.setItem('userToken', JSON.stringify(token));
         handleCloseAuthDialog();
         toast.success('Logged In');
+    } else {
+      toast.error(res.message);
     }
   }
 
