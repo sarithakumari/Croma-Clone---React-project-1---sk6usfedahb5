@@ -14,17 +14,26 @@ import styled from "@emotion/styled";
 import WishlistCard from "./WishlistCard";
 import CromaContext from "../../../ContextAPI/CromaContext";
 import WishlistEmpty from "./WishlistEmpty";
+import { useNavigate } from "react-router-dom";
 
 
 function Wishlists() {
   // const [wishlists, setWishlists] = useState(null);
-  const { wishlists, handleSetWishlists} = useContext(CromaContext);
+  const { wishlists, handleSetWishlists, handleOpenAuthDialog} = useContext(CromaContext);
+  const navigate = useNavigate();
 
   const userToken = JSON.parse(localStorage.getItem("userToken"));
 
   useEffect(() => {
     getAllProductFromWishlist(userToken).then((data) => handleSetWishlists(data));
   }, []);
+
+  useEffect(()=>{
+    if(!userToken) {
+      navigate('/');
+      handleOpenAuthDialog();
+    }
+  }, [])
 
   console.log(wishlists?.data?.items);
 

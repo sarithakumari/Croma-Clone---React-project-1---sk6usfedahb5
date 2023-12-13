@@ -1,11 +1,17 @@
 import { Box, Container, Divider, Typography } from "@mui/material";
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { getOrderHistory } from "../../helper/getOrderHistory";
 import OrdersCard from "./OrdersCard";
+import { useNavigate } from "react-router-dom";
+import CromaContext from "../../ContextAPI/CromaContext";
 
 function Orders() {
   const userToken = JSON.parse(localStorage.getItem("userToken"));
   const [orders, setOrders] = useState(null);
+
+  const { handleOpenAuthDialog } = useContext(CromaContext);
+
+  const navigate = useNavigate();
 
   useEffect(() => {
     getOrderHistory(userToken).then((data) => {
@@ -15,11 +21,18 @@ function Orders() {
     });
   }, []);
 
+  useEffect(() => {
+    if (!userToken) {
+      navigate("/");
+      handleOpenAuthDialog();
+    }
+  }, []);
+
   console.log("orders:", orders);
-//   const date = new Date(orders[0].createdAt);
-//   console.log(date)
-//   const localTime = date.toLocaleDateString();
-//   console.log(localTime);
+  //   const date = new Date(orders[0].createdAt);
+  //   console.log(date)
+  //   const localTime = date.toLocaleDateString();
+  //   console.log(localTime);
 
   return (
     <Box flexGrow={1} sx={{ paddingTop: "6rem" }}>
@@ -32,7 +45,7 @@ function Orders() {
           >
             My Orders
           </Typography>
-          <Divider sx={{borderColor: "#353535"}} />
+          <Divider sx={{ borderColor: "#353535" }} />
 
           <Box sx={{ marginTop: 1, width: "100%" }}>
             {orders?.map((item, index) => (
