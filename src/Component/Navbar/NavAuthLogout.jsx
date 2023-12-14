@@ -12,9 +12,15 @@ function NavAuthLogout() {
 
   return (
     <Box component="div">
-      <Button sx={{ backgroundColor: "transparent", color: "inherit", }} onClick={handleAuthLogout} >
+      <Box component='div' sx={{ backgroundColor: "transparent", color: "inherit", }} onClick={handleAuthLogout} >
         <Typography component="p" textTransform="capitalize">Logout</Typography>
-      </Button>
+        <Typography
+          component="p"
+          sx={{ fontSize: "0.75rem", marginTop: "0.2rem" }}
+        >
+          Most Welcome to come back later!!
+        </Typography>
+      </Box>
     </Box>
   );
 }
