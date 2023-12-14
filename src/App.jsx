@@ -51,6 +51,13 @@ function App() {
   const [name, setName] = useState(username);
   // wishlists - state for all items wishlisted
   const [wishlists, setWishlists] = useState(null);
+  // locationDialog - to open pincode dialog
+  const [openLocationDialog, setOpenLocationDialog] = useState(false);
+  // location - state to keep the user-entered location
+  const [location, setLocation] = useState("Mumbai");
+  // pincode - state to keep numeric value of pincode
+  const [pincode, setPincode] = useState("400049");
+
 
   const userToken = JSON.parse(localStorage.getItem("userToken"));
 
@@ -58,7 +65,7 @@ function App() {
     getCartItemApi(userToken).then((data) => {
       console.log(data.data);
       handleSetCartProducts(data.data);
-      handleItemsInCart(data.data.items.length)
+      handleItemsInCart(data.data.items?.length)
     });
   }, []);
 
@@ -108,6 +115,21 @@ function App() {
     setWishlists(data);
   }
 
+  function handleOpenLocationDialog() {
+    setOpenLocationDialog(true);
+  }
+  function handleCloseLocationDialog() {
+    setOpenLocationDialog(false);
+  }
+
+  function handleSetLocation(data) {
+    setLocation(data)
+  }
+
+  function handleSetPincode(data) {
+    setPincode(data)
+  }
+
   // console.log("APP: ", cartProducts);
 
   return (
@@ -129,6 +151,13 @@ function App() {
           handleSetName,
           wishlists,
           handleSetWishlists,
+          openLocationDialog,
+          handleOpenLocationDialog,
+          handleCloseLocationDialog,
+          location,
+          handleSetLocation,
+          pincode, 
+          handleSetPincode
         }}
       >
         <BrowserRouter>
