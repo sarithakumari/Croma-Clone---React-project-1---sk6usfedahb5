@@ -156,7 +156,7 @@ function ProductCard({ product }) {
             {product.name}
           </Typography>
           <Typography component="span" sx={{ fontWeight: 700 }}>
-            ₹{product.price.toFixed(2)}
+            ₹{(product.price).toLocaleString(navigator.language, {minimumFractionDigits: 2})}
           </Typography>
           <Typography
             component="span"
@@ -167,7 +167,7 @@ function ProductCard({ product }) {
               color: "grey",
             }}
           >
-            ₹{(1.15 * product.price).toFixed(2)}
+            ₹{(1.15 * product.price).toLocaleString(navigator.language, {minimumFractionDigits: 2})}
           </Typography>
           <Box component="div" padding="0.5rem 0">
             <StyledRating

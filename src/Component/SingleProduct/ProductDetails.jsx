@@ -77,7 +77,7 @@ function ProductDetails({
           </Typography>
           <Typography variant="h5" component="span" sx={{ fontWeight: "500" }}>
             {" "}
-            {productDetails?.price.toFixed(2)}{" "}
+            {productDetails?.price.toLocaleString(navigator.language, {minimumFractionDigits: 2})}{" "}
           </Typography>
         </Box>
 

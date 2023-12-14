@@ -2,11 +2,12 @@ import { Box, Button, Card, Stack, TextField, Typography } from "@mui/material";
 import React, { useContext, useEffect, useState } from "react";
 import CloseIcon from "@mui/icons-material/Close";
 import CromaContext from "../../ContextAPI/CromaContext";
+import { getLocationApi } from "../../helper/getLocationApi";
 
 function Location() {
 //   const [pincode, setPincode] = useState("");
 
-  const { location, handleSetLocation, handleCloseLocationDialog, pincode, handleSetPincode } =
+  const { location, handleSetLocation, handleCloseLocationDialog, pincode, handleSetPincode, handleFetchLocation } =
     useContext(CromaContext);
 
   //   useEffect(()=>{

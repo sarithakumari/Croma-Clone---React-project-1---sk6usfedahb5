@@ -27,7 +27,7 @@ function CartProducts({ product, handleSetCartProducts, handleClearCart }) {
 
   async function handleRemoveProductFromCart() {
     const data = await removeProductFromCartApi(product.product._id, userToken);
-    console.log("removed from cart: ",data);
+    // console.log("removed from cart: ",data);
     if (data.data.items.length == 0) {
       handleSetCartProducts(null);
     } else {
@@ -41,7 +41,7 @@ function CartProducts({ product, handleSetCartProducts, handleClearCart }) {
 
   async function handleMoveProductToWishlist() {
     const data = await addProductToWishlist(product.product._id, userToken);
-    console.log("wishlist from cart: ", data);
+    // console.log("wishlist from cart: ", data);
     if (data.status === "fail" && data.message === "Product already exists in the wishlist.") {
       toast.info(data.message);
     } 
@@ -175,7 +175,7 @@ function CartProducts({ product, handleSetCartProducts, handleClearCart }) {
               component="span"
               sx={{ fontSize: "24px", fontWeight: "700" }}
             >
-              {product.product.price.toFixed(2)}
+              {product.product.price.toLocaleString(navigator.language, {minimumFractionDigits: 2})}
             </Typography>
           </Box>
 
@@ -205,7 +205,7 @@ function CartProducts({ product, handleSetCartProducts, handleClearCart }) {
               fontSize="14px"
               sx={{ textDecoration: "line-through" }}
             >
-              ₹{(product.product.price * 1.15).toFixed(2)}
+              ₹{(product.product.price * 1.15).toLocaleString(navigator.language, {minimumFractionDigits: 2})}
             </Typography>
             <Typography
               component="p"
@@ -215,9 +215,7 @@ function CartProducts({ product, handleSetCartProducts, handleClearCart }) {
               textAlign="end"
             >
               (Save ₹
-              {(product.product.price * 1.15 - product.product.price).toFixed(
-                2
-              )}
+              {(product.product.price * 1.15 - product.product.price).toLocaleString(navigator.language, {minimumFractionDigits: 2})}
               )
             </Typography>
           </Box>

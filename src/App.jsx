@@ -19,6 +19,7 @@ import Payment from "./Component/Payment/Payment";
 import { getCartItemApi } from "./helper/getCartItemsApi";
 import { getAllProductFromWishlist } from "./helper/getAllProductFromWishlist";
 import Orders from "./Component/Orders/Orders";
+import { getLocationApi } from "./helper/getLocationApi";
 
 const darkTheme = createTheme({
   palette: {
@@ -35,15 +36,19 @@ function App() {
   const [itemsInCart, setItemsInCart] = useState("");
   // cartProducts - state for all products in cart
   const [cartProducts, setCartProducts] = useState(null);
+  // location - state to keep the user-entered location
+  const [location, setLocation] = useState("Mumbai");
+  // pincode - state to keep numeric value of pincode
+  const [pincode, setPincode] = useState("400049");
   // address - user address in checkout and payment page
   const [address, setAddress] = useState({
     country: "",
-    pincode: "",
+    pincode: `${pincode}`,
     street: "",
     landmark: "",
     locality: "",
     state: "",
-    city: "",
+    city: `${location}`,
   });
   // address type (home, office, other) - in checkout and payment page
   const [addressType, setAddressType] = useState("");
@@ -53,25 +58,24 @@ function App() {
   const [wishlists, setWishlists] = useState(null);
   // locationDialog - to open pincode dialog
   const [openLocationDialog, setOpenLocationDialog] = useState(false);
-  // location - state to keep the user-entered location
-  const [location, setLocation] = useState("Mumbai");
-  // pincode - state to keep numeric value of pincode
-  const [pincode, setPincode] = useState("400049");
-
 
   const userToken = JSON.parse(localStorage.getItem("userToken"));
 
   useEffect(() => {
     getCartItemApi(userToken).then((data) => {
-      console.log(data?.data);
+      // console.log(data?.data);
       handleSetCartProducts(data?.data);
-      handleItemsInCart(data?.data?.items?.length)
+      handleItemsInCart(data?.data?.items?.length);
     });
   }, []);
 
   useEffect(() => {
     getAllProductFromWishlist(userToken).then((data) => setWishlists(data));
   }, []);
+
+  // useEffect(() => {
+  //   handleFetchLocation(pincode);
+  // }, []);
 
   function handleOpenAuthDialog() {
     // open login/signup authDialog
@@ -123,12 +127,24 @@ function App() {
   }
 
   function handleSetLocation(data) {
-    setLocation(data)
+    setLocation(data);
   }
 
   function handleSetPincode(data) {
-    setPincode(data)
+    setPincode(data);
   }
+
+  // async function handleFetchLocation(pincode) {
+  //   getLocationApi(pincode).then((data) => {
+  //     setAddress((prev) => ({
+  //       ...prev,
+  //       ["state"]: data?.PostOffice[0].State,
+  //       ["city"]: data?.PostOffice[0].District,
+  //       ["country"]: data?.PostOffice[0].Country,
+  //     }));
+  //     handleSetPincode(data?.PostOffice[0].Pincode)
+  //   });
+  // }
 
   // console.log("APP: ", cartProducts);
 
@@ -156,8 +172,9 @@ function App() {
           handleCloseLocationDialog,
           location,
           handleSetLocation,
-          pincode, 
-          handleSetPincode
+          pincode,
+          handleSetPincode,
+          // handleFetchLocation
         }}
       >
         <BrowserRouter>

@@ -5,9 +5,9 @@ import EditIcon from "@mui/icons-material/Edit";
 import CromaContext from "../../ContextAPI/CromaContext";
 import Location from "../Location/Location";
 
-
 function NavbarLocation() {
-  const { location, pincode, openLocationDialog, handleOpenLocationDialog } = useContext(CromaContext);
+  const { location, pincode, openLocationDialog, handleOpenLocationDialog } =
+    useContext(CromaContext);
 
   return (
     <>
@@ -17,12 +17,22 @@ function NavbarLocation() {
           justifyContent: "space-between",
           alignItems: "center",
           marginRight: "20px",
-          cursor: "pointer"
+          cursor: "pointer",
         }}
         onClick={handleOpenLocationDialog}
       >
         <LocationOnIcon style={{ padding: "0" }} fontSize="xs" />
-        <Typography variant="body2" component="p">
+        <Typography
+          variant="body2"
+          component="p"
+          sx={{
+            overflow: "hidden",
+            textOverflow: "ellipsis",
+            display: "-webkit-box",
+            WebkitBoxOrient: "vertical",
+            WebkitLineClamp: "1",
+          }}
+        >
           {location},
         </Typography>
         <Typography variant="body2" component="p">
@@ -44,8 +54,6 @@ function NavbarLocation() {
       >
         <Location />
       </Dialog>
-
-      
     </>
   );
 }

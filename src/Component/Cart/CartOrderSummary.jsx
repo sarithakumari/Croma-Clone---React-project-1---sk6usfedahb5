@@ -36,7 +36,7 @@ function CartOrderSummary({ totalPrice, totalItems }) {
             Original Price
           </Typography>
           <Typography component="p" variant="body1">
-          ₹{totalPrice}
+          ₹{totalPrice.toLocaleString(navigator.language, {minimumFractionDigits: 2})}
           </Typography>
         </Box>
         <Box
@@ -48,7 +48,7 @@ function CartOrderSummary({ totalPrice, totalItems }) {
           </Typography>
           <Box>
             <Typography component="span" variant="body1" sx={{textDecoration: "line-through", fontSize: "small"}}>
-            ₹60
+            ₹60 {" "}
           </Typography>
           <Typography component='span'>Free</Typography>
           </Box>
@@ -62,7 +62,7 @@ function CartOrderSummary({ totalPrice, totalItems }) {
             Total
           </Typography>
           <Typography component="p" variant="body1">
-          ₹{totalPrice}
+          ₹{totalPrice.toLocaleString(navigator.language, {minimumFractionDigits: 2})}
           </Typography>
         </Box>
       </Stack>
