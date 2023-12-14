@@ -63,9 +63,9 @@ function App() {
 
   useEffect(() => {
     getCartItemApi(userToken).then((data) => {
-      console.log(data.data);
-      handleSetCartProducts(data.data);
-      handleItemsInCart(data.data.items?.length)
+      console.log(data?.data);
+      handleSetCartProducts(data?.data);
+      handleItemsInCart(data?.data?.items?.length)
     });
   }, []);
 

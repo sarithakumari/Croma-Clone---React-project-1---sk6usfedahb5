@@ -4,15 +4,10 @@ import CloseIcon from "@mui/icons-material/Close";
 import CromaContext from "../../ContextAPI/CromaContext";
 
 function Location() {
-  //   const [pincode, setPincode] = useState("");
+//   const [pincode, setPincode] = useState("");
 
-  const {
-    location,
-    handleSetLocation,
-    handleCloseLocationDialog,
-    pincode,
-    handleSetPincode,
-  } = useContext(CromaContext);
+  const { location, handleSetLocation, handleCloseLocationDialog, pincode, handleSetPincode } =
+    useContext(CromaContext);
 
   //   useEffect(()=>{
   //     fetchLocation(pincode).
@@ -62,12 +57,6 @@ function Location() {
             "&:hover .MuiButtonBase-root": {
               backgroundColor: "#00b594",
             },
-            "& .pincode::webkit-outer-spin-button": {
-                WebkitAppearance: "none"
-            },
-            "& .pincode::webkit-inner-spin-button": {
-                WebkitAppearance: "none"
-            }
           }}
         >
           <Typography variant="h6" component="p" textAlign="center">
@@ -91,8 +80,7 @@ function Location() {
             To Check Products & Delivery Options available at your location
           </Typography>
           <TextField
-            className="pincode"
-            type="number"
+            type="text"
             placeholder="Enter Pincode"
             value={pincode}
             required

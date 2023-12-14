@@ -53,8 +53,8 @@ function NavbarAuthentication() {
           marginRight: "20px",
           cursor: "pointer",
         }}
-        onClick={handleOpenAuthDialog}
-        onMouseEnter={(e) => setAnchorEl(e.currentTarget)}
+        // onClick={handleOpenAuthDialog}
+        onClick={(e) => setAnchorEl(e.currentTarget)}
       >
         <PersonIcon style={{ fontSize: "25px" }} />
       </Box>
