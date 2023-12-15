@@ -71,7 +71,7 @@ function App() {
 
   useEffect(() => {
     getAllProductFromWishlist(userToken).then((data) => setWishlists(data));
-  }, []);
+  }, [userToken]);
 
   // useEffect(() => {
   //   handleFetchLocation(pincode);

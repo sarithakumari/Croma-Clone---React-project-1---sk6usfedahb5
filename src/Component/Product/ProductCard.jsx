@@ -186,7 +186,7 @@ function ProductCard({ product }) {
             <StyledRating
               name="readOnly"
               value={product.ratings}
-              precision={0.5}
+              precision={0.1}
               readOnly
               size="small"
             />

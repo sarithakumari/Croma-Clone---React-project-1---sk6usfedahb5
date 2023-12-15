@@ -37,7 +37,7 @@ function LoginForm({ handleClose }) {
       <Card
         component="div"
         sx={{
-          width: "460px",
+          width: {lg: "460px", md: "460px", sm: "300px", xs: "250px"},
           padding: "1rem 2rem",
           margin: "auto",
           backgroundColor: "black",

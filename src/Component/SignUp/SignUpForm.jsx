@@ -46,7 +46,7 @@ function LoginForm({ handleClose }) {
         component="form"
         // onSubmit={handleSignUpSubmit}
         sx={{
-          width: "460px",
+          width: {lg: "460px", md: "460px", sm: "300px", xs: "250px"},
           padding: "1rem 2rem",
           margin: "auto",
           backgroundColor: "black",
@@ -75,7 +75,7 @@ function LoginForm({ handleClose }) {
             value={name}
             required
             onChange={(e) => setName(e.target.value)}
-            sx={{ border: "1px solid white", borderRadius: 1, marginTop: 2 }}
+            sx={{ border: "1px solid white", borderRadius: 1, marginTop: 2, }}
           />
           <TextField
             type="email"

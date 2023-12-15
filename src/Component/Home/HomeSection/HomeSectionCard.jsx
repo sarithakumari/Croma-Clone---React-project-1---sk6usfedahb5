@@ -40,7 +40,7 @@ function HomeSectionCard({ cardInfo }) {
 
   useEffect(() => {
     const isWishlisted =
-      wishlists?.data.items.filter(
+      wishlists?.data?.items?.filter(
         (item, index) => item.products._id === cardInfo._id
       ).length > 0
         ? true
@@ -168,7 +168,9 @@ function HomeSectionCard({ cardInfo }) {
 
           <Box>
             <Typography component="span" sx={{ fontWeight: 700 }}>
-              ₹{price.toFixed(2)}
+              ₹{price.toLocaleString(navigator.language, {
+              minimumFractionDigits: 2,
+            })}
             </Typography>
 
             <Typography
@@ -180,14 +182,17 @@ function HomeSectionCard({ cardInfo }) {
                 color: "grey",
               }}
             >
-              ₹{(price * 1.15).toFixed(2)}
+              ₹
+              {(price * 1.15).toLocaleString(navigator.language, {
+                minimumFractionDigits: 2,
+              })}
             </Typography>
           </Box>
 
           <StyledRating
             name="cardRatings"
             value={ratings}
-            precision={0.5}
+            precision={0.1}
             readOnly
             // readOnly={ratings ? true : false}
             // disabled={!ratings ? true : false}
