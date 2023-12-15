@@ -1,21 +1,21 @@
-import React from 'react';
+import React from "react";
 import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
-import HomeSectionCard from './HomeSectionCard';
-import ProductCard from '../../Product/ProductCard';
-
+import HomeSectionCard from "./HomeSectionCard";
+import ProductCard from "../../Product/ProductCard";
+import { Box } from "@mui/material";
 
 const responsive = {
   superLargeDesktop: {
     // the naming can be any, depends on you.
     breakpoint: { max: 4000, min: 1024 },
     items: 4,
-    slidesToSlide: 2
+    slidesToSlide: 2,
   },
   desktop: {
     breakpoint: { max: 1024, min: 800 },
-    items: 4,
-    slidesToSlide: 2
+    items: 3,
+    slidesToSlide: 2,
   },
   tablet: {
     breakpoint: { max: 800, min: 464 },
@@ -28,18 +28,20 @@ const responsive = {
 };
 
 function HomeSectionCarousel({ sectionArr }) {
-  
   return (
-    <Carousel responsive={responsive} renderArrowsWhenDisabled={true} renderButtonGroupOutside={true} customTransition="transform 300ms ease-in-out" >
-      
-      {
-        sectionArr.map((deal, index)=>(
+    <Box sx={{"& li": {width: "100px"}}}>
+      <Carousel
+        responsive={responsive}
+        renderArrowsWhenDisabled={true}
+        renderButtonGroupOutside={true}
+        customTransition="transform 300ms ease-in-out"
+      >
+        {sectionArr.map((deal, index) => (
           <HomeSectionCard key={index} cardInfo={deal} />
-        ))
-      }
-      
-    </Carousel>
-  )
+        ))}
+      </Carousel>
+    </Box>
+  );
 }
 
-export default HomeSectionCarousel
+export default HomeSectionCarousel;

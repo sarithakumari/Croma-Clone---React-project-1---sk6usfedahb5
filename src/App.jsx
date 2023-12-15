@@ -189,7 +189,7 @@ function App() {
               <Navbar />
             </Grid>
 
-            <Grid item>
+            <Grid item sx={{paddingTop: {lg: "0", md: "0", sm: "3rem", xs: "3rem"} }} >
               <Routes>
                 <Route index element={<Home />} />
                 <Route path="/" element={<Home />} />

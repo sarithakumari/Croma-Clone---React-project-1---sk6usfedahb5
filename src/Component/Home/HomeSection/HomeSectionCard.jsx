@@ -46,8 +46,8 @@ function HomeSectionCard({ cardInfo }) {
         ? true
         : false;
     // console.log(isWishlisted);
-    setWishlist(isWishlisted)
-  }, []);
+    setWishlist(isWishlisted);
+  }, [wishlists]);
 
   async function handleWishlistAdd() {
     if (!userToken) {
@@ -77,7 +77,7 @@ function HomeSectionCard({ cardInfo }) {
   return (
     <Toolbar
       sx={{
-        maxWidth: 280,
+        width: { lg: 250, md: 250, sm: 200, xs: 200 },
         flexDirection: "column",
         bgcolor: "black",
         borderRadius: 1.5,
@@ -85,7 +85,12 @@ function HomeSectionCard({ cardInfo }) {
     >
       <Box
         component="div"
-        sx={{ height: 200, width: 200, m: 1, position: "relative" }}
+        sx={{
+          height: { lg: 200, md: 200, sm: 100, xs: 100 },
+          width: { lg: 200, md: 200, sm: 100, xs: 100 },
+          m: 1,
+          position: "relative",
+        }}
       >
         <CardActionArea
           disableRipple

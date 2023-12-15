@@ -7,7 +7,7 @@ function HomeSectionHeader({ sectionHeading }) {
         padding: '0px',
         alignItems: 'flex-end'
     }} >
-        <Typography variant='h5' component='div' sx={{mb: 1}} >{sectionHeading}</Typography>
+        <Typography component='div' sx={{mb: 1, fontSize: {lg: "1.5rem", md: "1.5rem"}}} >{sectionHeading}</Typography>
     </Toolbar>
   )
 }

@@ -27,9 +27,6 @@ function NavbarLogo() {
           // variant="h3"
           noWrap
           sx={{
-            // mr: 2,
-            // display: { xs: "none", md: "flex" },
-            // display: { md: "flex" },
             fontSize: { lg: "3rem", md: "2rem", sm: "2rem", xs: "2rem" },
             fontFamily: "Switzer",
             fontWeight: 500,
