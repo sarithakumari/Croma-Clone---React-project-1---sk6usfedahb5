@@ -11,7 +11,7 @@ import React, { useContext, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import CromaContext from "../../ContextAPI/CromaContext";
 import { addToCart } from "../../helper/addToCart";
-import { toast } from 'react-toastify';
+import { toast } from "react-toastify";
 
 function ProductFooter({ productDetails }) {
   const navigate = useNavigate();
@@ -81,8 +81,6 @@ function ProductFooter({ productDetails }) {
                 component="img"
                 src={productDetails?.displayImage}
                 sx={{
-                  //   aspectRatio: "1/1",
-                  //   objectFit: "contain",
                   height: "30px",
                   width: "30px",
                 }}
@@ -90,7 +88,15 @@ function ProductFooter({ productDetails }) {
               <Typography
                 variant="body2"
                 component="span"
-                sx={{ marginLeft: "1rem" }}
+                sx={{
+                  marginLeft: "1rem",
+                  overflow: "hidden",
+                  textOverflow: "ellipsis",
+                  display: "-webkit-box",
+                  WebkitBoxOrient: "vertical",
+                  WebkitLineClamp: "2",
+                  fontWeight: "500",
+                }}
               >
                 {productDetails?.name}
               </Typography>

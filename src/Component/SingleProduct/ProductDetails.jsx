@@ -1,5 +1,5 @@
 import styled from "@emotion/styled";
-import { Box, Link, Rating, Typography } from "@mui/material";
+import { Box, CardActionArea, Link, Rating, Typography } from "@mui/material";
 import React from "react";
 
 const StyledRating = styled(Rating)({
@@ -47,7 +47,7 @@ function ProductDetails({
 
             <StyledRating readOnly max={1} defaultValue={1} size="small" />
 
-            <Link href="#productReviews" color="inherit" >
+            <Link href="#productReviews" color="inherit">
               <Typography
                 variant="body2"
                 component="div"
@@ -77,7 +77,9 @@ function ProductDetails({
           </Typography>
           <Typography variant="h5" component="span" sx={{ fontWeight: "500" }}>
             {" "}
-            {productDetails?.price.toLocaleString(navigator.language, {minimumFractionDigits: 2})}{" "}
+            {productDetails?.price.toLocaleString(navigator.language, {
+              minimumFractionDigits: 2,
+            })}{" "}
           </Typography>
         </Box>
 
@@ -96,26 +98,38 @@ function ProductDetails({
           padding: "0 0 1rem 1rem",
         }}
       >
-        <Box component="div" sx={{ padding: "1rem 0" }}>
-          <Typography variant="body2" component="div">
-            Key Features
-          </Typography>
-        </Box>
+        {productFeatures.length>0 ? (
+          <>
+            <Box component="div" sx={{ padding: "1rem 0" }}>
+              <Typography variant="body2" component="div">
+                Key Features
+              </Typography>
+            </Box>
 
-        <Box
-          component="div"
-          sx={{
-            fontFamily: "inherit",
-            fontSize: "15px",
-            lineHeight: 1.5,
-          }}
-        >
-          <ul style={{ marginLeft: "1rem" }}>
-            {productFeatures.map((feature, index) => (
-              <li key={index}> {feature} </li>
-            ))}
-          </ul>
-        </Box>
+            <Box
+              component="div"
+              sx={{
+                fontFamily: "inherit",
+                fontSize: "15px",
+                lineHeight: 1.5,
+              }}
+            >
+              <ul style={{ marginLeft: "1rem" }}>
+                {productFeatures.map((feature, index) => (
+                  <li key={index}> {feature} </li>
+                ))}
+              </ul>
+            </Box>
+          </>
+        ) : (
+          <CardActionArea disableRipple component="a" href="#overview" >
+            <Box component="div" sx={{ padding: "1rem 0" }}>
+              <Typography variant="body2" component="div">
+                Click to Scroll Down
+              </Typography>
+            </Box>
+          </CardActionArea>
+        )}
       </Box>
     </div>
   );

@@ -77,6 +77,8 @@ function App() {
   //   handleFetchLocation(pincode);
   // }, []);
 
+  console.log("all wishlists: ", wishlists);
+
   function handleOpenAuthDialog() {
     // open login/signup authDialog
     setOpenAuthDialog(true);

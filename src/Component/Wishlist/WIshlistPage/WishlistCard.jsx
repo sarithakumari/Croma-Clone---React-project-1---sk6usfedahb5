@@ -2,6 +2,7 @@ import styled from "@emotion/styled";
 import {
   Box,
   Button,
+  CardActionArea,
   CardMedia,
   Rating,
   Stack,
@@ -12,7 +13,8 @@ import { addToCart } from "../../../helper/addToCart";
 import { removeProductFromCartApi } from "../../../helper/removeProductFromCartApi";
 import CromaContext from "../../../ContextAPI/CromaContext";
 import { deleteProductFromWishlist } from "../../../helper/deleteProductFromWishlist";
-import { toast } from 'react-toastify';
+import { toast } from "react-toastify";
+import { useNavigate } from "react-router-dom";
 
 const StyledRating = styled(Rating)({
   "& .MuiRating-iconFilled": {
@@ -23,13 +25,13 @@ const StyledRating = styled(Rating)({
 function WishlistCard({ item }) {
   const userToken = JSON.parse(localStorage.getItem("userToken"));
   const { handleItemsInCart, handleSetWishlists } = useContext(CromaContext);
-  
+  const navigate = useNavigate();
 
   async function handleAddToCart() {
     const data = await addToCart(item.products._id, userToken);
     // const res = addToCart(productDetails._id, userToken);
     console.log(data);
-    if(data.status === 'success') {
+    if (data.status === "success") {
       toast.success(data.message);
       handleItemsInCart(data.data.items.length);
     }
@@ -62,20 +64,26 @@ function WishlistCard({ item }) {
     >
       <Box component="div" id="desc" sx={{}}>
         <Stack spacing={2}>
-          <Typography
-            component="p"
-            variant="h6"
-            sx={{
-              overflow: "hidden",
-              textOverflow: "ellipsis",
-              display: "-webkit-box",
-              WebkitBoxOrient: "vertical",
-              WebkitLineClamp: "2",
-              fontWeight: "500",
-            }}
+          <CardActionArea
+            disableRipple
+            onClick={() => navigate(`/product/${item.products._id}`)}
           >
-            {item.products.name}
-          </Typography>
+            <Typography
+              component="p"
+              variant="h6"
+              sx={{
+                overflow: "hidden",
+                textOverflow: "ellipsis",
+                display: "-webkit-box",
+                WebkitBoxOrient: "vertical",
+                WebkitLineClamp: "2",
+                fontWeight: "500",
+              }}
+            >
+              {item.products.name}
+            </Typography>
+          </CardActionArea>
+
           <Typography component="p" sx={{ fontSize: "1rem" }}>
             Product Id: {item.products._id}
           </Typography>
@@ -164,24 +172,29 @@ function WishlistCard({ item }) {
         component="div"
         sx={{ position: "absolute", top: "2rem", left: "2rem" }}
       >
-        <CardMedia
-          component="img"
-          src={item.products.displayImage}
-          alt="image"
-          height="120"
-          width="120"
-          loading="lazy"
-          sx={{
-            objectFit: "contain",
-            borderRadius: "8px",
-            aspectRatio: "4/3",
-          }}
-          onError={(e) => {
-            e.target.onerror = null;
-            e.target.src =
-              "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d3/Stadtbild_M%C3%BCnchen.jpg/2560px-Stadtbild_M%C3%BCnchen.jpg";
-          }}
-        />
+        <CardActionArea
+          disableRipple
+          onClick={() => navigate(`/product/${item.products._id}`)}
+        >
+          <CardMedia
+            component="img"
+            src={item.products.displayImage}
+            alt="image"
+            height="120"
+            width="120"
+            loading="lazy"
+            sx={{
+              objectFit: "contain",
+              borderRadius: "8px",
+              aspectRatio: "4/3",
+            }}
+            onError={(e) => {
+              e.target.onerror = null;
+              e.target.src =
+                "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d3/Stadtbild_M%C3%BCnchen.jpg/2560px-Stadtbild_M%C3%BCnchen.jpg";
+            }}
+          />
+        </CardActionArea>
       </Box>
     </Box>
   );

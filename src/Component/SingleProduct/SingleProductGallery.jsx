@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 
 import ImageGallery from "react-image-gallery";
 // import stylesheet if you're not already using CSS @import
@@ -14,9 +14,20 @@ import { toast } from 'react-toastify';
 function SingleProductGallery({ images, productId }) {
   const [wishlist, setWishlist] = useState(false);
 
-  const { handleOpenAuthDialog } = useContext(CromaContext);
+  const { handleOpenAuthDialog, wishlists } = useContext(CromaContext);
 
   const userToken = JSON.parse(localStorage.getItem("userToken"));
+
+  useEffect(() => {
+    const isWishlisted =
+      wishlists?.data.items.filter(
+        (item, index) => item.products._id === productId
+      ).length > 0
+        ? true
+        : false;
+    // console.log(isWishlisted);
+    setWishlist(isWishlisted)
+  }, []);
 
   async function handleWishlistAdd() {
     if (!userToken) {

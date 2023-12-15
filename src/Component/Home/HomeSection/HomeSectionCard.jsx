@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import {
   Box,
   Card,
@@ -16,6 +16,7 @@ import CromaContext from "../../../ContextAPI/CromaContext";
 import { addProductToWishlist } from "../../../helper/addProductToWishlist";
 import { deleteProductFromWishlist } from "../../../helper/deleteProductFromWishlist";
 import Wishlist from "../../Wishlist/Wishlist";
+import { toast } from "react-toastify";
 
 const StyledRating = styled(Rating)({
   "& .MuiRating-iconFilled": {
@@ -35,7 +36,18 @@ function HomeSectionCard({ cardInfo }) {
 
   const userToken = JSON.parse(localStorage.getItem("userToken"));
 
-  const { handleOpenAuthDialog } = useContext(CromaContext);
+  const { handleOpenAuthDialog, wishlists } = useContext(CromaContext);
+
+  useEffect(() => {
+    const isWishlisted =
+      wishlists?.data.items.filter(
+        (item, index) => item.products._id === cardInfo._id
+      ).length > 0
+        ? true
+        : false;
+    // console.log(isWishlisted);
+    setWishlist(isWishlisted)
+  }, []);
 
   async function handleWishlistAdd() {
     if (!userToken) {
@@ -45,7 +57,7 @@ function HomeSectionCard({ cardInfo }) {
       console.log(data);
       if (data.status === "success") {
         handleSetWishlist(true);
-        console.log("wishlisted ", _id);
+        toast.success(data.message);
       }
     }
   }

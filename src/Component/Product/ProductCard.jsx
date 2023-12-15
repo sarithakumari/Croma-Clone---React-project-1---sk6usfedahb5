@@ -16,7 +16,7 @@ import Wishlist from "../Wishlist/Wishlist";
 import { addProductToWishlist } from "../../helper/addProductToWishlist";
 import CromaContext from "../../ContextAPI/CromaContext";
 import { deleteProductFromWishlist } from "../../helper/deleteProductFromWishlist";
-import { toast } from 'react-toastify';
+import { toast } from "react-toastify";
 
 const StyledRating = styled(Rating)({
   "& .MuiRating-iconFilled": {
@@ -28,13 +28,20 @@ function ProductCard({ product }) {
   const [wishlist, setWishlist] = useState(false);
   const navigate = useNavigate();
 
-  const { handleOpenAuthDialog } = useContext(CromaContext);
+  const { handleOpenAuthDialog, wishlists } = useContext(CromaContext);
 
   const userToken = JSON.parse(localStorage.getItem("userToken"));
 
-  // useEffect(()=>{
-
-  // }, [])
+  useEffect(() => {
+    const isWishlisted =
+      wishlists?.data.items.filter(
+        (item, index) => item.products._id === product._id
+      ).length > 0
+        ? true
+        : false;
+    // console.log(isWishlisted);
+    setWishlist(isWishlisted)
+  }, []);
 
   async function handleWishlistAdd() {
     if (!userToken) {
@@ -156,7 +163,10 @@ function ProductCard({ product }) {
             {product.name}
           </Typography>
           <Typography component="span" sx={{ fontWeight: 700 }}>
-            ₹{(product.price).toLocaleString(navigator.language, {minimumFractionDigits: 2})}
+            ₹
+            {product.price.toLocaleString(navigator.language, {
+              minimumFractionDigits: 2,
+            })}
           </Typography>
           <Typography
             component="span"
@@ -167,7 +177,10 @@ function ProductCard({ product }) {
               color: "grey",
             }}
           >
-            ₹{(1.15 * product.price).toLocaleString(navigator.language, {minimumFractionDigits: 2})}
+            ₹
+            {(1.15 * product.price).toLocaleString(navigator.language, {
+              minimumFractionDigits: 2,
+            })}
           </Typography>
           <Box component="div" padding="0.5rem 0">
             <StyledRating

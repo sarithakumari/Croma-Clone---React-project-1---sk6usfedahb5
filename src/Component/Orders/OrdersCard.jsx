@@ -5,6 +5,7 @@ import {
   AccordionSummary,
   Box,
   Button,
+  CardActionArea,
   CardMedia,
   Rating,
   Stack,
@@ -16,7 +17,8 @@ import ShippingAddress from "../Checkout/ShippingAddress";
 import CromaContext from "../../ContextAPI/CromaContext";
 import { addToCart } from "../../helper/addToCart";
 import { addProductToWishlist } from "../../helper/addProductToWishlist";
-import { toast } from 'react-toastify';
+import { toast } from "react-toastify";
+import { useNavigate } from "react-router-dom";
 
 const StyledRating = styled(Rating)({
   "& .MuiRating-iconFilled": {
@@ -25,8 +27,9 @@ const StyledRating = styled(Rating)({
 });
 
 function OrdersCard({ item }) {
-    const { handleOpenAuthDialog, handleItemsInCart } = useContext(CromaContext);
+  const { handleOpenAuthDialog, handleItemsInCart } = useContext(CromaContext);
   const userToken = JSON.parse(localStorage.getItem("userToken"));
+  const navigate = useNavigate();
 
   async function handleBuyNow(e) {
     // console.log("token", userToken);
@@ -44,8 +47,9 @@ function OrdersCard({ item }) {
 
   async function handleMoveProductToWishlist() {
     const data = await addProductToWishlist(orderDetails._id, userToken);
-    if(data.status === "success") {
-        alert('Product Wishlisted');
+
+    if (data.status === "success") {
+      alert("Product Wishlisted");
     }
     // handleRemoveProductFromCart();
   }
@@ -75,20 +79,27 @@ function OrdersCard({ item }) {
     >
       <Box component="div">
         <Stack spacing={2}>
-          <Typography
-            component="p"
-            variant="h6"
-            sx={{
-              overflow: "hidden",
-              textOverflow: "ellipsis",
-              display: "-webkit-box",
-              WebkitBoxOrient: "vertical",
-              WebkitLineClamp: "2",
-              fontWeight: "500",
-            }}
+          <CardActionArea
+            disableRipple
+            onClick={() => navigate(`/product/${orderDetails._id}`)}
           >
-            {orderDetails.name}
-          </Typography>
+            <Typography
+              component="p"
+              variant="h6"
+              sx={{
+                overflow: "hidden",
+                textOverflow: "ellipsis",
+                display: "-webkit-box",
+                WebkitBoxOrient: "vertical",
+                WebkitLineClamp: "2",
+                fontWeight: "500",
+                maxWidth: "600px"
+              }}
+            >
+              {orderDetails.name}
+            </Typography>
+          </CardActionArea>
+
           <Typography component="p" sx={{ fontSize: "1rem" }}>
             Product Id: {orderDetails._id}
           </Typography>
@@ -99,6 +110,7 @@ function OrdersCard({ item }) {
                 display: "flex",
                 alignItems: "center",
                 marginRight: "3rem",
+                borderRadius: "8px"
               }}
             >
               <Typography
@@ -114,6 +126,7 @@ function OrdersCard({ item }) {
                 ₹{(orderDetails.price * 1.15).toFixed(2)}
               </Typography>
             </Box>
+
             <Box component="div">
               <StyledRating
                 value={orderDetails.ratings}
@@ -195,7 +208,7 @@ function OrdersCard({ item }) {
                 minWidth: "200px",
                 margin: "0 0 1rem 0",
               }}
-                onClick={handleBuyNow}
+              onClick={handleBuyNow}
             >
               Buy Again
             </Button>
@@ -214,7 +227,7 @@ function OrdersCard({ item }) {
                 minWidth: "200px",
                 margin: "0 0 1rem 0",
               }}
-                onClick={handleMoveProductToWishlist}
+              onClick={handleMoveProductToWishlist}
             >
               Add to Wishlist
             </Button>
@@ -224,26 +237,28 @@ function OrdersCard({ item }) {
 
       <Box
         component="div"
-        sx={{ position: "absolute", top: "2rem", left: "2rem" }}
+        sx={{ position: "absolute", top: "2rem", left: "2rem", borderRadius: "8px" }}
       >
-        <CardMedia
-          component="img"
-          src={orderDetails.displayImage}
-          alt="image"
-          height="120"
-          width="120"
-          loading="lazy"
-          sx={{
-            objectFit: "contain",
-            borderRadius: "8px",
-            aspectRatio: "4/3",
-          }}
-          onError={(e) => {
-            e.target.onerror = null;
-            e.target.src =
-              "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d3/Stadtbild_M%C3%BCnchen.jpg/2560px-Stadtbild_M%C3%BCnchen.jpg";
-          }}
-        />
+        <CardActionArea disableRipple onClick={()=>navigate(`/product/${orderDetails._id}`)}>
+          <CardMedia
+            component="img"
+            src={orderDetails.displayImage}
+            alt="image"
+            height="120"
+            width="120"
+            loading="lazy"
+            sx={{
+              objectFit: "contain",
+              borderRadius: "8px",
+              aspectRatio: "4/3",
+            }}
+            onError={(e) => {
+              e.target.onerror = null;
+              e.target.src =
+                "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d3/Stadtbild_M%C3%BCnchen.jpg/2560px-Stadtbild_M%C3%BCnchen.jpg";
+            }}
+          />
+        </CardActionArea>
       </Box>
     </Box>
   );
