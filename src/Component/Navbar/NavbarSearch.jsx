@@ -9,7 +9,11 @@ import EditIcon from "@mui/icons-material/Edit";
 import PersonIcon from "@mui/icons-material/Person";
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 import { Typography, Badge } from "@mui/material";
-import { createSearchParams, useNavigate, useSearchParams } from "react-router-dom";
+import {
+  createSearchParams,
+  useNavigate,
+  useSearchParams,
+} from "react-router-dom";
 import NavbarAuthentication from "./NavbarAuthentication";
 import NavbarCart from "./NavbarCart";
 import NavbarLocation from "./NavbarLocation";
@@ -60,21 +64,19 @@ const SearchIconWrapper = styled("div")(({ theme }) => ({
 }));
 
 function NavbarSearch() {
-
-  const [searchText, setSearchText] = useState('');
+  const [searchText, setSearchText] = useState("");
 
   const navigate = useNavigate();
 
   function handleInput(e) {
     // if(!searchText) return navigate(-1);
-    if(e.key === 'Enter') {
+    if (e.key === "Enter") {
       navigate({
         pathname: "/searchB",
         search: createSearchParams({
-            search: searchText
-        }).toString()
-    });
-
+          search: searchText,
+        }).toString(),
+      });
     } else {
       setSearchText(e.target.value);
     }
@@ -82,20 +84,21 @@ function NavbarSearch() {
 
   // console.log('searchparams', searchParams.get('search'));
 
-
   return (
     <>
-      <Toolbar
-        style={{
+      {/* <Toolbar
+        sx={{
           width: "100%",
           padding: "auto 0",
         }}
-      >
+      > */}
         {/* search box and icon */}
         <Toolbar
-          style={{
+          sx={{
             flexGrow: 1,
-            padding: "auto 0",
+            width: {lg: "", md: "", sm: "100%", xs: "100%"},
+            padding: {lg: "auto 0", md: "auto 0", sm: "0", xs: "0"},
+            order: {lg: "1", md: "1", sm: "2", xs: "2"},
           }}
         >
           <Search
@@ -121,14 +124,24 @@ function NavbarSearch() {
             </SearchIconWrapper>
           </Search>
         </Toolbar>
+      {/* </Toolbar> */}
 
-        {/* for location, login, cart */}
+      {/* for location, login, cart */}
+      <Toolbar
+        sx={{
+          width: "auto",
+          marginLeft: "auto",
+          padding: "auto 0",
+          order: "1"
+        }}
+      >
         <Box
-          style={{
+          sx={{
             display: "flex",
-            justifyContent: "space-between",
-            minWidth: "200px",
+            justifyContent: {lg: "space-between", md: "space-between", sm: "flex-end", xs: "flex-end"},
+            minWidth: {lg: "200px", md: "200px", md: "", sm: ""},
             alignItems: "center",
+            // order: "1",
           }}
         >
           {/* Navbar Location/Pincode component */}
@@ -139,7 +152,6 @@ function NavbarSearch() {
 
           {/* Navbar Cart */}
           <NavbarCart />
-
         </Box>
       </Toolbar>
     </>

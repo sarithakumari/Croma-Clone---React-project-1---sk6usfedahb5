@@ -24,7 +24,7 @@ export default function Navbar() {
     <Box sx={{ flexGrow: 1 }}>
       <AppBar position="fixed" style={{ backgroundColor: "black" }} sx={{"& .toastPosition": {bottom: "3.5rem", zIndex: "9999"}}}>
         <Container maxWidth="lg">
-          <Toolbar style={{ width: "100%", padding: "0" }}>
+          <Toolbar sx={{ width: "100%", padding: "0", flexWrap: "wrap" }}>
             <NavbarLogo />
 
             <ToastContainer

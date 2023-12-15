@@ -12,8 +12,8 @@ function NavbarLocation() {
   return (
     <>
       <Box
-        style={{
-          display: "flex",
+        sx={{
+          display: {lg: "flex", md: "flex", sm: "none", xs: "none"},
           justifyContent: "space-between",
           alignItems: "center",
           marginRight: "20px",

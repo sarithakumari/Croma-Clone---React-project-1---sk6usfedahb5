@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import Toolbar from "@mui/material/Toolbar";
 import Typography from "@mui/material/Typography";
-import KeyboardArrowRightIcon from '@mui/icons-material/KeyboardArrowRight';
+import KeyboardArrowRightIcon from "@mui/icons-material/KeyboardArrowRight";
 import { Menu, MenuItem } from "@mui/material";
 import { categories } from "../../../public/categories";
 import { Link } from "@mui/material";
@@ -10,11 +10,11 @@ import styled from "@emotion/styled";
 import NavbarMenuButton from "./NavbarMenuButton";
 
 const StyledMenu = styled(Menu)(({ theme }) => ({
-  '& .MuiList-root': {
+  "& .MuiList-root": {
     backgroundColor: "#090909",
     color: "white",
   },
-}))
+}));
 
 // const StyledMenuItem = styled(MenuItem)(({ theme })=> ({
 //   '&:hover .MuiTypography-root': {
@@ -23,11 +23,11 @@ const StyledMenu = styled(Menu)(({ theme }) => ({
 // }))
 
 const StyledLink = styled(Link)(({ theme }) => ({
-  '&:hover .MuiButtonBase-root': {
+  "&:hover .MuiButtonBase-root": {
     backgroundColor: "#12DAA8",
-    color: "black"
-  }
-}))
+    color: "black",
+  },
+}));
 
 function NavbarMenu() {
   // const [menuClick, setMenuClick] = useState(false);
@@ -49,11 +49,17 @@ function NavbarMenu() {
 
   return (
     <Toolbar
-      style={{
+      sx={{
         padding: "auto 0px",
+        display: { lg: "flex", md: "flex", sm: "none", xs: "none" },
+        order: {lg: "1", md: "1", sm: "", xs: "" }
       }}
     >
-      <NavbarMenuButton key="navbarmenuBtn" open={open}  handleMenuOpen={handleMenuOpen} />
+      <NavbarMenuButton
+        key="navbarmenuBtn"
+        open={open}
+        handleMenuOpen={handleMenuOpen}
+      />
       {/* <IconButton
         size="large"
         edge="start"
@@ -68,9 +74,10 @@ function NavbarMenu() {
 
       {/* <MainMenu anchorEl={anchorEl} open={open} onClose={handleMenuClose} /> */}
 
-      <StyledMenu anchorEl={anchorEl} open={open} onClose={handleMenuClose}  >
-
-        <Typography style={{height: "60px", padding: "1rem"}}>Shop by Categories</Typography>
+      <StyledMenu anchorEl={anchorEl} open={open} onClose={handleMenuClose}>
+        <Typography style={{ height: "60px", padding: "1rem" }}>
+          Shop by Categories
+        </Typography>
 
         {categories.map((category) => (
           // no need of link element here as navigation to other route can be handled in handleMenuClose function
@@ -80,31 +87,29 @@ function NavbarMenu() {
             to={`/${category.path}`}
             style={{ textDecoration: "none", color: "inherit" }}
           >
-            <MenuItem onClick={handleMenuClose}
+            <MenuItem
+              onClick={handleMenuClose}
               style={{
-              display: "flex",
-              width: "400px",
-              height: "40px",
-              alignItems: "center",
-              justifyContent: "space-between",
-                }}>
-              <Typography >{category.label}</Typography>
-              <div style={{display: "flex" }}>
-                <KeyboardArrowRightIcon  />
+                display: "flex",
+                width: "400px",
+                height: "40px",
+                alignItems: "center",
+                justifyContent: "space-between",
+              }}
+            >
+              <Typography>{category.label}</Typography>
+              <div style={{ display: "flex" }}>
+                <KeyboardArrowRightIcon />
               </div>
             </MenuItem>
           </StyledLink>
         ))}
-
       </StyledMenu>
-
     </Toolbar>
   );
 }
 
 export default NavbarMenu;
-
-
 
 /*
 NOT necessary:
@@ -114,4 +119,4 @@ top brands
 croma store locator
 gift card
 
-*/ 
+*/
