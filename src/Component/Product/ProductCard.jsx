@@ -39,7 +39,7 @@ function ProductCard({ product }) {
       ).length > 0
         ? true
         : false;
-    console.log(isWishlisted);
+    // console.log(isWishlisted);
     setWishlist(isWishlisted)
   }, []);
 
@@ -48,11 +48,11 @@ function ProductCard({ product }) {
       handleOpenAuthDialog();
     } else {
       const data = await addProductToWishlist(product._id, userToken);
-      console.log(data);
+      // console.log(data);
       if (data.status === "success") {
         handleSetWishlist(true);
         toast.success(data.message);
-        console.log("wishlisted ", product._id);
+        // console.log("wishlisted ", product._id);
       }
     }
   }
@@ -63,7 +63,7 @@ function ProductCard({ product }) {
       handleSetWishlist(false);
       toast.success(data.message);
     }
-    console.log("removed ", product._id);
+    // console.log("removed ", product._id);
   }
 
   function handleSetWishlist(value) {
@@ -76,7 +76,7 @@ function ProductCard({ product }) {
     <Toolbar
       sx={{
         maxWidth: 350,
-        height: 500,
+        height: 420,
         flexDirection: "column",
         bgcolor: "black",
         borderRadius: 1.5,
@@ -88,8 +88,8 @@ function ProductCard({ product }) {
       <Box
         component="div"
         sx={{
-          height: 300,
-          width: 300,
+          height: 250,
+          width: 250,
           m: 1,
           position: "relative",
           padding: "0.5rem 1rem",

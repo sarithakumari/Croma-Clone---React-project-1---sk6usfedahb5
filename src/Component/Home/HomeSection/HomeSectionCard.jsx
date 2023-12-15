@@ -87,7 +87,7 @@ function HomeSectionCard({ cardInfo }) {
         component="div"
         sx={{
           height: { lg: 200, md: 200, sm: 100, xs: 100 },
-          width: { lg: 200, md: 200, sm: 100, xs: 100 },
+          // width: { lg: 200, md: 200, sm: 100, xs: 100 },
           m: 1,
           position: "relative",
         }}
