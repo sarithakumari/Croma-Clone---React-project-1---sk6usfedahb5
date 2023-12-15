@@ -20,7 +20,7 @@ function SingleProductGallery({ images, productId }) {
 
   useEffect(() => {
     const isWishlisted =
-      wishlists?.data.items.filter(
+      wishlists?.data?.items?.filter(
         (item, index) => item.products._id === productId
       ).length > 0
         ? true

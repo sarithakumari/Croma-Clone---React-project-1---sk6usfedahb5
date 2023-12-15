@@ -2,7 +2,6 @@ import React from "react";
 import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
 import HomeSectionCard from "./HomeSectionCard";
-import ProductCard from "../../Product/ProductCard";
 import { Box } from "@mui/material";
 
 const responsive = {

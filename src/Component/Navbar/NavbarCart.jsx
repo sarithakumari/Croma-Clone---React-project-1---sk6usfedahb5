@@ -39,7 +39,7 @@ function NavbarCart() {
   return (
     <Box
       style={{
-        marginRight: "20px",
+        // marginRight: "20px",
         cursor: "pointer",
         position: "relative",
       }}

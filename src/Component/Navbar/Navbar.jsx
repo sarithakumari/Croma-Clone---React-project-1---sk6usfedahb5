@@ -7,7 +7,6 @@ import NavbarSearch from "./NavbarSearch";
 import NavbarLogo from "./NavbarLogo";
 import Container from "@mui/material/Container";
 import { useLocation } from "react-router-dom";
-import { Button, ButtonGroup } from "@mui/material";
 import NavbarCheckoutButtons from "../Checkout/NavbarCheckoutButtons";
 
 import { ToastContainer, toast } from "react-toastify";
@@ -22,7 +21,18 @@ export default function Navbar() {
 
   return (
     <Box sx={{ flexGrow: 1 }}>
-      <AppBar position="fixed" style={{ backgroundColor: "black" }} sx={{"& .toastPosition": {left: {lg: "50%", md: "50%", sm: "3rem", xs: "2.8rem"},bottom: "3.5rem", zIndex: "9999", width: "300px"}}}>
+      <AppBar
+        position="fixed"
+        sx={{
+          "& .toastPosition": {
+            left: { lg: "50%", md: "50%", sm: "3rem", xs: "2.8rem" },
+            bottom: "3.5rem",
+            zIndex: "9999",
+            width: "300px",
+          },
+          backgroundColor: "black"
+        }}
+      >
         <Container maxWidth="lg">
           <Toolbar sx={{ width: "100%", padding: "0", flexWrap: "wrap" }}>
             <NavbarLogo />
@@ -51,6 +61,3 @@ export default function Navbar() {
     </Box>
   );
 }
-
-/* {renderMobileMenu} */
-/* {renderMenu} */

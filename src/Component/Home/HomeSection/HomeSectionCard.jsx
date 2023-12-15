@@ -1,7 +1,6 @@
 import React, { useContext, useEffect, useState } from "react";
 import {
   Box,
-  Card,
   CardActionArea,
   CardContent,
   CardMedia,
@@ -9,7 +8,6 @@ import {
   Toolbar,
   Typography,
 } from "@mui/material";
-import FavoriteBorderOutlinedIcon from "@mui/icons-material/FavoriteBorderOutlined";
 import styled from "@emotion/styled";
 import { useNavigate } from "react-router-dom";
 import CromaContext from "../../../ContextAPI/CromaContext";

@@ -4,22 +4,10 @@ import Box from "@mui/material/Box";
 import { styled, alpha } from "@mui/material/styles";
 import InputBase from "@mui/material/InputBase";
 import SearchIcon from "@mui/icons-material/Search";
-import LocationOnIcon from "@mui/icons-material/LocationOn";
-import EditIcon from "@mui/icons-material/Edit";
-import PersonIcon from "@mui/icons-material/Person";
-import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
-import { Typography, Badge } from "@mui/material";
-import {
-  createSearchParams,
-  useNavigate,
-  useSearchParams,
-} from "react-router-dom";
+import { createSearchParams, useNavigate } from "react-router-dom";
 import NavbarAuthentication from "./NavbarAuthentication";
 import NavbarCart from "./NavbarCart";
 import NavbarLocation from "./NavbarLocation";
-// import { teal } from '@mui/material/colors';
-
-// const color = teal['A400'];
 
 const Search = styled("div")(({ theme }) => ({
   position: "relative",
@@ -92,38 +80,38 @@ function NavbarSearch() {
           padding: "auto 0",
         }}
       > */}
-        {/* search box and icon */}
-        <Toolbar
-          sx={{
-            flexGrow: 1,
-            width: {lg: "", md: "", sm: "100%", xs: "100%"},
-            padding: {lg: "auto 0", md: "auto 0", sm: "0", xs: "0"},
-            order: {lg: "1", md: "1", sm: "2", xs: "2"},
+      {/* search box and icon */}
+      <Toolbar
+        sx={{
+          flexGrow: 1,
+          width: { lg: "", md: "", sm: "100%", xs: "100%" },
+          padding: { lg: "auto 0", md: "auto 0", sm: "0", xs: "0" },
+          order: { lg: "1", md: "1", sm: "2", xs: "2" },
+        }}
+      >
+        <Search
+          style={{
+            backgroundColor: "white",
+            color: "black",
+            // width: "100%",
           }}
         >
-          <Search
+          <StyledInputBase
+            placeholder="What are you looking for ?"
+            inputProps={{ "aria-label": "search" }}
+            // onChange={(e)=>setSearchText(e.target.value)}
+            onKeyUp={handleInput}
             style={{
-              backgroundColor: "white",
-              color: "black",
               // width: "100%",
+              padding: "0px",
             }}
-          >
-            <StyledInputBase
-              placeholder="What are you looking for ?"
-              inputProps={{ "aria-label": "search" }}
-              // onChange={(e)=>setSearchText(e.target.value)}
-              onKeyUp={handleInput}
-              style={{
-                width: "100%",
-                padding: "0px",
-              }}
-            />
+          />
 
-            <SearchIconWrapper sx={{ right: "0px", top: "0px" }}>
-              <SearchIcon />
-            </SearchIconWrapper>
-          </Search>
-        </Toolbar>
+          <SearchIconWrapper sx={{ right: "0px", top: "0px" }}>
+            <SearchIcon />
+          </SearchIconWrapper>
+        </Search>
+      </Toolbar>
       {/* </Toolbar> */}
 
       {/* for location, login, cart */}
@@ -132,14 +120,19 @@ function NavbarSearch() {
           width: "auto",
           marginLeft: "auto",
           padding: "auto 0",
-          order: "1"
+          order: "1",
         }}
       >
         <Box
           sx={{
             display: "flex",
-            justifyContent: {lg: "space-between", md: "space-between", sm: "flex-end", xs: "flex-end"},
-            minWidth: {lg: "200px", md: "200px", md: "", sm: ""},
+            justifyContent: {
+              lg: "space-between",
+              md: "space-between",
+              sm: "flex-end",
+              xs: "flex-end",
+            },
+            minWidth: { lg: "200px", md: "200px", md: "", sm: "" },
             alignItems: "center",
             // order: "1",
           }}
@@ -159,4 +152,3 @@ function NavbarSearch() {
 }
 
 export default NavbarSearch;
-//<ShoppingCartIcon />

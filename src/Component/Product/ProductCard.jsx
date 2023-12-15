@@ -39,7 +39,7 @@ function ProductCard({ product }) {
       ).length > 0
         ? true
         : false;
-    // console.log(isWishlisted);
+    console.log(isWishlisted);
     setWishlist(isWishlisted)
   }, []);
 
