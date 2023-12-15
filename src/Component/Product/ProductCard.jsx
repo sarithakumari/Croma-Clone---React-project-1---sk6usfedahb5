@@ -34,12 +34,12 @@ function ProductCard({ product }) {
 
   useEffect(() => {
     const isWishlisted =
-      wishlists?.data.items.filter(
+      wishlists?.data?.items?.filter(
         (item, index) => item.products._id === product._id
       ).length > 0
         ? true
         : false;
-    // console.log(isWishlisted);
+    console.log(isWishlisted);
     setWishlist(isWishlisted)
   }, []);
 
