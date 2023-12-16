@@ -31,7 +31,7 @@ function Location() {
     fetchLocation();
   }
 
-  console.log(pincode);
+  // console.log(pincode);
 
   return (
     <Box flexGrow={1}>
