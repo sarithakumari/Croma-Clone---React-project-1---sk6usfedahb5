@@ -69,15 +69,20 @@ function OrdersCard({ item }) {
       sx={{
         display: "flex",
         flexWrap: "wrap",
-        padding: "2rem 0 0 14rem",
+        padding: {
+          lg: "2rem 0 0 16rem",
+          md: "2rem 0 0 16rem",
+          sm: "12rem 0 0 2rem",
+          xs: "12rem 0 0 2rem",
+        },
         position: "relative",
-        margin: "2rem 0",
-        alignItems: "center",
-        justifyContent: "space-between",
-        minWidth: "400px",
+        margin: "1rem 0",
+        // alignItems: "center",
+        // justifyContent: "space-between",
+        width: "100%",
       }}
     >
-      <Box component="div">
+      <Box component="div" sx={{ width: "100%" }}>
         <Stack spacing={2}>
           <CardActionArea
             disableRipple
@@ -85,7 +90,7 @@ function OrdersCard({ item }) {
           >
             <Typography
               component="p"
-              variant="h6"
+              // variant="h6"
               sx={{
                 overflow: "hidden",
                 textOverflow: "ellipsis",
@@ -93,52 +98,68 @@ function OrdersCard({ item }) {
                 WebkitBoxOrient: "vertical",
                 WebkitLineClamp: "2",
                 fontWeight: "500",
-                maxWidth: "600px"
+                fontSize: { lg: "18px", md: "18px", sm: "14px", xs: "12px" },
+                width: "100%",
               }}
             >
               {orderDetails.name}
             </Typography>
           </CardActionArea>
 
-          <Typography component="p" sx={{ fontSize: "1rem" }}>
+          <Typography
+            component="p"
+            sx={{
+              fontSize: { lg: "16px", md: "16px", sm: "12px", xs: "12px" },
+            }}
+          >
             Product Id: {orderDetails._id}
           </Typography>
 
-          <Box component="div" sx={{ display: "flex", alignItems: "center" }}>
+          <Box component="div" sx={{ width: "100%" }}>
             <Box
               sx={{
                 display: "flex",
                 alignItems: "center",
                 marginRight: "3rem",
-                borderRadius: "8px"
+                // borderRadius: "8px",
               }}
             >
               <Typography
                 component="p"
-                sx={{ marginRight: "2rem", fontSize: "1.1rem" }}
+                sx={{
+                  marginRight: "2rem",
+                  fontSize: { lg: "16px", md: "16px", sm: "12px", xs: "12px" },
+                }}
               >
                 ₹{orderDetails.price.toFixed(2)}
               </Typography>
               <Typography
                 component="p"
-                sx={{ textDecoration: "line-through", fontSize: "1.1rem" }}
+                sx={{
+                  textDecoration: "line-through",
+                  fontSize: { lg: "16px", md: "16px", sm: "12px", xs: "12px" },
+                }}
               >
                 ₹{(orderDetails.price * 1.15).toFixed(2)}
               </Typography>
             </Box>
-
-            <Box component="div">
-              <StyledRating
-                value={orderDetails.ratings}
-                readOnly
-                precision={0.1}
-                size="small"
-              />
-            </Box>
+          </Box>
+          <Box component="div">
+            <StyledRating
+              value={orderDetails.ratings}
+              readOnly
+              precision={0.1}
+              size="small"
+            />
           </Box>
 
           <Box component="div">
-            <Typography component="p" sx={{ fontSize: "1rem" }}>
+            <Typography
+              component="p"
+              sx={{
+                fontSize: { lg: "16px", md: "16px", sm: "12px", xs: "12px" },
+              }}
+            >
               Ordered On: {orderDate}
             </Typography>
           </Box>
@@ -157,6 +178,9 @@ function OrdersCard({ item }) {
             >
               <AccordionSummary
                 expandIcon={<ExpandMoreIcon sx={{ color: "#12daa8" }} />}
+                sx={{
+                  fontSize: { lg: "16px", md: "16px", sm: "12px", xs: "12px" },
+                }}
               >
                 Delivered At:
               </AccordionSummary>
@@ -186,7 +210,7 @@ function OrdersCard({ item }) {
               backgroundColor: "#12daa8",
             },
             display: "flex",
-            flexDirection: { lg: "column", md: "column", sm: "row", sx: "row" },
+            flexDirection: "column",
             // alignItems: "center",
             // justifyContent: "space-around"
           }}
@@ -237,15 +261,23 @@ function OrdersCard({ item }) {
 
       <Box
         component="div"
-        sx={{ position: "absolute", top: "2rem", left: "2rem", borderRadius: "8px" }}
+        sx={{
+          position: "absolute",
+          top: "2rem",
+          left: "2rem",
+          borderRadius: "8px",
+        }}
       >
-        <CardActionArea disableRipple onClick={()=>navigate(`/product/${orderDetails._id}`)}>
+        <CardActionArea
+          disableRipple
+          onClick={() => navigate(`/product/${orderDetails._id}`)}
+        >
           <CardMedia
             component="img"
             src={orderDetails.displayImage}
             alt="image"
-            height="120"
-            width="120"
+            height="150"
+            width="150"
             loading="lazy"
             sx={{
               objectFit: "contain",

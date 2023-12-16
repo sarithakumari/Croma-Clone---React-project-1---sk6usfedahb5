@@ -35,9 +35,8 @@ function Orders() {
   //   console.log(localTime);
 
   return (
-    <Box flexGrow={1} sx={{ paddingTop: "6rem" }}>
+    <Box flexGrow={1} sx={{ paddingTop: "6rem", width: "100vw" }}>
       <Container maxWidth="lg">
-        <>
           <Typography
             variant="h5"
             component="p"
@@ -46,13 +45,11 @@ function Orders() {
             My Orders
           </Typography>
           <Divider sx={{ borderColor: "#353535" }} />
-
           <Box sx={{ marginTop: 1, width: "100%" }}>
             {orders?.map((item, index) => (
               <OrdersCard key={index} item={item} />
             ))}
           </Box>
-        </>
       </Container>
     </Box>
   );

@@ -4,6 +4,7 @@ import {
   Button,
   CardActionArea,
   CardMedia,
+  Divider,
   Rating,
   Stack,
   Typography,
@@ -56,13 +57,21 @@ function WishlistCard({ item }) {
       id="desc-btns"
       sx={{
         display: "flex",
-        // flexWrap: "wrap",
-        padding: "2rem 0 0 14rem",
+        flexWrap: "wrap",
+        padding: {
+          lg: "2rem 0 0 16rem",
+          md: "2rem 0 0 16rem",
+          sm: "12rem 0 0 2rem",
+          xs: "12rem 0 0 2rem",
+        },
+        // padding: "2rem 0 0 14rem",
+        // padding: "12rem 0 0 2rem",
         position: "relative",
-        margin: "2rem 0",
+        margin: "1rem 0",
+        width: "100%",
       }}
     >
-      <Box component="div" id="desc" sx={{}}>
+      <Box component="div" id="desc" sx={{ width: "100%" }}>
         <Stack spacing={2}>
           <CardActionArea
             disableRipple
@@ -70,7 +79,7 @@ function WishlistCard({ item }) {
           >
             <Typography
               component="p"
-              variant="h6"
+              // variant="h6"
               sx={{
                 overflow: "hidden",
                 textOverflow: "ellipsis",
@@ -78,16 +87,37 @@ function WishlistCard({ item }) {
                 WebkitBoxOrient: "vertical",
                 WebkitLineClamp: "2",
                 fontWeight: "500",
+                fontSize: { lg: "18px", md: "18px", sm: "14px", xs: "12px" },
+                width: "100%",
               }}
             >
               {item.products.name}
             </Typography>
           </CardActionArea>
 
-          <Typography component="p" sx={{ fontSize: "1rem" }}>
+          <Typography
+            component="p"
+            sx={{
+              fontSize: { lg: "16px", md: "16px", sm: "12px", xs: "12px" },
+            }}
+          >
             Product Id: {item.products._id}
           </Typography>
-          <Box component="div" sx={{ display: "flex", alignItems: "center" }}>
+
+          <Box
+            component="div"
+            sx={{
+              // display: "flex",
+              // alignItems: "center",
+              width: "100%",
+              // flexDirection: {
+              //   lg: "row",
+              //   md: "row",
+              //   sm: "column",
+              //   xs: "column",
+              // },
+            }}
+          >
             <Box
               sx={{
                 display: "flex",
@@ -97,25 +127,31 @@ function WishlistCard({ item }) {
             >
               <Typography
                 component="p"
-                sx={{ marginRight: "2rem", fontSize: "1.1rem" }}
+                sx={{
+                  marginRight: "2rem",
+                  fontSize: { lg: "16px", md: "16px", sm: "12px", xs: "12px" },
+                }}
               >
                 ₹{item.products.price.toFixed(2)}
               </Typography>
               <Typography
                 component="p"
-                sx={{ textDecoration: "line-through", fontSize: "1.1rem" }}
+                sx={{
+                  textDecoration: "line-through",
+                  fontSize: { lg: "16px", md: "16px", sm: "12px", xs: "12px" },
+                }}
               >
                 ₹{(item.products.price * 1.15).toFixed(2)}
               </Typography>
             </Box>
-            <Box component="div">
-              <StyledRating
-                value={item.products.ratings}
-                readOnly
-                precision={0.1}
-                size="small"
-              />
-            </Box>
+          </Box>
+          <Box component="div">
+            <StyledRating
+              value={item.products.ratings}
+              readOnly
+              precision={0.1}
+              size="small"
+            />
           </Box>
 
           <Box
@@ -142,6 +178,7 @@ function WishlistCard({ item }) {
                 fontWeight: "700",
                 minWidth: "200px",
                 marginRight: 2,
+                marginBottom: 2,
               }}
               onClick={handleAddToCart}
             >
@@ -159,6 +196,7 @@ function WishlistCard({ item }) {
                 fontWeight: "700",
                 minWidth: "200px",
                 marginRight: 2,
+                marginBottom: 2,
               }}
               onClick={handleRemoveProductFromWishlist}
             >
@@ -166,6 +204,8 @@ function WishlistCard({ item }) {
             </Button>
           </Box>
         </Stack>
+
+        <Divider sx={{ borderColor: "#353535" }} />
       </Box>
 
       <Box
@@ -180,8 +220,8 @@ function WishlistCard({ item }) {
             component="img"
             src={item.products.displayImage}
             alt="image"
-            height="120"
-            width="120"
+            height="150"
+            width="150"
             loading="lazy"
             sx={{
               objectFit: "contain",
