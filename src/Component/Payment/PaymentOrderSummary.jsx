@@ -73,7 +73,7 @@ function PaymentOrderSummary() {
             component="div"
             sx={{
               display: "flex",
-              justifyContent: "space-around",
+              justifyContent: "space-between",
               alignItems: "center",
               marginTop: "1rem",
               padding: "0 1rem 0",

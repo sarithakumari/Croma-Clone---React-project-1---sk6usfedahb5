@@ -62,8 +62,8 @@ function Payment() {
       sx={{
         backgroundColor: "#f9f9f9!important",
         color: "black",
-        width: "100vw",
-        height: "100vh",
+        width: "100%",
+        // height: "100vh",
         paddingTop: "6rem",
         paddingBottom: "3rem",
       }}

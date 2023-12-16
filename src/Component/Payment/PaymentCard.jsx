@@ -24,7 +24,7 @@ function PaymentCard() {
           Card Number
         </Typography>
         <TextField
-          fullWidth
+          // fullWidth
           label="Card Number"
           variant="filled"
           sx={{minWidth: "300px"}}
