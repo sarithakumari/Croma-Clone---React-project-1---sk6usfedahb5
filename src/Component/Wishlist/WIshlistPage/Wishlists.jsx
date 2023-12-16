@@ -56,7 +56,7 @@ function Wishlists() {
           </Typography>
           <Divider sx={{borderColor: "#353535"}} />
           <Box sx={{ marginTop: 1, width: "100%" }}>
-            {wishlists?.data?.items?.map((item, index) => (
+            {wishlists?.data?.items?.toReversed().map((item, index) => (
               <WishlistCard key={index} item={item} />
             ))}
           </Box>

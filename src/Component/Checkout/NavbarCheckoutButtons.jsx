@@ -17,6 +17,7 @@ function NavbarCheckoutButtons() {
         marginLeft: "auto",
         border: "1px solid #353535",
         borderRadius: "5px",
+        order: "1"
       }}
     >
       <Box

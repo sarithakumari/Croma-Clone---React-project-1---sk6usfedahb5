@@ -16,7 +16,7 @@ function Orders() {
   useEffect(() => {
     getOrderHistory(userToken).then((data) => {
       if (data?.status === "success") {
-        setOrders(data?.data);
+        setOrders(data?.data.toReversed());
       }
     });
   }, []);

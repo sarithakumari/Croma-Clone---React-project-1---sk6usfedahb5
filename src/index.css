@@ -5,6 +5,22 @@
   font-family: "Roboto","Helvetica","Arial",sans-serif;
 }
 
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: #353535; 
+}
+
+::-webkit-scrollbar-thumb {
+  background: whitesmoke;
+  border-radius: 8px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #12daa8; 
+}
 /* body{ */
   /* background-color: black; */
   /* color: #fff; */
