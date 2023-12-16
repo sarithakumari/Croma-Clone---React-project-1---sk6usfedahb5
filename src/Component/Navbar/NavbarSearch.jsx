@@ -102,7 +102,7 @@ function NavbarSearch() {
             // onChange={(e)=>setSearchText(e.target.value)}
             onKeyUp={handleInput}
             style={{
-              // width: "100%",
+              width: "100%",
               padding: "0px",
             }}
           />
