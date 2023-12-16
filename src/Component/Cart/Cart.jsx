@@ -27,7 +27,7 @@ function Cart() {
       navigate('/');
       handleOpenAuthDialog();
     }
-  }, [])
+  }, [userToken])
 
   function handleClearCart() {
     clearCartApi(userToken);
