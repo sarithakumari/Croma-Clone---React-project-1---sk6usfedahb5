@@ -49,8 +49,9 @@ function Cart() {
         sx={{
           backgroundColor: "#f9f9f9!important",
           color: "black",
-          width: "100vw",
+          width: "100%",
           paddingTop: "6rem",
+          paddingBottom: "6rem"
         }}
       >
         <Container maxWidth="lg">

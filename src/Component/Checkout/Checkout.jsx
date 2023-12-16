@@ -76,7 +76,7 @@ function Checkout() {
       component="div"
       sx={{
         paddingTop: "6rem",
-        width: "100vw",
+        width: "100%",
         color: "black",
         backgroundColor: "#f9f9f9!important",
       }}
@@ -95,7 +95,7 @@ function Checkout() {
         >
           <Stack>
             {/* name phone no */}
-            <Box component="div">
+            <Box component="div" sx={{marginBottom: "1rem"}}>
               <Typography component="p" variant="h6">
                 Your Details:
               </Typography>
@@ -105,7 +105,7 @@ function Checkout() {
                   sm={12}
                   lg={6}
                   md={6}
-                  sx={{ display: "flex", justifyContent: "center" }}
+                  sx={{ display: "flex", justifyContent: "center", }}
                 >
                   <Box component="div" minWidth="400px">
                     <TextField
@@ -138,6 +138,7 @@ function Checkout() {
                       error={phoneError}
                       helperText={phoneError ? "Field Required" : ""}
                       onChange={(e) => setPhone(e.target.value)}
+                      sx={{marginTop: {lg: "0", md: "0", sm: "1rem", xs: "1rem"}}}
                     />
                   </Box>
                 </Grid>
@@ -149,7 +150,7 @@ function Checkout() {
               <Typography component="p" variant="h6">
                 Address Details:
               </Typography>
-              <Grid container sx={{ padding: "1rem" }}>
+              <Grid container sx={{ padding: "1rem", marginBottom: "1rem" }}>
                 <Grid
                   item
                   sm={12}
@@ -187,12 +188,13 @@ function Checkout() {
                       error={pincodeError}
                       helperText={pincodeError ? "Field Required" : ""}
                       onChange={handleSetAddress}
+                      sx={{marginTop: {lg: "0", md: "0", sm: "1rem", xs: "1rem"}}}
                     />
                   </Box>
                 </Grid>
               </Grid>
 
-              <Grid container sx={{ padding: "1rem" }}>
+              <Grid container sx={{ padding: "1rem", marginBottom: "1rem" }}>
                 <Grid
                   item
                   sm={12}
@@ -230,12 +232,13 @@ function Checkout() {
                       error={landmarkError}
                       helperText={landmarkError ? "Field Required" : ""}
                       onChange={handleSetAddress}
+                      sx={{marginTop: {lg: "0", md: "0", sm: "1rem", xs: "1rem"}}}
                     />
                   </Box>
                 </Grid>
               </Grid>
 
-              <Grid container sx={{ padding: "1rem" }}>
+              <Grid container sx={{ padding: "1rem", marginBottom: "1rem"  }}>
                 <Grid
                   item
                   sm={12}
@@ -266,7 +269,7 @@ function Checkout() {
                 </Grid>
               </Grid>
 
-              <Grid container sx={{ padding: "1rem" }}>
+              <Grid container sx={{ padding: "1rem", marginBottom: "1rem"  }}>
                 <Grid
                   item
                   sm={12}
@@ -304,6 +307,7 @@ function Checkout() {
                       error={cityError}
                       helperText={cityError ? "Field Required" : ""}
                       onChange={handleSetAddress}
+                      sx={{marginTop: {lg: "0", md: "0", sm: "1rem", xs: "1rem"}}}
                     />
                   </Box>
                 </Grid>
@@ -400,6 +404,7 @@ function Checkout() {
                   borderRadius: "8px",
                   backgroundColor: "#12daa8",
                   color: "black",
+                  marginBottom: "1rem"
                 }}
                 disabled={!noError}
                 onClick={handleSubmit}
