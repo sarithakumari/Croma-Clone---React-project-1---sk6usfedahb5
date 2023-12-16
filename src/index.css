@@ -14,12 +14,13 @@
 }
 
 ::-webkit-scrollbar-thumb {
-  background: whitesmoke;
+  
+  background: #12daa8; 
   border-radius: 8px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: #12daa8; 
+  background: #62e7c6;
 }
 /* body{ */
   /* background-color: black; */
