@@ -72,9 +72,9 @@ function ProductFooter({ productDetails }) {
               component="div"
               sx={{
                 padding: "15px 0",
-                display: "flex",
                 alignItems: "center",
                 height: "70px",
+                display: {lg: "flex", md: "flex", sm: "none", xs: "none"}
               }}
             >
               <CardMedia
@@ -109,15 +109,16 @@ function ProductFooter({ productDetails }) {
                 padding: "15px 0",
                 display: "flex",
                 alignItems: "center",
+                justifyContent: {lg: "", md: "", sm: "space-around", xs: "space-around"},
                 height: "70px",
-                width: "20rem",
+                width: {lg: "20rem", md: "20rem", sm: "100%", xs: "100%"},
                 margin: "auto",
               }}
             >
               <Button
                 variant="contained"
                 sx={{
-                  width: "9rem",
+                  width: {lg: "9rem", md: "9rem", sm: "8rem", xs: "8rem"},
                   textTransform: "capitalize",
                   backgroundColor: "#12daa8",
                   textAlign: "center",
@@ -138,7 +139,7 @@ function ProductFooter({ productDetails }) {
               <Button
                 variant="contained"
                 sx={{
-                  width: "9rem",
+                  width: {lg: "9rem", md: "9rem", sm: "8rem", xs: "8rem"},
                   textTransform: "capitalize",
                   backgroundColor: "#353535",
                   textAlign: "center",

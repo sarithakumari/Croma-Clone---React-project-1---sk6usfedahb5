@@ -15,16 +15,17 @@ function ProductDetails({
   productFeatures,
 }) {
   return (
-    <div
+    <Box
+    component='div'
       id="productDetails"
-      style={{
-        marginTop: "5rem",
-        marginLeft: "2rem",
+      sx={{
+        marginTop: {lg: "5rem", md: "5rem", sm: "3rem", xs: "2rem"},
+        marginLeft: {lg: "2rem", md: "2rem", sm: "0", xs: "0"},
         // border: "1px solid white",
         padding: "0 10px 10px",
       }}
     >
-      <Typography variant="h5" component="div">
+      <Typography component="div" sx={{fontWeight: "500", fontSize: {lg: "2rem", md: "1.75rem", sm: "1.5rem", xs: "1rem"}}}>
         {productDetails?.name}
       </Typography>
 
@@ -41,7 +42,7 @@ function ProductDetails({
       >
         {productRatingReviews ? (
           <>
-            <Typography component="div" fontSize="14px">
+            <Typography component="div" sx={{fontSize: {lg: "14px", md: "14px", sm: "12px", xs: "10px"}}}>
               {productDetails?.ratings.toFixed(1)}
             </Typography>
 
@@ -49,9 +50,8 @@ function ProductDetails({
 
             <Link href="#productReviews" color="inherit">
               <Typography
-                variant="body2"
                 component="div"
-                sx={{ textDecoration: "underline", marginLeft: "5px" }}
+                sx={{ textDecoration: "underline", marginLeft: "5px", fontSize: {lg: "14px", md: "14px", sm: "12px", xs: "10px"} }}
               >
                 ({productRatingReviews?.length} Ratings &{" "}
                 {productRatingReviews?.length} Reviews)
@@ -62,7 +62,7 @@ function ProductDetails({
           <Typography
             variant="body2"
             component="div"
-            sx={{ textDecoration: "underline", marginLeft: "5px" }}
+            sx={{ textDecoration: "underline", marginLeft: "5px", fontSize: {lg: "14px", md: "14px", sm: "12px", xs: "10px"} }}
           >
             (Be the First One to Review)
           </Typography>
@@ -71,11 +71,11 @@ function ProductDetails({
 
       <Box component="div" id="productPrice">
         <Box component="div">
-          <Typography variant="h5" component="span" sx={{ fontWeight: "500" }}>
+          <Typography component="span" sx={{ fontWeight: "500", fontSize: {lg: "2rem", md: "1.75rem", sm: "1.5rem", xs: "1rem"} }}>
             {" "}
             ₹{" "}
           </Typography>
-          <Typography variant="h5" component="span" sx={{ fontWeight: "500" }}>
+          <Typography component="span" sx={{ fontWeight: "500", fontSize: {lg: "2rem", md: "1.75rem", sm: "1.5rem", xs: "1rem"} }}>
             {" "}
             {productDetails?.price.toLocaleString(navigator.language, {
               minimumFractionDigits: 2,
@@ -83,7 +83,7 @@ function ProductDetails({
           </Typography>
         </Box>
 
-        <Typography variant="body2" component="div" sx={{ fontSize: "12px" }}>
+        <Typography variant="body2" component="div" sx={{ fontSize: {lg: "14px", md: "14px", sm: "12px", xs: "10px"} }}>
           {" "}
           (Incl. all taxes.){" "}
         </Typography>
@@ -101,7 +101,7 @@ function ProductDetails({
         {productFeatures.length>0 ? (
           <>
             <Box component="div" sx={{ padding: "1rem 0" }}>
-              <Typography variant="body2" component="div">
+              <Typography variant="body2" component="div" sx={{fontSize: {lg: "14px", md: "14px", sm: "14px", xs: "14px"}}}>
                 Key Features
               </Typography>
             </Box>
@@ -110,7 +110,8 @@ function ProductDetails({
               component="div"
               sx={{
                 fontFamily: "inherit",
-                fontSize: "15px",
+                fontSize: {lg: "14px", md: "14px", sm: "12px", xs: "12px"},
+                paddingRight: "1rem",
                 lineHeight: 1.5,
               }}
             >
@@ -131,7 +132,7 @@ function ProductDetails({
           </CardActionArea>
         )}
       </Box>
-    </div>
+    </Box>
   );
 }
 

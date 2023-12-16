@@ -42,7 +42,7 @@ function CustomerReview({ review }) {
         <Typography
           variant="body1"
           component="div"
-          sx={{ fontWeight: "700", padding: "5px 10px" }}
+          sx={{ fontWeight: "700", padding: "5px 10px", fontSize: {lg: "18px", md: "18px", sm: "16px", xs: "16px"} }}
         >
           {uniqueName}, {uniquePlace}
         </Typography>
@@ -56,9 +56,9 @@ function CustomerReview({ review }) {
         <StyledRating
           defaultValue={review.ratings}
           readOnly
-          sx={{ alignItems: "center", padding: "5px 10px" }}
+          sx={{ alignItems: "center", padding: "5px 10px", fontSize: {lg: "16px", md: "16px", sm: "12px", xs: "12px"} }}
         />
-        <Typography component="div" sx={{ fontSize: "16px" }}>
+        <Typography component="div" sx={{ fontSize: {lg: "16px", md: "16px", sm: "12px", xs: "12px"} }}>
           {" "}
           ({review.ratings.toFixed(1)}){" "}
         </Typography>
@@ -69,7 +69,7 @@ function CustomerReview({ review }) {
         id="customerReview"
         sx={{ display: "flex", alignItems: "center", padding: "5px 10px" }}
       >
-        <Typography> {review.text} </Typography>
+        <Typography sx={{fontSize: {lg: "16px", md: "16px", sm: "12px", xs: "12px"}}}> {review.text} </Typography>
       </Box>
     </Box>
   );

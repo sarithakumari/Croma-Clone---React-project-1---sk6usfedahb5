@@ -29,14 +29,14 @@ function ProductOverview({ productDetails }) {
           aria-controls="productOverview"
           id="productOverview"
         >
-          <Typography variant="h5" component="div" sx={{ fontWeight: "700" }}>
+          <Typography variant="h5" component="div" sx={{ fontWeight: "500", fontSize: {lg: "2rem", md: "1.75rem", sm: "1.5rem", xs: "1.25rem"} }}>
             Overview
           </Typography>
         </AccordionSummary>
         <AccordionDetails>
           <Typography
             component="div"
-            sx={{ padding: "1rem" }}
+            sx={{ padding: "1rem", fontSize: {lg: "16px", md: "16px", sm: "12px", xs: "12px"} }}
             dangerouslySetInnerHTML={{ __html: productDetails?.description }}
           ></Typography>
         </AccordionDetails>

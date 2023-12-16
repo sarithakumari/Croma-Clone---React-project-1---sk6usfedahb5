@@ -44,7 +44,7 @@ function ProductReviewRating({ productDetails, productRatingReviews }) {
             <Typography
               variant="h5"
               component="div"
-              sx={{ fontWeight: "700", marginRight: 1 }}
+              sx={{ fontWeight: "500", fontSize: {lg: "2rem", md: "1.75rem", sm: "1.5rem", xs: "1.25rem"} }}
             >
               Reviews
             </Typography>
@@ -52,9 +52,10 @@ function ProductReviewRating({ productDetails, productRatingReviews }) {
               component="div"
               sx={{
                 fontWeight: "700",
-                fontSize: "18px",
+                fontSize: {lg: "18px", md: "18px", sm: "16px", xs: "16px"},
                 lineHeight: 0,
                 color: "#00e9bf",
+                marginLeft: "1rem"
               }}
             >
               {productDetails?.ratings.toFixed(1)}
@@ -62,7 +63,7 @@ function ProductReviewRating({ productDetails, productRatingReviews }) {
                 defaultValue={1}
                 max={1}
                 readOnly
-                sx={{ fontSize: "18px" }}
+                sx={{ fontSize: {lg: "18px", md: "18px", sm: "16px", xs: "16px"}}}
               />
             </Typography>
           </Box>
