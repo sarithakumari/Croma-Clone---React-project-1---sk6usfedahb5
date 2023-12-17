@@ -71,7 +71,7 @@ function CartProducts({ product, handleSetCartProducts, handleClearCart }) {
         borderRadius: "0.8rem",
         backgroundColor: "#ffffff",
         marginBottom: "1rem",
-        marginRight: {lg: "1rem", md: "1rem", sm: "0rem", xs: "0rem"}
+        marginRight: { lg: "1rem", md: "1rem", sm: "0rem", xs: "0rem" },
       }}
     >
       {/* left box || right box */}
@@ -128,7 +128,12 @@ function CartProducts({ product, handleSetCartProducts, handleClearCart }) {
           {/* delivery texts */}
           <Box
             component="div"
-            sx={{ display: "flex", marginTop: 1, width: "100%" }}
+            sx={{
+              display: "flex",
+              marginTop: 1,
+              width: "100%",
+              flexWrap: "wrap",
+            }}
           >
             <Typography
               component="p"
@@ -146,7 +151,10 @@ function CartProducts({ product, handleSetCartProducts, handleClearCart }) {
             <Divider
               orientation="vertical"
               flexItem
-              sx={{ borderColor: "#979797" }}
+              sx={{
+                borderColor: "#979797",
+                display: { lg: "block", md: "block", sm: "block", xs: "none" },
+              }}
             />
             <Typography
               component="p"
@@ -154,6 +162,12 @@ function CartProducts({ product, handleSetCartProducts, handleClearCart }) {
               sx={{
                 width: "150px",
                 padding: "0 0 1rem 1rem",
+                padding: {
+                  lg: "0 0 1rem 1rem",
+                  md: "0 0 1rem 1rem",
+                  sm: "0 0 1rem 1rem",
+                  xs: "0 0 1rem 0",
+                },
                 borderRadius: 1,
                 fontSize: { lg: "14px", md: "14px", sm: "10px", xs: "10px" },
               }}
@@ -311,6 +325,7 @@ function CartProducts({ product, handleSetCartProducts, handleClearCart }) {
             },
             width: "100%",
             display: "flex",
+            flexWrap: "wrap",
             justifyContent: {
               lg: "space-around",
               md: "space-around",
@@ -329,7 +344,7 @@ function CartProducts({ product, handleSetCartProducts, handleClearCart }) {
               textTransform: "capitalize",
               // marginRight: 1.2,
               fontSize: { lg: "12px", md: "12px", sm: "10px", xs: "10px" },
-              padding: "10px 40px",
+              padding: "10px 20px",
               fontWeight: "700",
               // width: {lg: "180px", md: "180px", sm: "150px", xs: "180px"},
             }}
