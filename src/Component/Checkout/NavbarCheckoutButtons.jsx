@@ -34,9 +34,9 @@ function NavbarCheckoutButtons() {
             color: "white",
             borderRadius: "5px",
             textTransform: "capitalize",
-            fontSize: "14px",
+            fontSize: {lg: "14px", md: "14px", sm: "12px", xs: "12px"},
             fontWeight: "500",
-            padding: "10px 20px",
+            padding: "10px 10px",
           }}
           onClick={() => navigate("/cart")}
         >
@@ -49,13 +49,13 @@ function NavbarCheckoutButtons() {
             borderRadius: "5px",
             border: isPaymentPath?"":"1px solid #12daa8",
             textTransform: "capitalize",
-            fontSize: "14px",
+            fontSize: {lg: "14px", md: "14px", sm: "12px", xs: "12px"},
             fontWeight: "500",
             padding: "10px 20px",
           }}
           onClick={() => navigate(isPaymentPath && "/checkout")}
         >
-          Shipping
+          Address
         </Button>
         <Button
           className="payment-btn"
@@ -65,9 +65,9 @@ function NavbarCheckoutButtons() {
             border: isPaymentPath?"1px solid #12daa8":"",
             borderRadius: "5px",
             textTransform: "capitalize",
-            fontSize: "14px",
+            fontSize: {lg: "12px", md: "12px", sm: "10px", xs: "10px"},
             fontWeight: "500",
-            padding: "10px 20px",
+            padding: "10px 10px",
           }}
           variant={isCheckoutPath ? "disabled" : ""}
           onClick={()=>alert('payment')}

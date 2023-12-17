@@ -133,6 +133,7 @@ function Payment() {
               </Accordion>
             </Box>
           </Grid>
+          
           <Grid item lg={4} md={4}>
             <Box component='div' sx={{margin: "1rem 0 0 0"}} >
               <PaymentOrderSummary />

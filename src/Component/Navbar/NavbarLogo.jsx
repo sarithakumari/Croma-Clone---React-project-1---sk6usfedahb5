@@ -27,7 +27,7 @@ function NavbarLogo() {
           // variant="h3"
           noWrap
           sx={{
-            fontSize: { lg: "3rem", md: "2rem", sm: "2rem", xs: "2rem" },
+            fontSize: { lg: "3rem", md: "2rem", sm: "2rem", xs: "1.75rem" },
             fontFamily: "Switzer",
             fontWeight: 500,
             color: "inherit",

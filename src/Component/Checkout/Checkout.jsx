@@ -86,13 +86,14 @@ function Checkout() {
             backgroundColor: "white",
             padding: 1,
             borderRadius: "8px",
+            width: "100%"
           }}
           noValidate
           autoComplete="off"
         >
           <Stack>
             {/* name phone no */}
-            <Box component="div" sx={{marginBottom: "1rem"}}>
+            <Box component="div" sx={{marginBottom: "1rem", width: "100%"}}>
               <Typography component="p" variant="h6">
                 Your Details:
               </Typography>
@@ -104,7 +105,7 @@ function Checkout() {
                   md={6}
                   sx={{ display: "flex", justifyContent: "center", }}
                 >
-                  <Box component="div" minWidth="400px">
+                  <Box component="div" sx={{minWidth: {lg: "400px", md: "400px", sm: "250px", xs: "250px"}}}>
                     <TextField
                       id="name"
                       label="Name"
@@ -125,7 +126,7 @@ function Checkout() {
                   md={6}
                   sx={{ display: "flex", justifyContent: "center" }}
                 >
-                  <Box component="div" minWidth="400px">
+                  <Box component="div" sx={{minWidth: {lg: "400px", md: "400px", sm: "250px", xs: "250px"}}}>
                     <TextField
                       label="Phone Number"
                       required
@@ -155,7 +156,7 @@ function Checkout() {
                   md={6}
                   sx={{ display: "flex", justifyContent: "center" }}
                 >
-                  <Box component="div" minWidth="400px">
+                  <Box component="div" sx={{minWidth: {lg: "400px", md: "400px", sm: "250px", xs: "250px"}}}>
                     <TextField
                       label="Country"
                       required
@@ -175,7 +176,7 @@ function Checkout() {
                   md={6}
                   sx={{ display: "flex", justifyContent: "center" }}
                 >
-                  <Box component="div" minWidth="400px">
+                  <Box component="div" sx={{minWidth: {lg: "400px", md: "400px", sm: "250px", xs: "250px"}}}>
                     <TextField
                       label="Pincode"
                       required
@@ -199,7 +200,7 @@ function Checkout() {
                   md={6}
                   sx={{ display: "flex", justifyContent: "center" }}
                 >
-                  <Box component="div" minWidth="400px">
+                  <Box component="div" sx={{minWidth: {lg: "400px", md: "400px", sm: "250px", xs: "250px"}}}>
                     <TextField
                       label="(Flat no., Building, Street)"
                       required
@@ -219,7 +220,7 @@ function Checkout() {
                   md={6}
                   sx={{ display: "flex", justifyContent: "center" }}
                 >
-                  <Box component="div" minWidth="400px">
+                  <Box component="div" sx={{minWidth: {lg: "400px", md: "400px", sm: "250px", xs: "250px"}}}>
                     <TextField
                       label="Landmark"
                       required
@@ -248,7 +249,7 @@ function Checkout() {
                       justifyContent: "center",
                       width: "100%",
                       maxWidth: "960px",
-                      minWidth: "400px",
+                      minWidth: {lg: "400px", md: "400px", sm: "250px", xs: "250px"},
                       width: { sm: "400px", md: "840px", lg: "960px" },
                     }}
                   >
@@ -274,7 +275,7 @@ function Checkout() {
                   md={6}
                   sx={{ display: "flex", justifyContent: "center" }}
                 >
-                  <Box component="div" minWidth="400px">
+                  <Box component="div" sx={{minWidth: {lg: "400px", md: "400px", sm: "250px", xs: "250px"}}}>
                     <TextField
                       label="State"
                       required
@@ -294,7 +295,7 @@ function Checkout() {
                   md={6}
                   sx={{ display: "flex", justifyContent: "center" }}
                 >
-                  <Box component="div" minWidth="400px">
+                  <Box component="div" sx={{minWidth: {lg: "400px", md: "400px", sm: "250px", xs: "250px"}}}>
                     <TextField
                       label="City"
                       required
@@ -311,7 +312,7 @@ function Checkout() {
               </Grid>
             </Box>
 
-            <Box component="div">
+            <Box component="div" sx={{width: "100%"}} >
               <Typography component="p" variant="h6">
                 Address Type:
               </Typography>
@@ -328,6 +329,10 @@ function Checkout() {
                   "& .otherBtn": {
                     border: addressType == "Other" ? "1px solid #12daa8" : "",
                   },
+                  display: "flex",
+                  flexWrap: "wrap",
+                  justifyContent: {lg: "flex-start", md: "flex-start", sm: "center", xs: "space-around"},
+                  gap: 1
                 }}
               >
                 <Button
@@ -397,7 +402,7 @@ function Checkout() {
             >
               <Button
                 sx={{
-                  minWidth: "400px",
+                  minWidth: {lg: "400px", md: "400px", sm: "250px", xs: "250px"},
                   borderRadius: "8px",
                   backgroundColor: "#12daa8",
                   color: "black",
