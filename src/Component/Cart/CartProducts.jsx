@@ -30,15 +30,15 @@ function CartProducts({ product, handleSetCartProducts, handleClearCart }) {
   async function handleRemoveProductFromCart() {
     const data = await removeProductFromCartApi(product.product._id, userToken);
     // console.log("removed from cart: ",data);
-    if (data.data.items.length == 0) {
+    if (data?.data?.items?.length == 0) {
       handleSetCartProducts(null);
     } else {
       handleSetCartProducts(data.data);
     }
-    if (data.status === "success") {
+    if (data?.status === "success") {
       toast.success(data.message);
     }
-    handleItemsInCart(data.data.items.length);
+    handleItemsInCart(data?.data?.items?.length);
   }
 
   async function handleMoveProductToWishlist() {
