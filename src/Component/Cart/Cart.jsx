@@ -10,30 +10,42 @@ import CromaContext from "../../ContextAPI/CromaContext";
 
 function Cart() {
   const navigate = useNavigate();
-  const { cartProducts, handleSetCartProducts, handleOpenAuthDialog, userToken } = useContext(CromaContext);
-
-  useEffect(()=>{
-    if(!userToken) {
-      navigate('/');
-      handleOpenAuthDialog();
-    }
-  }, [userToken])
+  const {
+    cartProducts,
+    handleSetCartProducts,
+    handleItemsInCart,
+    handleOpenAuthDialog,
+    userToken,
+  } = useContext(CromaContext);
 
   useEffect(() => {
-    getCartItemApi(userToken).then((data) => {
-      console.log("Items in cart", data);
-      handleSetCartProducts(data.data);
-    });
-  }, []);
+    if (!userToken) {
+      navigate("/");
+      handleOpenAuthDialog();
+    }
+  }, [userToken]);
+
+  useEffect(() => {
+    if (userToken) {
+      getCartItemApi(userToken).then((data) => {
+        console.log("Items in cart", data);
+        handleSetCartProducts(data.data);
+        handleItemsInCart(data?.data?.items?.length);
+        // data.data.items.length
+      });
+    } else {
+      handleItemsInCart('0');
+    }
+  }, [userToken]);
 
   function handleClearCart() {
     clearCartApi(userToken);
-    handleSetCartProducts(null)
+    handleSetCartProducts(null);
   }
 
   // console.log(cartProducts);
 
-  if(!cartProducts || cartProducts?.items?.length===0) return (<CartEmpty />)
+  if (!cartProducts || cartProducts?.items?.length === 0) return <CartEmpty />;
 
   return (
     <>
@@ -44,7 +56,7 @@ function Cart() {
           color: "black",
           width: "100%",
           paddingTop: "6rem",
-          paddingBottom: "6rem"
+          paddingBottom: "6rem",
         }}
       >
         <Container maxWidth="lg">

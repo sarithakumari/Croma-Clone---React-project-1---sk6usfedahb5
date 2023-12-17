@@ -101,15 +101,7 @@ function WishlistCard({ item }) {
           <Box
             component="div"
             sx={{
-              // display: "flex",
-              // alignItems: "center",
               width: "100%",
-              // flexDirection: {
-              //   lg: "row",
-              //   md: "row",
-              //   sm: "column",
-              //   xs: "column",
-              // },
             }}
           >
             <Box

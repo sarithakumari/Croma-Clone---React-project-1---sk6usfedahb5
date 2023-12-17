@@ -2,6 +2,7 @@ import styled from "@emotion/styled";
 import {
   Box,
   Button,
+  CardActionArea,
   CardMedia,
   Divider,
   Rating,
@@ -14,6 +15,7 @@ import { addProductToWishlist } from "../../helper/addProductToWishlist";
 
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { useNavigate } from "react-router-dom";
 
 const StyledRating = styled(Rating)({
   "& .MuiRating-iconFilled": {
@@ -22,8 +24,8 @@ const StyledRating = styled(Rating)({
 });
 
 function CartProducts({ product, handleSetCartProducts, handleClearCart }) {
-  
   const { handleItemsInCart, userToken } = useContext(CromaContext);
+  const navigate = useNavigate();
 
   async function handleRemoveProductFromCart() {
     const data = await removeProductFromCartApi(product.product._id, userToken);
@@ -33,7 +35,7 @@ function CartProducts({ product, handleSetCartProducts, handleClearCart }) {
     } else {
       handleSetCartProducts(data.data);
     }
-    if(data.status === 'success') {
+    if (data.status === "success") {
       toast.success(data.message);
     }
     handleItemsInCart(data.data.items.length);
@@ -42,10 +44,13 @@ function CartProducts({ product, handleSetCartProducts, handleClearCart }) {
   async function handleMoveProductToWishlist() {
     const data = await addProductToWishlist(product.product._id, userToken);
     // console.log("wishlist from cart: ", data);
-    if (data.status === "fail" && data.message === "Product already exists in the wishlist.") {
+    if (
+      data.status === "fail" &&
+      data.message === "Product already exists in the wishlist."
+    ) {
       toast.info(data.message);
-    } 
-    if(data.status === 'success') {
+    }
+    if (data.status === "success") {
       toast.success(data.message);
     }
     handleRemoveProductFromCart();
@@ -71,20 +76,25 @@ function CartProducts({ product, handleSetCartProducts, handleClearCart }) {
           id="cartDetails-left"
           sx={{ paddingRight: "1.5rem" }}
         >
-          <Typography
-            component="p"
-            variant="h6"
-            sx={{
-              overflow: "hidden",
-              textOverflow: "ellipsis",
-              display: "-webkit-box",
-              WebkitBoxOrient: "vertical",
-              WebkitLineClamp: "2",
-              fontWeight: "500",
-            }}
+          <CardActionArea
+            disableRipple
+            onClick={() => navigate(`/product/${product.product._id}`)}
           >
-            {product.product.name}
-          </Typography>
+            <Typography
+              component="p"
+              variant="h6"
+              sx={{
+                overflow: "hidden",
+                textOverflow: "ellipsis",
+                display: "-webkit-box",
+                WebkitBoxOrient: "vertical",
+                WebkitLineClamp: "2",
+                fontWeight: "500",
+              }}
+            >
+              {product.product.name}
+            </Typography>
+          </CardActionArea>
 
           <Box component="div" marginTop={1}>
             <StyledRating
@@ -175,7 +185,9 @@ function CartProducts({ product, handleSetCartProducts, handleClearCart }) {
               component="span"
               sx={{ fontSize: "24px", fontWeight: "700" }}
             >
-              {product.product.price.toLocaleString(navigator.language, {minimumFractionDigits: 2})}
+              {product.product.price.toLocaleString(navigator.language, {
+                minimumFractionDigits: 2,
+              })}
             </Typography>
           </Box>
 
@@ -205,7 +217,11 @@ function CartProducts({ product, handleSetCartProducts, handleClearCart }) {
               fontSize="14px"
               sx={{ textDecoration: "line-through" }}
             >
-              ₹{(product.product.price * 1.15).toLocaleString(navigator.language, {minimumFractionDigits: 2})}
+              ₹
+              {(product.product.price * 1.15).toLocaleString(
+                navigator.language,
+                { minimumFractionDigits: 2 }
+              )}
             </Typography>
             <Typography
               component="p"
@@ -215,7 +231,12 @@ function CartProducts({ product, handleSetCartProducts, handleClearCart }) {
               textAlign="end"
             >
               (Save ₹
-              {(product.product.price * 1.15 - product.product.price).toLocaleString(navigator.language, {minimumFractionDigits: 2})}
+              {(
+                product.product.price * 1.15 -
+                product.product.price
+              ).toLocaleString(navigator.language, {
+                minimumFractionDigits: 2,
+              })}
               )
             </Typography>
           </Box>
@@ -228,23 +249,28 @@ function CartProducts({ product, handleSetCartProducts, handleClearCart }) {
         component="div"
         sx={{ position: "absolute", top: "2rem", left: "3.6%" }}
       >
-        <CardMedia
-          component="img"
-          src={product.product.displayImage}
-          alt="image"
-          height="100"
-          width="100"
-          loading="lazy"
-          sx={{
-            objectFit: "contain",
-            borderRadius: "8px",
-          }}
-          onError={(e) => {
-            e.target.onerror = null;
-            e.target.src =
-              "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d3/Stadtbild_M%C3%BCnchen.jpg/2560px-Stadtbild_M%C3%BCnchen.jpg";
-          }}
-        />
+        <CardActionArea
+          disableRipple
+          onClick={() => navigate(`/product/${product.product._id}`)}
+        >
+          <CardMedia
+            component="img"
+            src={product.product.displayImage}
+            alt="image"
+            height="100"
+            width="100"
+            loading="lazy"
+            sx={{
+              objectFit: "contain",
+              borderRadius: "8px",
+            }}
+            onError={(e) => {
+              e.target.onerror = null;
+              e.target.src =
+                "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d3/Stadtbild_M%C3%BCnchen.jpg/2560px-Stadtbild_M%C3%BCnchen.jpg";
+            }}
+          />
+        </CardActionArea>
       </Box>
     </Box>
   );

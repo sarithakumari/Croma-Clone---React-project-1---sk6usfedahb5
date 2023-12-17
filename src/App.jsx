@@ -59,9 +59,8 @@ function App() {
   // locationDialog - to open pincode dialog
   const [openLocationDialog, setOpenLocationDialog] = useState(false);
   // userToken - state to store the JWT token and utilise it in every protected routes
-  const [userToken, setUserToken] = useState("");
+  const [userToken, setUserToken] = useState(null);
 
-  // const userToken = JSON.parse(localStorage.getItem("userToken"));
   useEffect(() => {
     setUserToken(JSON.parse(localStorage.getItem("userToken")));
   }, []);
@@ -103,6 +102,7 @@ function App() {
   function handleSetCartProducts(data) {
     // state-setter - all products in cart
     setCartProducts(data);
+    setItemsInCart(data?.items?.length)
   }
 
   function handleSetAddress(e) {
@@ -130,6 +130,7 @@ function App() {
   function handleOpenLocationDialog() {
     setOpenLocationDialog(true);
   }
+
   function handleCloseLocationDialog() {
     setOpenLocationDialog(false);
   }

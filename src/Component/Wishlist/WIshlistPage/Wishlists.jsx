@@ -17,11 +17,11 @@ import WishlistEmpty from "./WishlistEmpty";
 import { useNavigate } from "react-router-dom";
 
 function Wishlists() {
-  // const [wishlists, setWishlists] = useState(null);
+  
   const { wishlists, handleSetWishlists, handleOpenAuthDialog, userToken } =
     useContext(CromaContext);
   const navigate = useNavigate();
-  
+
   useEffect(() => {
     if (!userToken) {
       navigate("/");
@@ -30,11 +30,12 @@ function Wishlists() {
   }, [userToken]);
 
   useEffect(() => {
-    getAllProductFromWishlist(userToken).then((data) =>
-      handleSetWishlists(data)
-    );
-  }, []);
-
+    if (userToken) {
+      getAllProductFromWishlist(userToken).then((data) =>
+        handleSetWishlists(data)
+      );
+    }
+  }, [userToken]);
 
   console.log(wishlists?.data?.items);
 
