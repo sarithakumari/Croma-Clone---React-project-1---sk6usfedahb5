@@ -28,9 +28,7 @@ function ProductCard({ product }) {
   const [wishlist, setWishlist] = useState(false);
   const navigate = useNavigate();
 
-  const { handleOpenAuthDialog, wishlists } = useContext(CromaContext);
-
-  const userToken = JSON.parse(localStorage.getItem("userToken"));
+  const { handleOpenAuthDialog, wishlists, userToken } = useContext(CromaContext);
 
   useEffect(() => {
     const isWishlisted =

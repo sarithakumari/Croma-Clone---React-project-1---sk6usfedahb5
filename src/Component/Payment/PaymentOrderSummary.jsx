@@ -26,32 +26,29 @@ function PaymentOrderSummary() {
     addressType,
     handleSetCartProducts,
     handleItemsInCart,
+    userToken
   } = useContext(CromaContext);
   const navigate = useNavigate();
 
   const username = JSON.parse(localStorage.getItem("username")) || name;
-  const userToken = JSON.parse(localStorage.getItem("userToken"));
 
   async function handleCheckout() {
-    // console.log({addressType, address, userToken}, cartProducts.items[0].product._id)
     const data = await checkoutApi(
       cartProducts.items[0].product._id,
       addressType,
       address,
       userToken
     );
-    // console.log("Order Placed Successfully", data);
     if (data.status === "success") {
       toast.success("Order Placed Successfully");
       clearCartApi(userToken);
       handleSetCartProducts(null);
       handleItemsInCart("0");
       navigate("/");
-      // alert("Order Placed Successfully");
     }
   }
 
-  console.log(cartProducts?.items.length);
+  // console.log(cartProducts?.items.length);
 
   return (
     <Box

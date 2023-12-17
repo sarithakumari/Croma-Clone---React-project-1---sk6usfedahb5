@@ -6,12 +6,19 @@ import { useNavigate } from "react-router-dom";
 import CromaContext from "../../ContextAPI/CromaContext";
 
 function Orders() {
-  const userToken = JSON.parse(localStorage.getItem("userToken"));
+  
   const [orders, setOrders] = useState(null);
 
-  const { handleOpenAuthDialog } = useContext(CromaContext);
+  const { handleOpenAuthDialog, userToken } = useContext(CromaContext);
 
   const navigate = useNavigate();
+
+  useEffect(() => {
+    if (!userToken) {
+      navigate("/");
+      handleOpenAuthDialog();
+    }
+  }, [userToken]);
 
   useEffect(() => {
     getOrderHistory(userToken).then((data) => {
@@ -19,13 +26,6 @@ function Orders() {
         setOrders(data?.data.toReversed());
       }
     });
-  }, []);
-
-  useEffect(() => {
-    if (!userToken) {
-      navigate("/");
-      handleOpenAuthDialog();
-    }
   }, []);
 
   console.log("orders:", orders);

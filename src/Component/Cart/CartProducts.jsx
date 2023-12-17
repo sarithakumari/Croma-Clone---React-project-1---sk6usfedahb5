@@ -22,8 +22,8 @@ const StyledRating = styled(Rating)({
 });
 
 function CartProducts({ product, handleSetCartProducts, handleClearCart }) {
-  const userToken = JSON.parse(localStorage.getItem("userToken"));
-  const { handleItemsInCart } = useContext(CromaContext);
+  
+  const { handleItemsInCart, userToken } = useContext(CromaContext);
 
   async function handleRemoveProductFromCart() {
     const data = await removeProductFromCartApi(product.product._id, userToken);

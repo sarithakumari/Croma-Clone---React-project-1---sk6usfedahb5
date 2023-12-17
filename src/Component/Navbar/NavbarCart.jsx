@@ -16,10 +16,9 @@ const StyledBadge = styled(Badge)({
 
 function NavbarCart() {
     const navigate = useNavigate();
-    const { itemsInCart, handleOpenAuthDialog } = useContext(CromaContext);
+    const { itemsInCart, handleOpenAuthDialog, userToken } = useContext(CromaContext);
     // console.log(itemsInCart);
     
-    const userToken = JSON.parse(localStorage.getItem('userToken'));
 
     useEffect(()=>{
       if(!userToken) {

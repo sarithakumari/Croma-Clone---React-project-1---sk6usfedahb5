@@ -1,12 +1,15 @@
 import { Box, Button, Typography } from "@mui/material";
-import React from "react";
+import React, { useContext } from "react";
 import { toast } from 'react-toastify';
+import CromaContext from "../../ContextAPI/CromaContext";
 
 function NavAuthLogout() {
+  const { handleSetUserToken } = useContext(CromaContext);
 
   function handleAuthLogout() {
     localStorage.removeItem("userToken");
     localStorage.removeItem("username");
+    handleSetUserToken(null);
     toast.info("Logged Out");
   }
 

@@ -7,6 +7,7 @@ import {
   Button,
   CardActionArea,
   CardMedia,
+  Divider,
   Rating,
   Stack,
   Typography,
@@ -27,21 +28,18 @@ const StyledRating = styled(Rating)({
 });
 
 function OrdersCard({ item }) {
-  const { handleOpenAuthDialog, handleItemsInCart } = useContext(CromaContext);
-  const userToken = JSON.parse(localStorage.getItem("userToken"));
+  const { handleOpenAuthDialog, handleItemsInCart, userToken } = useContext(CromaContext);
+  
   const navigate = useNavigate();
 
   async function handleBuyNow(e) {
-    // console.log("token", userToken);
     if (!userToken) {
       handleOpenAuthDialog();
     } else {
       const res = await addToCart(orderDetails._id, userToken);
-      // const res = addToCart(productDetails._id, userToken);
       console.log(res);
       toast.success(res.message);
       handleItemsInCart(res.data.items.length);
-      // alert(res.message);
     }
   }
 
@@ -49,9 +47,8 @@ function OrdersCard({ item }) {
     const data = await addProductToWishlist(orderDetails._id, userToken);
 
     if (data.status === "success") {
-      alert("Product Wishlisted");
+      toast.success(data.message);
     }
-    // handleRemoveProductFromCart();
   }
 
   const date = new Date(item.createdAt);
@@ -131,7 +128,10 @@ function OrdersCard({ item }) {
                   fontSize: { lg: "16px", md: "16px", sm: "12px", xs: "12px" },
                 }}
               >
-                ₹{orderDetails.price.toFixed(2)}
+                ₹
+                {orderDetails.price.toLocaleString(navigator.language, {
+                  minimumFractionDigits: 2,
+                })}
               </Typography>
               <Typography
                 component="p"
@@ -140,7 +140,11 @@ function OrdersCard({ item }) {
                   fontSize: { lg: "16px", md: "16px", sm: "12px", xs: "12px" },
                 }}
               >
-                ₹{(orderDetails.price * 1.15).toFixed(2)}
+                ₹
+                {(orderDetails.price * 1.15).toLocaleString(
+                  navigator.language,
+                  { minimumFractionDigits: 2 }
+                )}
               </Typography>
             </Box>
           </Box>
@@ -198,10 +202,69 @@ function OrdersCard({ item }) {
               </AccordionDetails>
             </Accordion>
           </Box>
+          <Box component="div" sx={{ marginRight: "1rem" }}>
+            <Box
+              component="div"
+              sx={{
+                "& .addtoCart:hover": {
+                  border: "1px solid #12daa8",
+                  backgroundColor: "#12daa8",
+                },
+                display: "flex",
+                flexDirection: "column",
+                // alignItems: "center",
+                // justifyContent: "space-around"
+              }}
+            >
+              <div>
+                <Button
+                  className="addtoCart"
+                  disableRipple
+                  sx={{
+                    color: "black",
+                    backgroundColor: "#12daa8",
+                    textAlign: "center",
+                    borderRadius: "8px",
+                    border: "1px solid #12daa8",
+                    textTransform: "capitalize",
+                    fontSize: "12px",
+                    padding: "10px 40px",
+                    fontWeight: "700",
+                    minWidth: "200px",
+                    margin: "0 0 1rem 0",
+                  }}
+                  onClick={handleBuyNow}
+                >
+                  Buy Again
+                </Button>
+              </div>
+              <div>
+                <Button
+                  sx={{
+                    color: "#ffffff",
+                    textAlign: "center",
+                    borderRadius: "8px",
+                    border: "1px solid #ffffff",
+                    textTransform: "capitalize",
+                    fontSize: "12px",
+                    padding: "10px 40px",
+                    fontWeight: "700",
+                    minWidth: "200px",
+                    margin: "0 0 1rem 0",
+                  }}
+                  onClick={handleMoveProductToWishlist}
+                >
+                  Add to Wishlist
+                </Button>
+              </div>
+            </Box>
+          </Box>
         </Stack>
+        
+        <Divider sx={{ borderColor: "#353535" }} />
       </Box>
 
-      <Box component="div" sx={{ marginRight: "1rem" }}>
+      {/* <Box component="div" sx={{ marginRight: "1rem" }}>
         <Box
           component="div"
           sx={{
@@ -257,7 +320,7 @@ function OrdersCard({ item }) {
             </Button>
           </div>
         </Box>
-      </Box>
+      </Box> */}
 
       <Box
         component="div"
@@ -292,6 +355,8 @@ function OrdersCard({ item }) {
           />
         </CardActionArea>
       </Box>
+
+      <Divider sx={{ borderColor: "#353535" }} />
     </Box>
   );
 }

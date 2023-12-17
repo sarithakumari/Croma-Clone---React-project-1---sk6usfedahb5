@@ -13,10 +13,7 @@ import { toast } from 'react-toastify';
 
 function SingleProductGallery({ images, productId }) {
   const [wishlist, setWishlist] = useState(false);
-
-  const { handleOpenAuthDialog, wishlists } = useContext(CromaContext);
-
-  const userToken = JSON.parse(localStorage.getItem("userToken"));
+  const { handleOpenAuthDialog, wishlists, userToken } = useContext(CromaContext);
 
   useEffect(() => {
     const isWishlisted =

@@ -18,11 +18,16 @@ import { useNavigate } from "react-router-dom";
 
 function Wishlists() {
   // const [wishlists, setWishlists] = useState(null);
-  const { wishlists, handleSetWishlists, handleOpenAuthDialog } =
+  const { wishlists, handleSetWishlists, handleOpenAuthDialog, userToken } =
     useContext(CromaContext);
   const navigate = useNavigate();
-
-  const userToken = JSON.parse(localStorage.getItem("userToken"));
+  
+  useEffect(() => {
+    if (!userToken) {
+      navigate("/");
+      handleOpenAuthDialog();
+    }
+  }, [userToken]);
 
   useEffect(() => {
     getAllProductFromWishlist(userToken).then((data) =>
@@ -30,12 +35,6 @@ function Wishlists() {
     );
   }, []);
 
-  useEffect(() => {
-    if (!userToken) {
-      navigate("/");
-      handleOpenAuthDialog();
-    }
-  }, []);
 
   console.log(wishlists?.data?.items);
 

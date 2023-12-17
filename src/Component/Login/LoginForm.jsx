@@ -15,7 +15,7 @@ function LoginForm({ handleClose }) {
   const [username, setUserName] = useState("");
   const [password, setPassword] = useState("");
 
-  const {handleCloseAuthDialog} = useContext(CromaContext);
+  const { handleCloseAuthDialog, handleSetUserToken } = useContext(CromaContext);
 
   // console.log({ username, password });
   async function handleLogin() {
@@ -24,6 +24,7 @@ function LoginForm({ handleClose }) {
     if(res.status === 'success') {
         const token = res.token;
         // console.log(token);
+        handleSetUserToken(token);
         localStorage.setItem('userToken', JSON.stringify(token));
         handleCloseAuthDialog();
         toast.success('Logged In');

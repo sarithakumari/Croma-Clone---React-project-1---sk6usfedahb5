@@ -16,13 +16,9 @@ import { toast } from "react-toastify";
 function ProductFooter({ productDetails }) {
   const navigate = useNavigate();
   const [isAdding, setIsAdding] = useState(false);
-  const { handleItemsInCart, handleOpenAuthDialog } = useContext(CromaContext);
-
-  const userToken = JSON.parse(localStorage.getItem("userToken"));
+  const { handleItemsInCart, handleOpenAuthDialog, userToken } = useContext(CromaContext);
 
   async function handleAddToCart(e) {
-    // console.log(userToken);
-    // console.log(productDetails._id);
     if (!userToken) {
       handleOpenAuthDialog();
     } else {
@@ -31,12 +27,10 @@ function ProductFooter({ productDetails }) {
       console.log(data);
       handleItemsInCart(data.data.items.length);
       toast.success(data.message);
-      // alert(data.message);
     }
   }
 
   async function handleBuyNow(e) {
-    // console.log("token", userToken);
     if (!userToken) {
       handleOpenAuthDialog();
     } else {
@@ -46,7 +40,6 @@ function ProductFooter({ productDetails }) {
       handleItemsInCart(res.data.items.length);
       navigate("/cart");
       toast.success(res.message);
-      // alert(res.message);
     }
   }
 

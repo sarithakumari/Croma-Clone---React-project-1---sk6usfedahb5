@@ -10,17 +10,7 @@ import CromaContext from "../../ContextAPI/CromaContext";
 
 function Cart() {
   const navigate = useNavigate();
-  // const [cartProducts, setCartProducts] = useState(null);
-  const { cartProducts, handleSetCartProducts, handleOpenAuthDialog } = useContext(CromaContext);
-
-  const userToken = JSON.parse(localStorage.getItem("userToken"));
-
-  useEffect(() => {
-    getCartItemApi(userToken).then((data) => {
-      console.log("Items in cart", data);
-      handleSetCartProducts(data.data);
-    });
-  }, []);
+  const { cartProducts, handleSetCartProducts, handleOpenAuthDialog, userToken } = useContext(CromaContext);
 
   useEffect(()=>{
     if(!userToken) {
@@ -29,16 +19,19 @@ function Cart() {
     }
   }, [userToken])
 
+  useEffect(() => {
+    getCartItemApi(userToken).then((data) => {
+      console.log("Items in cart", data);
+      handleSetCartProducts(data.data);
+    });
+  }, []);
+
   function handleClearCart() {
     clearCartApi(userToken);
     handleSetCartProducts(null)
   }
 
-  // function handleSetCartProducts(data) {
-  //   setCartProducts(data);
-  // }
-
-  console.log(cartProducts);
+  // console.log(cartProducts);
 
   if(!cartProducts || cartProducts?.items?.length===0) return (<CartEmpty />)
 

@@ -26,15 +26,6 @@ function Home() {
   const [washingMachineArr, setWashingMachineArr ] = useState([]);
   
   useEffect(()=>{
-    // productDataApi(632).then((data)=>{
-    //   setDealsDayArr(data.slice(0, 6));
-    //   setTrendingArr(data.filter((product)=>product.sellerTag == 'trending').slice(0, 9));
-    //   setMobileArr(data.filter((product)=>product.subCategory == 'mobile').slice(0, 15));
-    //   setLaptopArr(data.filter((product)=>product.subCategory == 'laptop').slice(0, 9));
-    //   setTvArr(data.filter((product)=>product.subCategory == 'tv').slice(0, 5));
-    //   setRefrigeratorsArr(data.filter((product)=>product.subCategory == 'refrigerator').slice(2, 10));
-    //   setAudioArr(data.filter((product)=>product.subCategory == 'audio').slice(0, 9));
-    // })
     dealsDataApi().then(data => setDealsDayArr(data));
     trendingDataApi().then(data => setTrendingArr(data));
     dealsProductDataApi("mobile").then(data => setMobileArr(data));
@@ -52,7 +43,6 @@ function Home() {
       
   }, [])
 
-  // console.log(refrigeratorsArr);
   
   return (
     <Stack spacing={4} style={{marginTop: "60px", width: "100vw", justifyContent: "center"}}>

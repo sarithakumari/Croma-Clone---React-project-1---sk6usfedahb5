@@ -25,16 +25,14 @@ function Payment() {
   const [openUPI, setOpenUPI] = useState(false);
   // const [openBanking, setBanking] = useState(false);
   
-  const {cartProducts, handleOpenAuthDialog} = useContext(CromaContext);
-
-  const userToken = JSON.parse(localStorage.getItem('userToken'));
+  const { cartProducts, handleOpenAuthDialog, userToken } = useContext(CromaContext);
 
   useEffect(()=>{
     if(!userToken) {
       navigate('/');
       handleOpenAuthDialog();
     }
-  }, [])
+  }, [userToken])
 
   function handleUPIClick() {
     setCard(false);

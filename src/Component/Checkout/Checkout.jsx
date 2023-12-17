@@ -14,13 +14,10 @@ import { useNavigate } from "react-router-dom";
 import CromaContext from "../../ContextAPI/CromaContext";
 
 function Checkout() {
-  
-  const userToken = JSON.parse(localStorage.getItem('userToken'));
-  
-  // const [name, setName] = useState(username);
+ 
   const [phone, setPhone] = useState("");
 
-  const {name, handleSetName, address, handleSetAddress, addressType, handleAddressType, handleOpenAuthDialog} = useContext(CromaContext);
+  const {name, handleSetName, address, handleSetAddress, addressType, handleAddressType, handleOpenAuthDialog, userToken} = useContext(CromaContext);
 
   const navigate = useNavigate();
 
@@ -52,7 +49,7 @@ function Checkout() {
       navigate('/');
       handleOpenAuthDialog();
     }
-  }, [])
+  }, [userToken])
 
   function handleSubmit(e) {
     if (noError) {

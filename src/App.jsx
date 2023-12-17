@@ -58,8 +58,13 @@ function App() {
   const [wishlists, setWishlists] = useState(null);
   // locationDialog - to open pincode dialog
   const [openLocationDialog, setOpenLocationDialog] = useState(false);
+  // userToken - state to store the JWT token and utilise it in every protected routes
+  const [userToken, setUserToken] = useState("");
 
-  const userToken = JSON.parse(localStorage.getItem("userToken"));
+  // const userToken = JSON.parse(localStorage.getItem("userToken"));
+  useEffect(() => {
+    setUserToken(JSON.parse(localStorage.getItem("userToken")));
+  }, []);
 
   useEffect(() => {
     getCartItemApi(userToken).then((data) => {
@@ -67,7 +72,7 @@ function App() {
       handleSetCartProducts(data?.data);
       handleItemsInCart(data?.data?.items?.length);
     });
-  }, []);
+  }, [userToken]);
 
   useEffect(() => {
     getAllProductFromWishlist(userToken).then((data) => setWishlists(data));
@@ -77,7 +82,8 @@ function App() {
   //   handleFetchLocation(pincode);
   // }, []);
 
-  console.log("all wishlists: ", wishlists);
+  // console.log("all wishlists: ", wishlists);
+  // console.log("usertoken: ", userToken);
 
   function handleOpenAuthDialog() {
     // open login/signup authDialog
@@ -136,17 +142,9 @@ function App() {
     setPincode(data);
   }
 
-  // async function handleFetchLocation(pincode) {
-  //   getLocationApi(pincode).then((data) => {
-  //     setAddress((prev) => ({
-  //       ...prev,
-  //       ["state"]: data?.PostOffice[0].State,
-  //       ["city"]: data?.PostOffice[0].District,
-  //       ["country"]: data?.PostOffice[0].Country,
-  //     }));
-  //     handleSetPincode(data?.PostOffice[0].Pincode)
-  //   });
-  // }
+  function handleSetUserToken(data) {
+    setUserToken(data);
+  }
 
   // console.log("APP: ", cartProducts);
 
@@ -176,7 +174,8 @@ function App() {
           handleSetLocation,
           pincode,
           handleSetPincode,
-          // handleFetchLocation
+          userToken,
+          handleSetUserToken,
         }}
       >
         <BrowserRouter>
@@ -189,7 +188,10 @@ function App() {
               <Navbar />
             </Grid>
 
-            <Grid item sx={{paddingTop: {lg: "0", md: "0", sm: "3rem", xs: "3rem"} }} >
+            <Grid
+              item
+              sx={{ paddingTop: { lg: "0", md: "0", sm: "3rem", xs: "3rem" } }}
+            >
               <Routes>
                 <Route index element={<Home />} />
                 <Route path="/" element={<Home />} />

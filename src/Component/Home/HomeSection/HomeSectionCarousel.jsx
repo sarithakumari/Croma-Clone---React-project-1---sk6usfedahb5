@@ -28,7 +28,7 @@ const responsive = {
 
 function HomeSectionCarousel({ sectionArr }) {
   return (
-    <Box sx={{"& li": {width: "100px"}}}>
+    <Box component='div' >
       <Carousel
         responsive={responsive}
         renderArrowsWhenDisabled={true}

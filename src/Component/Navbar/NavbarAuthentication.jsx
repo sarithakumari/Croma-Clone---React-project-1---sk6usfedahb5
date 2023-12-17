@@ -29,14 +29,14 @@ const StyledMenu = styled(Menu)(({ theme }) => ({
 }));
 
 function NavbarAuthentication() {
-  const userToken = JSON.parse(localStorage.getItem("userToken"));
+  
   // showLogin state to display loginForm if true else signUp form if false
   const [showLogin, setShowLogin] = useState(false);
 
   const [anchorEl, setAnchorEl] = useState(null);
   const openUserMenu = Boolean(anchorEl);
 
-  const { openAuthDialog, handleCloseAuthDialog, handleOpenAuthDialog } =
+  const { openAuthDialog, handleCloseAuthDialog, handleOpenAuthDialog, userToken } =
     useContext(CromaContext);
 
   function handleCloseUserMenu() {

@@ -32,9 +32,7 @@ function HomeSectionCard({ cardInfo }) {
   const { displayImage, name, price, ratings, subCategory, _id } = cardInfo;
   const navigate = useNavigate();
 
-  const userToken = JSON.parse(localStorage.getItem("userToken"));
-
-  const { handleOpenAuthDialog, wishlists } = useContext(CromaContext);
+  const { handleOpenAuthDialog, wishlists, userToken } = useContext(CromaContext);
 
   useEffect(() => {
     const isWishlisted =

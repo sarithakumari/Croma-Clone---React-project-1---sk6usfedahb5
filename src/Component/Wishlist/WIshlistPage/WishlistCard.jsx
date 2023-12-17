@@ -24,29 +24,23 @@ const StyledRating = styled(Rating)({
 });
 
 function WishlistCard({ item }) {
-  const userToken = JSON.parse(localStorage.getItem("userToken"));
-  const { handleItemsInCart, handleSetWishlists } = useContext(CromaContext);
+
+  const { handleItemsInCart, handleSetWishlists, userToken } = useContext(CromaContext);
   const navigate = useNavigate();
 
   async function handleAddToCart() {
     const data = await addToCart(item.products._id, userToken);
-    // const res = addToCart(productDetails._id, userToken);
     console.log(data);
     if (data.status === "success") {
       toast.success(data.message);
       handleItemsInCart(data.data.items.length);
     }
-    // alert(data.message);
   }
 
   async function handleRemoveProductFromWishlist() {
-    // console.log(item.products._id, userToken);
     const data = await deleteProductFromWishlist(item.products._id, userToken);
     if (data.status === "success") {
-      //   handleSetWishlist(false);
       toast.success(data.message);
-      // console.log("removed ", item.products._id);
-      // console.log("data LEFT", data);
       handleSetWishlists(data);
     }
   }
@@ -132,7 +126,7 @@ function WishlistCard({ item }) {
                   fontSize: { lg: "16px", md: "16px", sm: "12px", xs: "12px" },
                 }}
               >
-                ₹{item.products.price.toFixed(2)}
+                ₹{item.products.price.toLocaleString(navigator.language, {minimumFractionDigits: 2})}
               </Typography>
               <Typography
                 component="p"
@@ -141,7 +135,7 @@ function WishlistCard({ item }) {
                   fontSize: { lg: "16px", md: "16px", sm: "12px", xs: "12px" },
                 }}
               >
-                ₹{(item.products.price * 1.15).toFixed(2)}
+                ₹{(item.products.price * 1.15).toLocaleString(navigator.language, {minimumFractionDigits: 2})}
               </Typography>
             </Box>
           </Box>

@@ -18,7 +18,7 @@ function LoginForm({ handleClose }) {
   const [password, setPassword] = useState("");
   const navigate = useNavigate();
 
-  const {handleCloseAuthDialog} = useContext(CromaContext);
+  const { handleCloseAuthDialog, handleSetUserToken } = useContext(CromaContext);
 
   // console.log({ name, email, password });
   // useEffect(()=>{
@@ -31,6 +31,7 @@ function LoginForm({ handleClose }) {
     if(data.status === 'success')
     {
       const token = data.token;
+      handleSetUserToken(token);
       // console.log(token);
       localStorage.setItem('userToken', JSON.stringify(token));
       localStorage.setItem('username', JSON.stringify(name));
