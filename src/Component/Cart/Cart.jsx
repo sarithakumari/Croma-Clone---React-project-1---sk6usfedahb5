@@ -21,7 +21,7 @@ function Cart() {
   useEffect(() => {
     if (!userToken) {
       navigate("/");
-      handleOpenAuthDialog();
+      // handleOpenAuthDialog();
     }
   }, [userToken]);
 

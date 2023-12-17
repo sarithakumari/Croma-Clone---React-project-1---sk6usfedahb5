@@ -59,11 +59,11 @@ function App() {
   // locationDialog - to open pincode dialog
   const [openLocationDialog, setOpenLocationDialog] = useState(false);
   // userToken - state to store the JWT token and utilise it in every protected routes
-  const [userToken, setUserToken] = useState(null);
+  const [userToken, setUserToken] = useState( JSON.parse(localStorage.getItem("userToken")) || null );
 
-  useEffect(() => {
-    setUserToken(JSON.parse(localStorage.getItem("userToken")));
-  }, []);
+  // useEffect(() => {
+  //   setUserToken(JSON.parse(localStorage.getItem("userToken")));
+  // }, []);
 
   useEffect(() => {
     getCartItemApi(userToken).then((data) => {
@@ -73,9 +73,9 @@ function App() {
     });
   }, [userToken]);
 
-  useEffect(() => {
-    getAllProductFromWishlist(userToken).then((data) => setWishlists(data));
-  }, [userToken]);
+  // useEffect(() => {
+  //   getAllProductFromWishlist(userToken).then((data) => setWishlists(data));
+  // }, [userToken]);
 
   // useEffect(() => {
   //   handleFetchLocation(pincode);

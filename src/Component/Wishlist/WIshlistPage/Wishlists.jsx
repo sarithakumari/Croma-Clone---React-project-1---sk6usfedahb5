@@ -25,7 +25,7 @@ function Wishlists() {
   useEffect(() => {
     if (!userToken) {
       navigate("/");
-      handleOpenAuthDialog();
+      // handleOpenAuthDialog();
     }
   }, [userToken]);
 

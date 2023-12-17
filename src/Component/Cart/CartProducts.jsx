@@ -56,7 +56,7 @@ function CartProducts({ product, handleSetCartProducts, handleClearCart }) {
     handleRemoveProductFromCart();
   }
 
-  console.log("product in cart: ", product.product._id);
+  // console.log("product in cart: ", product.product._id);
   return (
     <Box
       component="div"
@@ -67,6 +67,7 @@ function CartProducts({ product, handleSetCartProducts, handleClearCart }) {
         borderRadius: "0.8rem",
         backgroundColor: "#ffffff",
         marginBottom: 1,
+        width: "98%"
       }}
     >
       {/* left box || right box */}

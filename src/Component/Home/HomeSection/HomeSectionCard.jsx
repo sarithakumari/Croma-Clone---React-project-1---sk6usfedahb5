@@ -73,8 +73,9 @@ function HomeSectionCard({ cardInfo }) {
   return (
     <Toolbar
       sx={{
-        width: { lg: 250, md: 250, sm: 200, xs: 200 },
+        width: { lg: "280px", md: "280px", sm: "280px", xs: "250px" },
         flexDirection: "column",
+        alignSelf: "center",
         bgcolor: "black",
         borderRadius: 1.5,
       }}
@@ -82,7 +83,7 @@ function HomeSectionCard({ cardInfo }) {
       <Box
         component="div"
         sx={{
-          height: { lg: 200, md: 200, sm: 100, xs: 100 },
+          // height: { lg: 200, md: 200, sm: 100, xs: 100 },
           // width: { lg: 200, md: 200, sm: 100, xs: 100 },
           m: 1,
           position: "relative",
@@ -97,11 +98,13 @@ function HomeSectionCard({ cardInfo }) {
             component="img"
             src={displayImage}
             alt={subCategory}
-            height="200"
-            width="200"
+            // height="200"
+            // width="200"
             loading="lazy"
             sx={{
               objectFit: "contain",
+              height: "200px",
+              width: "150px"
             }}
             onError={(e) => {
               e.target.onerror = null;

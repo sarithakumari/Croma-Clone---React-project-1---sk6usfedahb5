@@ -25,7 +25,7 @@ function ProductDetails({
         padding: "0 10px 10px",
       }}
     >
-      <Typography component="div" sx={{fontWeight: "500", fontSize: {lg: "2rem", md: "1.75rem", sm: "1.5rem", xs: "1rem"}}}>
+      <Typography component="div" sx={{fontWeight: "500", fontSize: {lg: "24px", md: "20px", sm: "1.5rem", xs: "1rem"}}}>
         {productDetails?.name}
       </Typography>
 
@@ -71,11 +71,11 @@ function ProductDetails({
 
       <Box component="div" id="productPrice">
         <Box component="div">
-          <Typography component="span" sx={{ fontWeight: "500", fontSize: {lg: "2rem", md: "1.75rem", sm: "1.5rem", xs: "1rem"} }}>
+          <Typography component="span" sx={{ fontWeight: "500", fontSize: {lg: "24px", md: "20px", sm: "1.5rem", xs: "1rem"} }}>
             {" "}
             ₹{" "}
           </Typography>
-          <Typography component="span" sx={{ fontWeight: "500", fontSize: {lg: "2rem", md: "1.75rem", sm: "1.5rem", xs: "1rem"} }}>
+          <Typography component="span" sx={{ fontWeight: "500", fontSize: {lg: "24px", md: "20px", sm: "1.5rem", xs: "1rem"} }}>
             {" "}
             {productDetails?.price.toLocaleString(navigator.language, {
               minimumFractionDigits: 2,

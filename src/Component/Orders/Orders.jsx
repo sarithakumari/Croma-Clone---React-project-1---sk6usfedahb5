@@ -16,7 +16,7 @@ function Orders() {
   useEffect(() => {
     if (!userToken) {
       navigate("/");
-      handleOpenAuthDialog();
+      // handleOpenAuthDialog();
     }
   }, [userToken]);
 
