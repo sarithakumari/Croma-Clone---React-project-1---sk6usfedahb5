@@ -36,10 +36,13 @@ function HomeSectionCarousel({ sectionArr }) {
             lg: "280px!important",
             md: "280px!important",
             sm: "280px!important",
-            xs: "250px!important",
+            xs: "280px!important",
           },
-          margin: "auto 0.5rem"
+          // margin: "auto 0.5rem"
         },
+        "& li:not(:first-child)": {
+          margin: "auto 0.5rem"
+        }
       }}
     >
       <Carousel
