@@ -15,11 +15,11 @@ function PaymentUPI({ upiError, upi, handleUpi }) {
   console.log(upiError);
 
   return (
-    <Box component="div" sx={{ padding: "1rem 0" }}>
+    <Box component="div" sx={{ padding: "1rem 0", width: "100%" }}>
       <Typography component="p" variant="h6" fontWeight="700">
         Enter UPI Details:
       </Typography>
-      <Box component="div" sx={{ width: "400px" }}>
+      <Box component="div" sx={{  }}>
         <Typography variant="body1" component="p" sx={{ margin: "1rem 0" }}>
           UPI Address
         </Typography>

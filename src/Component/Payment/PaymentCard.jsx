@@ -76,7 +76,7 @@ function PaymentCard({ cardDetails, handleCardDetails, error }) {
           onChange={handleCardDetails}
         />
 
-        <Toolbar style={{ padding: "0px", marginTop: "1rem" }}>
+        <Toolbar style={{ padding: "0px", marginTop: "1rem", flexWrap: "wrap" }}>
           <Box component="div" width="150px" marginRight="1rem">
             <Typography component="p">Expiry</Typography>
             <TextField

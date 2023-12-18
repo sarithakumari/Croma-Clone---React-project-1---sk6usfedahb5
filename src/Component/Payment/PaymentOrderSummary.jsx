@@ -79,6 +79,7 @@ function PaymentOrderSummary({ payBtn }) {
               alignItems: "center",
               marginTop: "1rem",
               padding: "0 1rem 0",
+              // flexWrap: "wrap"
             }}
           >
             <Box
@@ -137,7 +138,10 @@ function PaymentOrderSummary({ payBtn }) {
                   padding: "0 0.3rem",
                 }}
               >
-                ₹{item.product.price.toFixed(2)}
+                ₹
+                {item.product.price.toLocaleString(navigator.language, {
+                  minimumFractionDigits: 2,
+                })}
               </Typography>
             </Box>
           </Box>
