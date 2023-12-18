@@ -117,7 +117,7 @@ function Payment() {
                     },
                   }}
                 >
-                  <TabList onChange={handleTabChange} textColor="black">
+                  <TabList onChange={handleTabChange} textColor="inherit">
                     <Tab label="Credit/Debit Card" value="1" />
                     <Tab label="UPI" value="2" />
                   </TabList>
