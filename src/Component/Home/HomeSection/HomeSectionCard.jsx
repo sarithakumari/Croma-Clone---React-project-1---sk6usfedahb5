@@ -106,9 +106,9 @@ function HomeSectionCard({ cardInfo }) {
               height: "200px",
               width: "150px"
             }}
-            onError={(e) => {
-              e.target.onerror = null;
-              e.target.src =
+            onError={({currentTarget}) => {
+              currentTarget.onerror = null;
+              currentTarget.src =
                 "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d3/Stadtbild_M%C3%BCnchen.jpg/2560px-Stadtbild_M%C3%BCnchen.jpg";
             }}
           />

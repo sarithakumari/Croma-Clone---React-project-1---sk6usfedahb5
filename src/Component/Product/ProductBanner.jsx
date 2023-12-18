@@ -9,14 +9,13 @@ function ProductBanner({ imagePath, title }) {
         src={imagePath}
         alt="title"
         sx={{
-          aspectRatio: "128/35"
+          aspectRatio: "128/35",
         }}
-        onError={(e) =>
-          (e.target.onerror = null)(
-            (e.target.src =
-              "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d3/Stadtbild_M%C3%BCnchen.jpg/2560px-Stadtbild_M%C3%BCnchen.jpg")
-          )
-        }
+        onError={(e) => {
+          e.target.onerror = null;
+          e.target.src =
+            "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d3/Stadtbild_M%C3%BCnchen.jpg/2560px-Stadtbild_M%C3%BCnchen.jpg";
+        }}
       />
     </Card>
   );
