@@ -18,7 +18,7 @@ import { clearCartApi } from "../../helper/clearCartApi";
 
 import { toast } from "react-toastify";
 
-function PaymentOrderSummary() {
+function PaymentOrderSummary({ payBtn }) {
   const {
     name,
     cartProducts,
@@ -26,7 +26,7 @@ function PaymentOrderSummary() {
     addressType,
     handleSetCartProducts,
     handleItemsInCart,
-    userToken
+    userToken,
   } = useContext(CromaContext);
   const navigate = useNavigate();
 
@@ -53,7 +53,12 @@ function PaymentOrderSummary() {
   return (
     <Box
       component="div"
-      sx={{ width: "100%", backgroundColor: "white", borderRadius: "8px" }}
+      sx={{
+        width: "100%",
+        backgroundColor: "white",
+        borderRadius: "8px",
+        // marginLeft: { lg: "1rem", md: "1rem", sm: "0rem", xs: "0rem" },
+      }}
     >
       <Typography
         component="p"
@@ -215,6 +220,7 @@ function PaymentOrderSummary() {
             fullWidth
             sx={{ color: "black", backgroundColor: "#12daa8" }}
             onClick={handleCheckout}
+            disabled={!payBtn}
           >
             Pay Now
           </Button>

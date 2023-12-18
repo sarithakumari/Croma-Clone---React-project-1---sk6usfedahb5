@@ -1,8 +1,19 @@
 import { Box, InputAdornment, TextField, Typography } from "@mui/material";
-import React from "react";
+import React, { useState } from "react";
 import CurrencyRupeeIcon from '@mui/icons-material/CurrencyRupee';
 
-function PaymentUPI() {
+function PaymentUPI({ upiError, upi, handleUpi }) {
+  // const [upi, setUpi] = useState('');
+  // const [upiError, setUpiError] = useState(true);
+
+  // function handleUpi(e) {
+  //   setUpi(e.target.value);
+  //   handleUpiError(!Boolean(upi));
+  // }
+
+  console.log(upi);
+  console.log(upiError);
+
   return (
     <Box component="div" sx={{ padding: "1rem 0" }}>
       <Typography component="p" variant="h6" fontWeight="700">
@@ -23,6 +34,10 @@ function PaymentUPI() {
               </InputAdornment>
             ),
           }}
+          error={upiError}
+          helperText={upiError ? "Enter UPI Address" : ""}
+          value={upi}
+          onChange={handleUpi}
         />
       </Box>
     </Box>

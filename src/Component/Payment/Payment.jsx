@@ -1,3 +1,6 @@
+import TabContext from "@mui/lab/TabContext";
+import TabList from "@mui/lab/TabList";
+import TabPanel from "@mui/lab/TabPanel";
 import {
   Accordion,
   AccordionDetails,
@@ -10,10 +13,11 @@ import {
   ListItem,
   ListItemButton,
   ListItemText,
+  Tab,
   Typography,
 } from "@mui/material";
+
 import React, { useContext, useEffect, useState } from "react";
-import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import PaymentCard from "./PaymentCard";
 import PaymentUPI from "./PaymentUPI";
 import CartOrderSummary from "../Cart/CartOrderSummary";
@@ -21,37 +25,60 @@ import PaymentOrderSummary from "./PaymentOrderSummary";
 import CromaContext from "../../ContextAPI/CromaContext";
 
 function Payment() {
-  const [openCard, setCard] = useState(true);
-  const [openUPI, setOpenUPI] = useState(false);
-  // const [openBanking, setBanking] = useState(false);
-  
-  const { cartProducts, handleOpenAuthDialog, userToken } = useContext(CromaContext);
+  const [tabValue, setTabValue] = useState("1");
 
-  useEffect(()=>{
-    if(!userToken) {
-      navigate('/');
+  const [upi, setUpi] = useState("");
+  const [upiError, setUpiError] = useState(!Boolean(upi));
+
+  const [cardDetails, setCardDetails] = useState({
+    cardNumber: "",
+    expiry: "",
+    cvv: "",
+  });
+
+  const [error, setError] = useState({
+    cardNumber: !Boolean(cardDetails.cardNumber),
+    expiry: !Boolean(cardDetails.expiry),
+    cvv: !Boolean(cardDetails.cvv),
+  });
+
+  // const [payBtn, setPayBtn] = useState(false);
+
+  const { cartProducts, handleOpenAuthDialog, userToken } =
+    useContext(CromaContext);
+
+  useEffect(() => {
+    if (!userToken) {
+      navigate("/");
       handleOpenAuthDialog();
     }
-  }, [userToken])
+  }, [userToken]);
 
-  function handleUPIClick() {
-    setCard(false);
-    setOpenUPI(!openUPI);
-    // setBanking(false);
+  function handleCardDetails(e) {
+    const { name, value } = e.target;
+    setCardDetails((prev) => ({
+      ...prev,
+      [name]: value,
+    }));
+    setError((prev) => ({
+      ...prev,
+      [name]: !Boolean(value),
+    }));
   }
-  function handleCardClick() {
-    setCard(!openCard);
-    setOpenUPI(false);
-    // setBanking(false);
-  }
-  
-  // function handleBankingClick() {
-  //   setBanking(!openBanking);
-  //   setCard(false);
-  //   setOpenUPI(false);
-  // }
 
-  console.log('Payments cartProducts:', cartProducts);
+  function handleUpi(e) {
+    setUpi(e.target.value);
+    setUpiError(!Boolean(e.target.value));
+  }
+
+  function handleTabChange(e, value) {
+    setTabValue(value);
+  }
+
+  const payBtn = !upiError || (!error.cardNumber && !error.expiry && !error.cvv) ;
+
+  // console.log("Payments cartProducts:", cartProducts);
+  // console.log(upiError);
 
   return (
     <Box
@@ -68,8 +95,74 @@ function Payment() {
     >
       <Container maxWidth="lg">
         <Grid container>
-          <Grid item lg={8} md={8}>
-            <Box component="div" sx={{margin: "1rem 1rem 1rem 0"}} >
+          <Grid item lg={8} md={8} sm={12} xs={12}>
+            <Box
+              component="div"
+              sx={{
+                margin: "1rem 1rem 1rem 0",
+                width: "100%",
+                border: "1px solid #12daa8",
+                borderRadius: "8px",
+                backgroundColor: "white",
+                color: "inherit",
+              }}
+            >
+              <TabContext value={tabValue}>
+                <Box
+                  sx={{
+                    borderBottom: 1,
+                    borderColor: "divider",
+                    "& .MuiTabs-indicator": {
+                      backgroundColor: "#12daa8",
+                    },
+                  }}
+                >
+                  <TabList onChange={handleTabChange} textColor="black">
+                    <Tab label="Credit/Debit Card" value="1" />
+                    <Tab label="UPI" value="2" />
+                  </TabList>
+                </Box>
+                <TabPanel value="1">
+                  <Box component="div" id="card" sx={{ width: "100%" }}>
+                    <PaymentCard
+                      cardDetails={cardDetails}
+                      handleCardDetails={handleCardDetails}
+                      error={error}
+                    />
+                  </Box>
+                </TabPanel>
+                <TabPanel value="2">
+                  <Box component="div" id="upi" sx={{ width: "100%" }}>
+                    <PaymentUPI
+                      // handleUpiError={handleUpiError}
+                      upiError={upiError}
+                      upi={upi}
+                      handleUpi={handleUpi}
+                    />
+                  </Box>
+                </TabPanel>
+              </TabContext>
+            </Box>
+          </Grid>
+
+          <Grid item lg={4} md={4} sm={12} xs={12}>
+            <Box component="div" sx={{ margin: "1rem 0 0 0" }}>
+              <PaymentOrderSummary payBtn={payBtn} />
+            </Box>
+          </Grid>
+        </Grid>
+      </Container>
+    </Box>
+  );
+}
+
+export default Payment;
+
+/* 
+<Box
+              component="div"
+              sx={{ margin: "1rem 1rem 1rem 0", width: "100%" }}
+            >
               <Accordion defaultExpanded sx={{ border: "1px solid #12daa8" }}>
                 <AccordionSummary
                   sx={{ borderBottom: "1px solid lightgrey" }}
@@ -89,7 +182,7 @@ function Payment() {
                       <List>
                         <ListItem>
                           <ListItemButton onClick={handleCardClick}>
-                            <ListItemText primary="Credit/Debit Card" />
+                            <ListItemText primary="Card" />
                           </ListItemButton>
                         </ListItem>
 
@@ -103,46 +196,34 @@ function Payment() {
                           <ListItemButton onClick={handleBankingClick}>
                             <ListItemText primary="Net Banking" />
                           </ListItemButton>
-                        </ListItem> */}
+                        </ListItem> */
+// </List>
+// </Grid>
 
-                      </List>
-                    </Grid>
+// <Grid item lg={8} md={8} sm={8} xs={9}>
+//   <Collapse in={openCard}>
+//     <Box component="div" id="card">
+//       <PaymentCard />
+//     </Box>
+//   </Collapse>
 
-                    <Grid item lg={8} md={8} sm={8} xs={9}>
-                      <Collapse in={openCard}>
-                        <Box component="div" id="card">
-                          <PaymentCard />
-                        </Box>
-                      </Collapse>
+//   <Collapse in={openUPI}>
+//     <Box component="div" id="upi">
+//       <PaymentUPI />
+//     </Box>
+//   </Collapse>
 
-                      <Collapse in={openUPI}>
-                        <Box component="div" id="upi">
-                          <PaymentUPI />
-                        </Box>
-                      </Collapse>
-
-                      {/* <Collapse in={openBanking}>
-                        <Box component="div" id="netbanking">
-                          <Typography variant="body2">net banking</Typography>
-                        </Box>
-                      </Collapse> */}
-
-                    </Grid>
-                  </Grid>
-                </AccordionDetails>
-              </Accordion>
-            </Box>
-          </Grid>
-          
-          <Grid item lg={4} md={4}>
-            <Box component='div' sx={{margin: "1rem 0 0 0"}} >
-              <PaymentOrderSummary />
-            </Box>
-          </Grid>
-        </Grid>
-      </Container>
-    </Box>
-  );
+{
+  /* <Collapse in={openBanking}>
+                            <Box component="div" id="netbanking">
+                              <Typography variant="body2">net banking</Typography>
+                            </Box>
+                          </Collapse> */
 }
-
-export default Payment;
+{
+  /* </Grid>
+                      </Grid>
+                    </AccordionDetails>
+                  </Accordion>
+                </Box> */
+}
