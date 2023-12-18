@@ -391,6 +391,7 @@ function CartProducts({ product, handleSetCartProducts, handleClearCart }) {
             sx={{
               objectFit: "contain",
               borderRadius: "8px",
+              aspectRatio: "1/1"
             }}
             onError={(e) => {
               e.target.onerror = null;
