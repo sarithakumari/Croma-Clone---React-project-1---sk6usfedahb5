@@ -38,6 +38,8 @@ function LoginForm({ handleClose }) {
       handleCloseAuthDialog();
       // navigate("/");
       toast.success("Account Created!");
+    } else {
+      toast.info(data.message);
     }
   }
 

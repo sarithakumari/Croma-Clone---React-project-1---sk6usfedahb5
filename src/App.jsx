@@ -73,9 +73,9 @@ function App() {
     });
   }, [userToken]);
 
-  // useEffect(() => {
-  //   getAllProductFromWishlist(userToken).then((data) => setWishlists(data));
-  // }, [userToken]);
+  useEffect(() => {
+    getAllProductFromWishlist(userToken).then((data) => setWishlists(data));
+  }, [userToken]);
 
   // useEffect(() => {
   //   handleFetchLocation(pincode);
